@@ -1,0 +1,229 @@
+@use "sass:math";
+
+/* ./styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: openSans;
+  src: url(../assets/fonts/OpenSans-SemiBold.ttf);
+}
+$main-perspective: 30;
+
+*,
+*:after,
+*:before {
+  box-sizing: inherit;
+  transform-style: preserve-3d;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #232323;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.main {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  perspective-origin: 50%;
+  perspective: ($main-perspective) * 1px;
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100vh;
+}
+
+.banner {
+  &__image--first {
+    z-index: 5;
+    transform: translateY(100%) translateZ(3px)
+      scale(math.div($main-perspective - 3, $main-perspective));
+  }
+  &__image--second {
+    z-index: 3;
+    transform: translateY(-75%) translateZ(-1px)
+      scale(math.div($main-perspective + 1, $main-perspective));
+  }
+}
+
+.bg-primary {
+  background-color: #232323;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1 {
+  font-family: openSans;
+  letter-spacing: 0px;
+}
+
+.pop-up-content {
+  nav {
+    padding-left: 50%;
+    font-size: 20px;
+  }
+}
+
+.slick {
+  &-dots {
+    bottom: 0;
+
+    li {
+      margin: 0;
+    }
+  }
+
+  &-arrow.slick-next {
+    color: black;
+    right: 30px;
+    &::before {
+      color: black;
+    }
+  }
+
+  &-arrow.slick-prev {
+    z-index: 1;
+    color: black;
+    left: 30px;
+    &::before {
+      color: black;
+    }
+  }
+}
+
+.react-pdf__Page__canvas {
+  margin: auto;
+}
+
+.image-gallery {
+  height: 100vh;
+  position: relative;
+  max-width: 100%;
+
+  @mixin image {
+    position: absolute;
+  }
+  &__image--1 {
+    @include image;
+    transform-origin: 0 0;
+    top: 0;
+    right: 0;
+    left: 40%;
+    z-index: 1;
+    transform: translateZ(-6px)
+      scale(math.div($main-perspective + 6, $main-perspective));
+  }
+  &__image--2 {
+    @include image;
+    top: 8%;
+    left: 3%;
+    right: 50%;
+    z-index: 4;
+    transform: translateZ(-4px)
+      scale(math.div($main-perspective + 4, $main-perspective));
+  }
+  &__image--3 {
+    @include image;
+    top: 22%;
+    left: 0;
+    right: 40%;
+    z-index: 3;
+    //transform: translateZ(4px)
+    //  scale(math.div($main-perspective - 4, $main-perspective));
+  }
+  &__image--4 {
+    @include image;
+    top: 14%;
+    right: 10%;
+    left: 40%;
+    z-index: 5;
+    transform: translateZ(6px)
+      scale(math.div($main-perspective - 6, $main-perspective));
+  }
+  &__image--5 {
+    @include image;
+    top: 40%;
+    left: 12%;
+    right: 30%;
+    z-index: 3;
+    transform: translateZ(2px)
+      scale(math.div($main-perspective - 2, $main-perspective));
+  }
+  &__image--6 {
+    @include image;
+    top: 53%;
+    left: 36%;
+    right: 10%;
+    z-index: 4;
+    transform: translateZ(4px)
+      scale(math.div($main-perspective - 4, $main-perspective));
+  }
+  &__image--7 {
+    @include image;
+    top: 62%;
+    left: -12%;
+    right: 47%;
+    z-index: 1;
+    transform: rotate(90deg) translateZ(-5px)
+      scale(math.div($main-perspective + 5, $main-perspective));
+  }
+  &__image--8 {
+    @include image;
+    top: 67%;
+    left: 40%;
+    right: 6%;
+    z-index: 5;
+    transform: translateZ(7px)
+      scale(math.div($main-perspective - 7, $main-perspective));
+  }
+}
+.contact {
+  font-size: 14px;
+
+  * {
+    color: white;
+  }
+
+  p {
+    font-weight: lighter;
+  }
+}
+
+$maxValue: 17; // excludes 16
+
+// minimum value
+$minValue: 1;
+
+@for $x from $minValue to $maxValue {
+  @for $y from $minValue to $maxValue {
+    @for $z from $minValue to $maxValue {
+      .transform-#{$x}-#{$y}-#{$z} {
+        transform: translateX(#{$x}rem)
+          translateY(-#{$y * 4}rem)
+          translateZ(-#{$z * 100}px)
+          scale(math.div(100 + $z * 100, 100));
+      }
+      .-transform-#{$x}-#{$y}-#{$z} {
+        transform: translateX(-#{$x}rem)
+          translateY(-#{$y * 5}rem)
+          translateZ(-#{$z * 100}px)
+          scale(math.div(100 + $z * 100, 100));
+      }
+    }
+  }
+  .z-index-#{$x} {
+    z-index: #{$x};
+  }
+  .-z-index-#{$x} {
+    z-index: -#{$x};
+  }
+}

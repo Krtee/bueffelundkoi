@@ -1,0 +1,54 @@
+{
+  "general":{
+    "brandname":"Büffel&Koi",
+    "back":"Back to website",
+    "eng":"ENG",
+    "de":"DE"
+  },
+    "main": {
+      "firstTitle": "Japanese",
+      "secondTitle": "Vietnamese"
+    },
+    "nav":{
+        "home":"Home",
+        "about":"About us",
+        "gallery":"Gallery",
+        "contact":"Contact",
+        "impressum":"Impressum",
+        "dataprivacy":"data privacy"
+    },
+    "about": {
+      "title": "About us",
+      "content":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolo"
+    },
+    "menu":{
+      "title":"Our dishes"
+    },
+    "gallery":{
+        "title":"Image gallery"
+    },
+    "contact":{
+        "title":"Contact",
+        "address":{
+            "name":"Büffel&Koi",
+            "street":"Katzenbachstraße 95",
+            "city":"70563 Stuttgart"
+        },
+        "phone":"0711 96896535",
+        "email":"bueffelundkoi@gmail.com"
+
+    },
+    "openingTime":{
+        "title":"Opening Times",
+        "content":{
+            "normal":{
+              "days":"monday | wednesday | thursday | sunday:",
+              "times":"11 a.m. - 3 p.m.  &  7 p.m. - 11 p.m."
+              },
+            "weekend":{
+              "days":"friday | saturday:",
+              "times":"11 a.m. - 3 p.m.  &  7 p.m. - 12 p.m."
+            }
+        }
+    }
+  }

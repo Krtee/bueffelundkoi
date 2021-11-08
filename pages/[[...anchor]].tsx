@@ -1,0 +1,301 @@
+import type { NextPage } from "next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import "tailwindcss/tailwind.css";
+import { NavLink } from "../components/NavLink";
+import NavOverlay from "../components/NavOverlay";
+import { useWindowDimensions } from "../utils/useWindowDimension";
+import facebook from "./../assets/facebook.svg";
+import GalleryImage1 from "./../assets/images/bildergalerie_1.jpg";
+import GalleryImage2 from "./../assets/images/bildergalerie_2.jpg";
+import GalleryImage3 from "./../assets/images/bildergalerie_3.jpg";
+import GalleryImage4 from "./../assets/images/bildergalerie_4.jpg";
+import GalleryImage5 from "./../assets/images/bildergalerie_5.jpg";
+import GalleryImage6 from "./../assets/images/bildergalerie_6.jpg";
+import GalleryImage7 from "./../assets/images/bildergalerie_7.jpg";
+import GalleryImage8 from "./../assets/images/bildergalerie_8.jpg";
+import StartImage1 from "./../assets/images/start_1.jpg";
+import StartImage2 from "./../assets/images/start_2.jpg";
+import AboutUs from "./../assets/images/über_uns.jpg";
+import instagram from "./../assets/instagram.svg";
+import logo from "./../assets/logo.png";
+import MenuIcon from "./../assets/menu.svg";
+
+const PdfViewer = dynamic(() => import("../components/PdfViewer"), {
+  ssr: false,
+});
+
+const Home: NextPage = () => {
+  const router = useRouter();
+  const { width } = useWindowDimensions();
+  const { t, i18n } = useTranslation("common");
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [activeLang, setActiveLang] = useState<string>("de");
+  const { anchor } = router.query;
+
+  useEffect(() => {
+    if (!anchor) return;
+    const element = document.getElementById(anchor as string);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [anchor]);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      setShowPopUp(false);
+      console.log(url);
+      const id = url.split("/").pop();
+      if (id) {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
+  }, []);
+
+  const customPopUpStyles = {
+    content: {
+      top: "0",
+      left: "0",
+      right: "auto",
+      bottom: "auto",
+      height: "100%",
+      width: "100%",
+      backgroundColor: "#232323",
+      borderRadius: "0",
+      border: "none",
+      zIndex: 100,
+    },
+  };
+
+  return (
+    <div>
+      <Head>
+        <title>Büffel und Koi</title>
+        <meta name="description" content="Büffel und Koi" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <NavOverlay
+        isOpen={showPopUp}
+        onClose={() => setShowPopUp(false)}
+        screenWidth={width}
+        locale={activeLang}
+        setLocale={setActiveLang}
+      />
+
+      <div className={"main"}>
+        <main className={" w-full text-white min-h-full "}>
+          <div className={"flex flex-row 	p-4"}>
+            <div className="flex-1 flex justify-start">
+              <div className={"relative m-w-32 w-32 "}>
+                <Image
+                  src={logo}
+                  alt={t("nav.logo")}
+                  layout="responsive"
+                  width={19}
+                  height={7}
+                />
+              </div>
+            </div>
+            {width > 700 ? (
+              <nav className={""}>
+                <NavLink href="/" locale={activeLang}>
+                  {t("nav.home")}
+                </NavLink>
+                <NavLink href="/about" locale={activeLang}>
+                  {t("nav.about")}
+                </NavLink>
+                <NavLink href="/gallery" locale={activeLang}>
+                  {t("nav.gallery")}
+                </NavLink>
+                <NavLink href="/contact" locale={activeLang}>
+                  {t("nav.contact")}
+                </NavLink>
+              </nav>
+            ) : (
+              <Image src={MenuIcon} onClick={() => setShowPopUp(true)} />
+            )}
+          </div>
+
+          <div className={"w-full h-80 relative mb-20"}>
+            <div className="relative w-7/12 ml-auto banner__image--first ">
+              <Image
+                src={StartImage2}
+                width={428}
+                height={285}
+                layout="responsive"
+              />
+            </div>
+            <div className="relative w-2/3  banner__image--second">
+              <Image
+                src={StartImage1}
+                width={252}
+                height={168}
+                layout="responsive"
+              />
+            </div>
+            <div className="absolute top-12 right-12 z-10">
+              <h1 className="font-bold	text-2xl">
+                {t("main.secondTitle").toUpperCase()}
+              </h1>
+              <h1 className="font-bold	text-2xl">
+                {t("main.firstTitle").toUpperCase()}
+              </h1>
+            </div>
+          </div>
+
+          <div className={"m-10 mt-20"} id={"about"}>
+            <h1 className="font-bold text-2xl">{t("about.title")}</h1>
+            <p>{t("about.content")}</p>
+          </div>
+          <div className="w-full">
+            <Image src={AboutUs} width={428} height={285} layout="responsive" />
+          </div>
+
+          <div>
+            <h1 className="font-bold text-2xl m-auto text-center mt-20 mb-5">
+              {t("menu.title")}
+            </h1>
+            <div className={"relative "}>
+              <PdfViewer url={"./menu.pdf"} width={width - 50} />
+            </div>
+          </div>
+
+          <div className="image-gallery " id={"gallery"}>
+            <h1 className="font-bold text-2xl px-10 mt-20">
+              {t("gallery.title")}
+            </h1>
+            <div className={" image-gallery__image--1"}>
+              <Image
+                src={GalleryImage1}
+                width={6000}
+                height={4000}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--2"}>
+              <Image
+                src={GalleryImage2}
+                width={5870}
+                height={3913}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--3"}>
+              <Image
+                src={GalleryImage3}
+                width={5583}
+                height={3722}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--4"}>
+              <Image
+                src={GalleryImage4}
+                width={3733}
+                height={5599}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--5"}>
+              <Image
+                src={GalleryImage5}
+                width={5184}
+                height={3456}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--6"}>
+              <Image
+                src={GalleryImage6}
+                width={6000}
+                height={4000}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--7"}>
+              <Image
+                src={GalleryImage7}
+                width={6000}
+                height={4000}
+                layout="responsive"
+              />
+            </div>
+            <div className={" image-gallery__image--8"}>
+              <Image
+                src={GalleryImage8}
+                width={5597}
+                height={3731}
+                layout="responsive"
+              />
+            </div>
+          </div>
+        </main>
+
+        <footer
+          className={"mx-5 py-8  px-4 border-t border-white "}
+          id="contact"
+        >
+          <div className="grid grid-cols-2 contact gap-10 ">
+            <div className={"flex-1"}>
+              <h2 className={"font-bold	"}>{t("contact.title")}</h2>
+              <p>{t("contact.address.name")}</p>
+              <p>{t("contact.address.street")}</p>
+              <p>{t("contact.address.city")}</p>
+              <p>{t("contact.phone")}</p>
+              <p>{t("contact.email")}</p>
+            </div>
+            <div className={"flex-1"}>
+              <h2 className={"font-bold	"}>{t("openingTime.title")}</h2>
+              <p>{t("openingTime.content.normal.days")}</p>{" "}
+              <p>{t("openingTime.content.normal.times")}</p>
+              <p className="mt-4">{t("openingTime.content.weekend.days")}</p>
+              <p>{t("openingTime.content.weekend.times")}</p>
+            </div>
+          </div>
+
+          <div className="flex flex-row w-full justify-center mt-9 gap-10">
+            <div className={"w-12 h-12"}>
+              <Image src={facebook} />
+            </div>
+            <div className={"w-12 h-12"}>
+              <Image src={instagram} />
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common", "footer"])),
+  },
+});
+
+export const getStaticPaths = () => {
+  return {
+    paths: [
+      // String variant:
+      "/en/about",
+      "/en/contact",
+      "/en/gallery",
+      "/de/about",
+      "/de/contact",
+      "/de/gallery",
+    ],
+    fallback: true,
+  };
+};
+
+export default Home;
