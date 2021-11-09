@@ -5,26 +5,26 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
 import { NavLink } from "../components/NavLink";
 import NavOverlay from "../components/NavOverlay";
 import { useWindowDimensions } from "../utils/useWindowDimension";
-import facebook from "./../assets/facebook.svg";
-import GalleryImage1 from "./../assets/images/bildergalerie_1.jpg";
-import GalleryImage2 from "./../assets/images/bildergalerie_2.jpg";
-import GalleryImage3 from "./../assets/images/bildergalerie_3.jpg";
-import GalleryImage4 from "./../assets/images/bildergalerie_4.jpg";
-import GalleryImage5 from "./../assets/images/bildergalerie_5.jpg";
-import GalleryImage6 from "./../assets/images/bildergalerie_6.jpg";
-import GalleryImage7 from "./../assets/images/bildergalerie_7.jpg";
-import GalleryImage8 from "./../assets/images/bildergalerie_8.jpg";
-import StartImage1 from "./../assets/images/start_1.jpg";
-import StartImage2 from "./../assets/images/start_2.jpg";
-import AboutUs from "./../assets/images/über_uns.jpg";
-import instagram from "./../assets/instagram.svg";
-import logo from "./../assets/logo.png";
-import MenuIcon from "./../assets/menu.svg";
+import facebook from "./../public/assets/facebook.svg";
+import GalleryImage1 from "./../public/assets/images/bildergalerie_1.jpg";
+import GalleryImage2 from "./../public/assets/images/bildergalerie_2.jpg";
+import GalleryImage3 from "./../public/assets/images/bildergalerie_3.jpg";
+import GalleryImage4 from "./../public/assets/images/bildergalerie_4.jpg";
+import GalleryImage5 from "./../public/assets/images/bildergalerie_5.jpg";
+import GalleryImage6 from "./../public/assets/images/bildergalerie_6.jpg";
+import GalleryImage7 from "./../public/assets/images/bildergalerie_7.jpg";
+import GalleryImage8 from "./../public/assets/images/bildergalerie_8.jpg";
+import StartImage1 from "./../public/assets/images/start_1.jpg";
+import StartImage2 from "./../public/assets/images/start_2.jpg";
+import AboutUs from "./../public/assets/images/über_uns.jpg";
+import instagram from "./../public/assets/instagram.svg";
+import logo from "./../public/assets/logo.png";
+import MenuIcon from "./../public/assets/menu.svg";
 
 const PdfViewer = dynamic(() => import("../components/PdfViewer"), {
   ssr: false,
@@ -33,34 +33,9 @@ const PdfViewer = dynamic(() => import("../components/PdfViewer"), {
 const Home: NextPage = () => {
   const router = useRouter();
   const { width } = useWindowDimensions();
-  const { t, i18n } = useTranslation("common");
+  const { t } = useTranslation("common");
   const [showPopUp, setShowPopUp] = useState(false);
   const [activeLang, setActiveLang] = useState<string>("de");
-  const { anchor } = router.query;
-
-  useEffect(() => {
-    if (!anchor) return;
-    const element = document.getElementById(anchor as string);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [anchor]);
-
-  useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      setShowPopUp(false);
-      console.log(url);
-      const id = url.split("/").pop();
-      if (id) {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    };
-
-    router.events.on("routeChangeStart", handleRouteChange);
-  }, []);
 
   const customPopUpStyles = {
     content: {
@@ -90,6 +65,7 @@ const Home: NextPage = () => {
         screenWidth={width}
         locale={activeLang}
         setLocale={setActiveLang}
+        onNavigate={() => setShowPopUp(false)}
       />
 
       <div className={"main"}>
@@ -282,20 +258,5 @@ export const getStaticProps = async ({ locale }: any) => ({
     ...(await serverSideTranslations(locale, ["common", "footer"])),
   },
 });
-
-export const getStaticPaths = () => {
-  return {
-    paths: [
-      // String variant:
-      "/en/about",
-      "/en/contact",
-      "/en/gallery",
-      "/de/about",
-      "/de/contact",
-      "/de/gallery",
-    ],
-    fallback: true,
-  };
-};
 
 export default Home;

@@ -1,21 +1,20 @@
 import { useRouter } from "next/router";
 import { FC } from "react";
 
-export const NavLink: FC<{ href: string; locale: string }> = ({
-  children,
-  href,
-  locale,
-}) => {
-  const router = useRouter();
+export const NavLink: FC<{ href: string; locale: string; onClick?: Function }> =
+  ({ children, href, locale, onClick }) => {
+    const router = useRouter();
 
-  const handleClick = (event: any) => {
-    event.preventDefault();
-    router.push("/", `${locale}${href}`, {
+    const handleClick = (event: any) => {
+      event.preventDefault();
+      /*router.push("/", `${locale}${href}`, {
       scroll: false,
       shallow: true,
       locale: false,
-    });
-  };
+    });*/
+      router.push(`#${href}`);
+      onClick?.();
+    };
 
-  return <a onClick={handleClick}>{children}</a>;
-};
+    return <a onClick={handleClick}>{children}</a>;
+  };

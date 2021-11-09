@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: openSans;
-  src: url(../assets/fonts/OpenSans-SemiBold.ttf);
+  src: url(../public/assets/fonts/OpenSans-SemiBold.ttf);
 }
 $main-perspective: 30;
 
@@ -16,6 +16,7 @@ $main-perspective: 30;
 *:before {
   box-sizing: inherit;
   transform-style: preserve-3d;
+  scroll-behavior: smooth;
 }
 html,
 body {
@@ -28,6 +29,7 @@ body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .main {
@@ -155,8 +157,8 @@ h1 {
     left: 12%;
     right: 30%;
     z-index: 3;
-    transform: translateZ(2px)
-      scale(math.div($main-perspective - 2, $main-perspective));
+    transform: translateZ(-2px)
+      scale(math.div($main-perspective + 2, $main-perspective));
   }
   &__image--6 {
     @include image;

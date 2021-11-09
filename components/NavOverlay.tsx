@@ -2,9 +2,9 @@ import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC } from "react";
-import GalleryImage7 from "./../assets/images/bildergalerie_7.jpg";
-import gyozaImage from "./../assets/images/speisen_1.jpg";
-import logo from "./../assets/logo.png";
+import GalleryImage7 from "./../public/assets/images/bildergalerie_7.jpg";
+import gyozaImage from "./../public/assets/images/speisen_1.jpg";
+import logo from "./../public/assets/logo.png";
 import { NavLink } from "./NavLink";
 
 interface NavOverlayProps {
@@ -13,6 +13,7 @@ interface NavOverlayProps {
   onClose(): void;
   locale: string;
   setLocale(locale: string): void;
+  onNavigate(id: string): void;
 }
 
 const NavOverlay: FC<NavOverlayProps> = ({
@@ -21,6 +22,7 @@ const NavOverlay: FC<NavOverlayProps> = ({
   locale,
   setLocale,
   onClose,
+  onNavigate,
 }) => {
   const { t, i18n } = useTranslation("common");
   const router = useRouter();
@@ -67,22 +69,42 @@ const NavOverlay: FC<NavOverlayProps> = ({
               "text-white flex flex-col w-full justify-end gap-6 text-xl font-bold	 py-16"
             }
           >
-            <NavLink href="/" locale={locale}>
+            <NavLink href="" locale={locale} onClick={() => onNavigate("")}>
               {t("nav.home")}
             </NavLink>
-            <NavLink href="/about" locale={locale}>
+            <NavLink
+              href="about"
+              locale={locale}
+              onClick={() => onNavigate("about")}
+            >
               {t("nav.about")}
             </NavLink>
-            <NavLink href="/gallery" locale={locale}>
+            <NavLink
+              href="gallery"
+              locale={locale}
+              onClick={() => onNavigate("gallery")}
+            >
               {t("nav.gallery")}
             </NavLink>
-            <NavLink href="/contact" locale={locale}>
+            <NavLink
+              href="contact"
+              locale={locale}
+              onClick={() => onNavigate("contact")}
+            >
               {t("nav.contact")}
             </NavLink>
-            <NavLink href="/impressum" locale={locale}>
+            <NavLink
+              href="impressum"
+              locale={locale}
+              onClick={() => onNavigate("impressum")}
+            >
               {t("nav.impressum")}
             </NavLink>{" "}
-            <NavLink href="/data-privacy" locale={locale}>
+            <NavLink
+              href="data-privacy"
+              locale={locale}
+              onClick={() => onNavigate("data-privac<")}
+            >
               {t("nav.dataprivacy")}
             </NavLink>
           </nav>
