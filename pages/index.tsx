@@ -59,17 +59,17 @@ const Home: NextPage = () => {
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <NavOverlay
-        isOpen={showPopUp}
-        onClose={() => setShowPopUp(false)}
-        screenWidth={width}
-        locale={activeLang}
-        setLocale={setActiveLang}
-        onNavigate={() => setShowPopUp(false)}
-      />
 
       <div className={"main"}>
-        <main className={" w-full text-white min-h-full "}>
+        <NavOverlay
+          isOpen={showPopUp}
+          onClose={() => setShowPopUp(false)}
+          screenWidth={width}
+          locale={activeLang}
+          setLocale={setActiveLang}
+          onNavigate={() => setShowPopUp(false)}
+        />
+        <main className={" main w-full text-white"}>
           <div className={"flex flex-row 	p-4"}>
             <div className="flex-1 flex justify-start">
               <div className={"relative m-w-32 w-32 "}>
@@ -215,39 +215,38 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
+          <footer
+            className={"mx-5 py-8  px-4 border-t border-white "}
+            id="contact"
+          >
+            <div className="grid grid-cols-2 contact gap-10 ">
+              <div className={"flex-1"}>
+                <h2 className={"font-bold	"}>{t("contact.title")}</h2>
+                <p>{t("contact.address.name")}</p>
+                <p>{t("contact.address.street")}</p>
+                <p>{t("contact.address.city")}</p>
+                <p>{t("contact.phone")}</p>
+                <p>{t("contact.email")}</p>
+              </div>
+              <div className={"flex-1"}>
+                <h2 className={"font-bold	"}>{t("openingTime.title")}</h2>
+                <p>{t("openingTime.content.normal.days")}</p>{" "}
+                <p>{t("openingTime.content.normal.times")}</p>
+                <p className="mt-4">{t("openingTime.content.weekend.days")}</p>
+                <p>{t("openingTime.content.weekend.times")}</p>
+              </div>
+            </div>
+
+            <div className="flex flex-row w-full justify-center mt-9 gap-10">
+              <div className={"w-12 h-12"}>
+                <Image src={facebook} />
+              </div>
+              <div className={"w-12 h-12"}>
+                <Image src={instagram} />
+              </div>
+            </div>
+          </footer>
         </main>
-
-        <footer
-          className={"mx-5 py-8  px-4 border-t border-white "}
-          id="contact"
-        >
-          <div className="grid grid-cols-2 contact gap-10 ">
-            <div className={"flex-1"}>
-              <h2 className={"font-bold	"}>{t("contact.title")}</h2>
-              <p>{t("contact.address.name")}</p>
-              <p>{t("contact.address.street")}</p>
-              <p>{t("contact.address.city")}</p>
-              <p>{t("contact.phone")}</p>
-              <p>{t("contact.email")}</p>
-            </div>
-            <div className={"flex-1"}>
-              <h2 className={"font-bold	"}>{t("openingTime.title")}</h2>
-              <p>{t("openingTime.content.normal.days")}</p>{" "}
-              <p>{t("openingTime.content.normal.times")}</p>
-              <p className="mt-4">{t("openingTime.content.weekend.days")}</p>
-              <p>{t("openingTime.content.weekend.times")}</p>
-            </div>
-          </div>
-
-          <div className="flex flex-row w-full justify-center mt-9 gap-10">
-            <div className={"w-12 h-12"}>
-              <Image src={facebook} />
-            </div>
-            <div className={"w-12 h-12"}>
-              <Image src={instagram} />
-            </div>
-          </div>
-        </footer>
       </div>
     </div>
   );
