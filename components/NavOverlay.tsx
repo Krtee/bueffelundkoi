@@ -69,8 +69,12 @@ const NavOverlay: FC<NavOverlayProps> = ({
               "text-white flex flex-col w-full justify-end gap-6 text-xl font-bold	 py-16"
             }
           >
-            <NavLink href="" locale={locale} onClick={() => onNavigate("")}>
-              {t("nav.home")}
+            <NavLink
+              href="menu"
+              locale={locale}
+              onClick={() => onNavigate("menu")}
+            >
+              {t("nav.menu")}
             </NavLink>
             <NavLink
               href="about"

@@ -47,11 +47,21 @@ body {
     z-index: 5;
     transform: translateY(100%) translateZ(3px)
       scale(math.div($main-perspective - 3, $main-perspective));
+
+    @media screen and (min-width: 600px) {
+      transform: translateY(60%) translateZ(3px)
+        scale(math.div($main-perspective - 3, $main-perspective));
+    }
   }
   &__image--second {
     z-index: 3;
     transform: translateY(-75%) translateZ(-1px)
       scale(math.div($main-perspective + 1, $main-perspective));
+
+    @media screen and (min-width: 600px) {
+      transform: translateY(-90%) translateZ(-1px)
+        scale(math.div($main-perspective + 1, $main-perspective));
+    }
   }
 }
 
@@ -102,14 +112,66 @@ h1 {
   }
 }
 
-.react-pdf__Page__canvas {
-  margin: auto;
+.pdf-viewer__wrapper {
+  width: calc(50% - 50px);
+  .react-pdf__Page__canvas {
+    margin: auto;
+  }
+}
+
+.menu {
+  &__title {
+    @media screen and (min-width: 600px) {
+      text-align: end;
+      position: absolute;
+      z-index: 20;
+      top: 20px;
+      right: -1rem;
+      width: 20rem;
+    }
+  }
+  &__image {
+    @mixin image {
+      width: 70%;
+      position: absolute;
+    }
+    &--1 {
+      @include image;
+      z-index: 5;
+      top: 0;
+      left: -15%;
+      transform: translateZ(-3px)
+        scale(math.div($main-perspective + 3, $main-perspective));
+    }
+    &--2 {
+      @include image;
+      z-index: 5;
+      top: 30%;
+      left: 20%;
+
+      transform: translateZ(2px)
+        scale(math.div($main-perspective - 2, $main-perspective));
+    }
+    &--3 {
+      @include image;
+      z-index: 5;
+      top: 55%;
+      left: 5%;
+      transform: translateZ(-2px)
+        scale(math.div($main-perspective + 2, $main-perspective));
+    }
+  }
 }
 
 .image-gallery {
   height: 100vh;
+
   position: relative;
   max-width: 100%;
+
+  @media screen and (min-width: 600px) {
+    height: 300vh;
+  }
 
   @mixin image {
     position: absolute;
@@ -188,6 +250,7 @@ h1 {
       scale(math.div($main-perspective - 7, $main-perspective));
   }
 }
+
 .contact {
   font-size: 14px;
 

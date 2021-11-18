@@ -5,9 +5,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 export interface PdfViewerProps {
   url: string;
-  width: number;
+  width?: number;
+  height?: number;
 }
-const PdfViewer: FC<PdfViewerProps> = ({ url, width }) => {
+const PdfViewer: FC<PdfViewerProps> = ({ url, width, height }) => {
   const [numPages, setNumPages] = useState<number>(0);
   const settings = {
     dots: true,
@@ -24,7 +25,7 @@ const PdfViewer: FC<PdfViewerProps> = ({ url, width }) => {
   const renderPages = (): JSX.Element[] => {
     let pages: JSX.Element[] = [];
     for (let i = 1; i < numPages; i++) {
-      pages.push(<Page pageNumber={i} width={width} key={i} />);
+      pages.push(<Page pageNumber={i} width={width} height={height} key={i} />);
     }
     return pages;
   };
