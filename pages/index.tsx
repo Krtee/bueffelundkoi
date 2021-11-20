@@ -7,7 +7,9 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import "tailwindcss/tailwind.css";
-import ImageOverlay, { ImageOverlayItem } from "../components/ImageOverlay";
+import ImageWithOverlay, {
+  ImageOverlayItem,
+} from "../components/ImageWithOverlay";
 import { NavLink } from "../components/NavLink";
 import NavOverlay from "../components/NavOverlay";
 import { useMouseCoords } from "../utils/useMouseCoords";
@@ -62,14 +64,6 @@ const Home: NextPage = () => {
           setLocale={setActiveLang}
           onNavigate={() => setShowPopUp(false)}
         />
-        {overlayImageProps && (
-          <ImageOverlay
-            imageProps={overlayImageProps}
-            x={x}
-            y={y}
-            visible={showImageOverlay}
-          />
-        )}
         <main className={" main w-full text-white"}>
           <div className={"flex flex-row 	 mx-5 my-7"}>
             <div className="flex-1 md:flex-initial flex justify-start">
@@ -203,7 +197,7 @@ const Home: NextPage = () => {
                       setShowImageOverlay(false);
                     }}
                   >
-                    <Image
+                    <ImageWithOverlay
                       placeholder="blur"
                       src={MenuImage1}
                       width={6000}
@@ -212,7 +206,7 @@ const Home: NextPage = () => {
                     />
                   </div>
                   <div className={"menu__image--2"}>
-                    <Image
+                    <ImageWithOverlay
                       placeholder="blur"
                       src={MenuImage2}
                       width={6000}
@@ -221,7 +215,7 @@ const Home: NextPage = () => {
                     />
                   </div>
                   <div className={"menu__image--3"}>
-                    <Image
+                    <ImageWithOverlay
                       placeholder="blur"
                       src={MenuImage3}
                       width={6000}
@@ -246,19 +240,7 @@ const Home: NextPage = () => {
               {t("gallery.title")}
             </h1>
             <div className={" image-gallery__image--1"}>
-              <Image
-                onMouseOver={() => {
-                  setOverlayImageProps({
-                    src: GalleryImage1,
-                    height: 4000,
-                    width: 6000,
-                  });
-                  setShowImageOverlay(true);
-                }}
-                onMouseOut={() => {
-                  setOverlayImageProps(undefined);
-                  setShowImageOverlay(false);
-                }}
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage1}
                 width={6000}
@@ -267,7 +249,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--2"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage2}
                 width={5870}
@@ -276,7 +258,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--3"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage3}
                 width={5583}
@@ -285,7 +267,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--4"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage4}
                 width={3733}
@@ -294,7 +276,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--5"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage5}
                 width={5184}
@@ -303,7 +285,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--6"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage6}
                 width={6000}
@@ -312,7 +294,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--7"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage7}
                 width={6000}
@@ -321,7 +303,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className={" image-gallery__image--8"}>
-              <Image
+              <ImageWithOverlay
                 placeholder="blur"
                 src={GalleryImage8}
                 width={5597}

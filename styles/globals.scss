@@ -31,6 +31,9 @@ body {
   overflow: hidden;
   scroll-behavior: smooth;
 }
+.flat {
+  transform-style: flat;
+}
 
 .main {
   overflow-x: hidden;
