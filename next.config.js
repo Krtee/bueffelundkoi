@@ -6,5 +6,5 @@ module.exports = {
     defaultLocale: 'de',
     locales: ['en', 'de'],
     localeDetection: false,
-  },
+  }
 }

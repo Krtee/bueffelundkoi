@@ -7,12 +7,12 @@ export const NavLink: FC<{ href: string; locale: string; onClick?: Function }> =
 
     const handleClick = (event: any) => {
       event.preventDefault();
-      /*router.push("/", `${locale}${href}`, {
-      scroll: false,
-      shallow: true,
-      locale: false,
-    });*/
-      router.push(`#${href}`);
+
+      if (href === "imprint" || href === "sitemap" || href === "privacy") {
+        router.push(`${href}`);
+      } else {
+        router.push(`/#${href}`);
+      }
       onClick?.();
     };
 

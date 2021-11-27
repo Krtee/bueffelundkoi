@@ -11,8 +11,8 @@
         "about":"Über uns",
         "gallery":"Galerie",
         "contact":"Kontakt",
-        "impressum":"Impressum",
-        "dataprivacy":"Datenschutz"
+        "imprint":"Impressum",
+        "privacy":"Datenschutz"
     },
     "main":{
         "firstTitle":"Japanisch",
@@ -50,5 +50,11 @@
                 "times":"11-15 Uhr & 15-24 Uhr"
             }
         }
-    }
+    },
+    "imprint":{
+        "register":"Amtsgericht Stuttgart",
+        "taxId":"default tax Id",
+        "businessId":"test busines Id",
+        "fonts":"Die auf dieser Homepage verwendeten Icons sind Material-Icons und können frei nach den "
+      }
 }

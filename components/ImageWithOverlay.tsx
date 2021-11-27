@@ -2,18 +2,14 @@ import Image, { ImageProps } from "next/image";
 import { FC, useState } from "react";
 import { Portal } from "react-portal";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
-import { useMouseCoords } from "../utils/useMouseCoords";
-import { useWindowDimensions } from "../utils/useWindowDimension";
-
+import CloseIcon from "./../public/assets/close.svg";
 export interface ImageOverlayItem {
   src: StaticImageData;
   height: number;
   width: number;
 }
 const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
-  const { width, height } = useWindowDimensions();
   const [visible, setVisible] = useState(false);
-  const { x, y } = useMouseCoords();
 
   return (
     <>
@@ -22,24 +18,19 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
           <div
             className={` fixed	w-screen h-screen z-50 inset-0 transform -translate-y-full`}
           >
-            <TransformWrapper>
-              <TransformComponent>
-                <div className={` h-screen`}>
-                  <Image {...imageProps} layout="intrinsic" />
-                </div>
-              </TransformComponent>
-            </TransformWrapper>
+            <div className={"bg-black w-full h-full	"}>
+              <div className="absolute right-1 top-1 p-2 z-10">
+                <Image src={CloseIcon} onClick={() => setVisible(false)} />
+              </div>
+              <TransformWrapper>
+                <TransformComponent>
+                  <div className={` h-screen flex items-center`}>
+                    <Image {...imageProps} layout="intrinsic" />
+                  </div>
+                </TransformComponent>
+              </TransformWrapper>
+            </div>
           </div>
-          {/*<div
-            className={`flat fixed	w-3/4 z-50 top-0 left-0 `}
-            style={{
-              transform: `translate(${x - width / 2}px, ${
-                y - height * 1.5
-              }px) `,
-            }}
-          >
-            <Image {...imageProps} />
-          </div>*/}
         </Portal>
       )}
 

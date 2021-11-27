@@ -1,6 +1,6 @@
 {
   "general":{
-    "brandname":"Büffel&Koi",
+    "brandname":"Büffel & Koi",
     "back":"Back to website",
     "eng":"ENG",
     "de":"DE"
@@ -15,8 +15,8 @@
         "about":"About us",
         "gallery":"Gallery",
         "contact":"Contact",
-        "impressum":"Impressum",
-        "dataprivacy":"data privacy"
+        "imprint":"Impressum",
+        "privacy":"Data privacy"
     },
     "about": {
       "title": "About us",
@@ -36,8 +36,8 @@
             "city":"70563 Stuttgart"
         },
         "phone":"0711 96896535",
-        "email":"bueffelundkoi@gmail.com"
-
+        "email":"bueffelundkoi@gmail.com",
+        "businessOwner":"Geschäftsführer Anh Xuan Nguyen"
     },
     "openingTime":{
         "title":"Opening Times",
@@ -51,5 +51,11 @@
               "times":"11 a.m. - 3 p.m.  &  7 p.m. - 12 p.m."
             }
         }
+    },
+    "imprint":{
+      "register":"Amtsgericht Stuttgart",
+      "taxId":"default tax Id",
+      "businessId":"test busines Id",
+      "fonts":"The icons used on this homepage are Material icons and can be used freely according to the "
     }
   }
