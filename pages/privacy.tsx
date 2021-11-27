@@ -27,11 +27,11 @@ const Privacy: NextPage = () => {
           <h2>§ 1 Informationen über die Erhebung personenbezogener Daten</h2>
           <p>
             Im Folgenden informieren wir im Rahmen unserer Informationspflichten
-            nach Art. 13 ff. EU-Datenschutzgrundverordnung (nachfolgend "DSGVO")
-            über die Erhebung personenbezogener Daten, insbesondere auch in
-            Bezug auf die Nutzung unserer Website{" "}
+            nach Art. 13 ff. EU-Datenschutzgrundverordnung (nachfolgend
+            &quot;DSGVO&quot;) über die Erhebung personenbezogener Daten,
+            insbesondere auch in Bezug auf die Nutzung unserer Website{" "}
             <a href="http://www.bueffelundkoi.de">www.bueffelundkoi.de</a>
-            (nachfolgend "Website").
+            (nachfolgend &quot;Website&quot;).
           </p>
           <p>
             Personenbezogene Daten sind alle Daten, die auf Sie persönlich
@@ -41,17 +41,17 @@ const Privacy: NextPage = () => {
             <strong>Verantwortliche Stelle</strong>
             <br />
             Verantwortliche im Sinne des Art. 4 Abs. 7 DSGVO für die
-            personenbezogenen Daten der Website-Besucher (nachfolgend "Sie")
-            ist:
+            personenbezogenen Daten der Website-Besucher (nachfolgend
+            &quot;Sie&quot;) ist:
           </p>
           <p>
-            <b>DevDuck GmbH</b>
+            <b>Büffel &amp; Koi</b>
             <br />
-            Leitzstraße 45
+            Katzenbachstraße. 45 <br />
+            70563 Stuttgart
             <br />
-            70469 Stuttgart
-            <br />
-            E-Mail: <a href="mailto:info@devduck.de">info@devduck.de</a>
+            E-Mail:{" "}
+            <a href="mailto:bueffelundkoi@gmail.com">bueffelundkoi@gmail.com</a>
           </p>
           <h2>
             <strong>
@@ -202,8 +202,8 @@ const Privacy: NextPage = () => {
           </h2>
           <p>
             Wir verwenden auf unsere Website den Service Invisible reCaptcha von
-            Google Ireland Ltd (nachfolgend "Google reCaptcha"), Gordon House, 4
-            Barrow St, Dublin, D04 E5W5, Irland.
+            Google Ireland Ltd (nachfolgend &quot;Google reCaptcha&quot;),
+            Gordon House, 4 Barrow St, Dublin, D04 E5W5, Irland.
           </p>
           <p>
             Google reCaptcha verwendet hierbei ein sog. reCaptcha-Cookie, um zu
