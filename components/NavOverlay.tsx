@@ -114,17 +114,16 @@ const NavOverlay: FC<NavOverlayProps> = ({
               </NavLink>
             </nav>
             <p
-              className="w-max py-2 px-24 mt-10 mx-auto text-white text-xl	font-bold border-t border-b"
+              className="w-max py-2 px-24 mt-10 mx-auto text-white text-xl rig-shaded border-t border-b"
               onClick={() => onClose()}
             >
               {t("general.back")}
             </p>
             <div
-              className={
-                "flex flex-row gap-2 text-white mt-20 text-xl font-bold	mx-5"
-              }
+              className={"flex flex-row gap-2 text-white mt-20 text-xl mx-5 "}
             >
               <p
+                className="rig-shaded"
                 onClick={() => {
                   setLocale("en");
                   router.push("/en", undefined, { locale: false });
@@ -132,8 +131,9 @@ const NavOverlay: FC<NavOverlayProps> = ({
               >
                 {t("general.eng")}
               </p>
-              <p>|</p>
+              <p className="rig-shaded">|</p>
               <p
+                className="rig-shaded"
                 onClick={() => {
                   setLocale("de");
                   router.push("/de", undefined, { locale: false });

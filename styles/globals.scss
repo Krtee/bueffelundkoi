@@ -201,12 +201,12 @@ main {
   &__image--1 {
     @include image;
     transform-origin: 0 0;
-    top: 0;
+    top: 5%;
     right: 0;
     left: 40%;
     z-index: 1;
-    transform: translateZ(-6px)
-      scale(math.div($main-perspective + 6, $main-perspective));
+    transform: translateZ(-5px)
+      scale(math.div($main-perspective + 5, $main-perspective));
   }
   &__image--2 {
     @include image;
@@ -214,8 +214,8 @@ main {
     left: 3%;
     right: 50%;
     z-index: 4;
-    transform: translateZ(-4px)
-      scale(math.div($main-perspective + 4, $main-perspective));
+    transform: translateZ(-3px)
+      scale(math.div($main-perspective + 3, $main-perspective));
   }
   &__image--3 {
     @include image;
@@ -246,7 +246,7 @@ main {
   }
   &__image--6 {
     @include image;
-    top: 53%;
+    top: 57%;
     left: 50%;
     right: 0%;
     z-index: 10;
@@ -268,8 +268,8 @@ main {
     left: 30%;
     right: 15%;
     z-index: 5;
-    transform: translateZ(12px)
-      scale(math.div($main-perspective - 12, $main-perspective));
+    transform: translateZ(9px)
+      scale(math.div($main-perspective - 9, $main-perspective));
   }
 }
 
