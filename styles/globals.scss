@@ -228,7 +228,7 @@ main {
   }
   &__image--4 {
     @include image;
-    top: 14%;
+    top: 18%;
     right: 10%;
     left: 40%;
     z-index: 5;
@@ -247,11 +247,11 @@ main {
   &__image--6 {
     @include image;
     top: 53%;
-    left: 36%;
-    right: 10%;
-    z-index: 4;
-    transform: translateZ(4px)
-      scale(math.div($main-perspective - 4, $main-perspective));
+    left: 50%;
+    right: 0%;
+    z-index: 10;
+    transform: translateZ(-12px)
+      scale(math.div($main-perspective + 12, $main-perspective));
   }
   &__image--7 {
     @include image;
@@ -264,12 +264,12 @@ main {
   }
   &__image--8 {
     @include image;
-    top: 67%;
-    left: 40%;
-    right: 6%;
+    top: 50%;
+    left: 30%;
+    right: 15%;
     z-index: 5;
-    transform: translateZ(7px)
-      scale(math.div($main-perspective - 7, $main-perspective));
+    transform: translateZ(12px)
+      scale(math.div($main-perspective - 12, $main-perspective));
   }
 }
 

@@ -18,14 +18,6 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
   const [activeLang, setActiveLang] = useState<string>("de");
   return (
     <div className={"navigation"}>
-      <NavOverlay
-        isOpen={showPopUp}
-        onClose={() => setShowPopUp(false)}
-        screenWidth={width}
-        locale={activeLang}
-        setLocale={setActiveLang}
-        onNavigate={() => setShowPopUp(false)}
-      />
       <div className={"flex flex-row mx-5 my-7"}>
         <div className="flex-1 md:flex-initial flex justify-start">
           <div className={"relative m-w-32 w-32 md:w-60 md:m-w-60 m-auto "}>
@@ -78,7 +70,16 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
             </div>
           </nav>
         ) : (
-          <Image src={MenuIcon} onClick={() => setShowPopUp(true)} />
+          <>
+            <Image src={MenuIcon} onClick={() => setShowPopUp(true)} />
+            <NavOverlay
+              isOpen={showPopUp}
+              onClose={() => setShowPopUp(false)}
+              locale={activeLang}
+              setLocale={setActiveLang}
+              onNavigate={() => setShowPopUp(false)}
+            />
+          </>
         )}
       </div>
     </div>

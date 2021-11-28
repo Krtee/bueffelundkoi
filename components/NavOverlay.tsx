@@ -9,7 +9,6 @@ import logo from "./../public/assets/logo.png";
 import { NavLink } from "./NavLink";
 
 interface NavOverlayProps {
-  screenWidth: number;
   isOpen: boolean;
   onClose(): void;
   locale: string;
@@ -18,7 +17,6 @@ interface NavOverlayProps {
 }
 
 const NavOverlay: FC<NavOverlayProps> = ({
-  screenWidth,
   isOpen,
   locale,
   setLocale,
@@ -27,7 +25,8 @@ const NavOverlay: FC<NavOverlayProps> = ({
 }) => {
   const { t, i18n } = useTranslation("common");
   const router = useRouter();
-  return screenWidth < 800 ? (
+
+  return (
     <Portal>
       <div
         className={`transform ${
@@ -35,7 +34,7 @@ const NavOverlay: FC<NavOverlayProps> = ({
         } absolute nav-overlay h-screen w-screen bg-primary transition-transform overflow-hidden	`}
       >
         <div className={"w-full h-full flex flex-col pop-up-content"}>
-          <div className={"relative  m-w-3/4 w-3/4 m-auto"}>
+          <div className={"relative m-w-3/4 w-3/4 m-auto mt-20"}>
             <Image
               src={logo}
               alt={t("nav.logo")}
@@ -147,8 +146,6 @@ const NavOverlay: FC<NavOverlayProps> = ({
         </div>
       </div>
     </Portal>
-  ) : (
-    <></>
   );
 };
 
