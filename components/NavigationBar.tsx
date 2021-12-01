@@ -51,6 +51,7 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
             </NavLink>
             <div className={"flex gap-1"}>
               <p
+                className={"rig-shaded "}
                 onClick={() => {
                   setActiveLang("en");
                   router.push("/en", undefined, { locale: false });
@@ -58,8 +59,9 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
               >
                 {t("general.eng")}
               </p>
-              <p>|</p>
+              <p className={"rig-shaded "}>|</p>
               <p
+                className={"rig-shaded "}
                 onClick={() => {
                   setActiveLang("de");
                   router.push("/de", undefined, { locale: false });
@@ -71,7 +73,11 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
           </nav>
         ) : (
           <>
-            <Image src={MenuIcon} onClick={() => setShowPopUp(true)} />
+            <Image
+              src={MenuIcon}
+              onClick={() => setShowPopUp(true)}
+              alt="open menu"
+            />
             <NavOverlay
               isOpen={showPopUp}
               onClose={() => setShowPopUp(false)}

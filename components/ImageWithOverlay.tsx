@@ -20,12 +20,21 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
           >
             <div className={"bg-black w-full h-full	"}>
               <div className="absolute right-1 top-1 p-2 z-10">
-                <Image src={CloseIcon} onClick={() => setVisible(false)} />
+                <Image
+                  src={CloseIcon}
+                  onClick={() => setVisible(false)}
+                  alt="close"
+                />
               </div>
               <TransformWrapper>
                 <TransformComponent>
-                  <div className={` h-screen flex items-center`}>
-                    <Image {...imageProps} layout="intrinsic" />
+                  <div className={` h-screen flex items-center justify-center`}>
+                    <Image
+                      {...imageProps}
+                      height={(imageProps!.height! as number) * 2}
+                      width={(imageProps!.width! as number) * 2}
+                      layout="intrinsic"
+                    />
                   </div>
                 </TransformComponent>
               </TransformWrapper>

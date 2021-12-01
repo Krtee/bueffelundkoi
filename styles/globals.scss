@@ -67,12 +67,12 @@ main {
 .banner {
   &__image--first {
     z-index: 5;
-    transform: translateY(100%) translateZ(3px)
-      scale(math.div($main-perspective - 3, $main-perspective));
+    transform: translateY(100%) translateZ(2px)
+      scale(math.div($main-perspective - 2, $main-perspective));
 
     @media screen and (min-width: 600px) {
-      transform: translateY(60%) translateZ(3px)
-        scale(math.div($main-perspective - 3, $main-perspective));
+      transform: translateY(60%) translateZ(2px)
+        scale(math.div($main-perspective - 2, $main-perspective));
     }
   }
   &__image--second {
@@ -125,16 +125,22 @@ main {
   }
 }
 
-.pdf-viewer__wrapper {
-  @media screen and (min-width: 800px) {
-    width: calc(50% - 50px);
-  }
+.pdf-viewer {
+  &__wrapper {
+    @media screen and (min-width: 800px) {
+      width: calc(50% - 50px);
+    }
 
-  .react-pdf__Page__canvas {
-    margin: auto;
+    .react-pdf__Page__canvas {
+      margin: auto;
+    }
+  }
+  &__download {
+    @media screen and (max-width: 800px) {
+      margin: 1rem 25px;
+    }
   }
 }
-
 .menu {
   &__title {
     @media screen and (min-width: 800px) {
@@ -186,13 +192,13 @@ main {
   max-width: 100%;
 
   @media screen and (min-width: 600px) {
-    height: 150vh;
+    height: 220vh;
   }
   @media screen and (min-width: 800px) {
-    height: 200vh;
+    height: 320vh;
   }
   @media screen and (min-width: 1200px) {
-    height: 300vh;
+    height: 390vh;
   }
 
   @mixin image {
@@ -201,25 +207,25 @@ main {
   &__image--1 {
     @include image;
     transform-origin: 0 0;
-    top: 5%;
+    top: 7%;
     right: 0;
     left: 40%;
     z-index: 1;
-    transform: translateZ(-5px)
-      scale(math.div($main-perspective + 5, $main-perspective));
+    transform: translateZ(-4px)
+      scale(math.div($main-perspective + 4, $main-perspective));
   }
   &__image--2 {
     @include image;
-    top: 8%;
-    left: 3%;
+    top: 17%;
+    left: -7%;
     right: 50%;
     z-index: 4;
-    transform: translateZ(-3px)
-      scale(math.div($main-perspective + 3, $main-perspective));
+    transform: translateZ(-2px)
+      scale(math.div($main-perspective + 2, $main-perspective));
   }
   &__image--3 {
     @include image;
-    top: 22%;
+    top: 29%;
     left: 0;
     right: 40%;
     z-index: 3;
@@ -228,48 +234,48 @@ main {
   }
   &__image--4 {
     @include image;
-    top: 18%;
+    top: 27%;
     right: 10%;
     left: 40%;
     z-index: 5;
-    transform: translateZ(6px)
-      scale(math.div($main-perspective - 6, $main-perspective));
+    transform: translateZ(2px)
+      scale(math.div($main-perspective - 2, $main-perspective));
   }
   &__image--5 {
     @include image;
-    top: 40%;
-    left: 12%;
-    right: 30%;
+    top: 45%;
+    left: 5%;
+    right: 40%;
     z-index: 3;
-    transform: translateZ(-2px)
-      scale(math.div($main-perspective + 2, $main-perspective));
+    transform: translateZ(-1px)
+      scale(math.div($main-perspective + 1, $main-perspective));
   }
   &__image--6 {
     @include image;
-    top: 57%;
+    top: 62%;
     left: 50%;
-    right: 0%;
+    right: -5%;
     z-index: 10;
-    transform: translateZ(-12px)
-      scale(math.div($main-perspective + 12, $main-perspective));
+    transform: translateZ(-5px)
+      scale(math.div($main-perspective + 5, $main-perspective));
   }
   &__image--7 {
     @include image;
-    top: 62%;
+    top: 65%;
     left: -12%;
-    right: 47%;
+    right: 45%;
     z-index: 1;
-    transform: rotate(90deg) translateZ(-5px)
-      scale(math.div($main-perspective + 5, $main-perspective));
+    transform: rotate(90deg) translateZ(-4px)
+      scale(math.div($main-perspective + 4, $main-perspective));
   }
   &__image--8 {
     @include image;
-    top: 50%;
-    left: 30%;
-    right: 15%;
+    top: 80%;
+    left: 40%;
+    right: 5%;
     z-index: 5;
-    transform: translateZ(9px)
-      scale(math.div($main-perspective - 9, $main-perspective));
+    transform: translateZ(-2px)
+      scale(math.div($main-perspective + 2, $main-perspective));
   }
 }
 
@@ -282,36 +288,6 @@ main {
 
   p {
     font-weight: lighter;
-  }
-}
-
-$maxValue: 17; // excludes 16
-
-// minimum value
-$minValue: 1;
-
-@for $x from $minValue to $maxValue {
-  @for $y from $minValue to $maxValue {
-    @for $z from $minValue to $maxValue {
-      .transform-#{$x}-#{$y}-#{$z} {
-        transform: translateX(#{$x}rem)
-          translateY(-#{$y * 4}rem)
-          translateZ(-#{$z * 100}px)
-          scale(math.div(100 + $z * 100, 100));
-      }
-      .-transform-#{$x}-#{$y}-#{$z} {
-        transform: translateX(-#{$x}rem)
-          translateY(-#{$y * 5}rem)
-          translateZ(-#{$z * 100}px)
-          scale(math.div(100 + $z * 100, 100));
-      }
-    }
-  }
-  .z-index-#{$x} {
-    z-index: #{$x};
-  }
-  .-z-index-#{$x} {
-    z-index: -#{$x};
   }
 }
 

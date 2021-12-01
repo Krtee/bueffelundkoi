@@ -31,43 +31,45 @@ const NavOverlay: FC<NavOverlayProps> = ({
       <div
         className={`transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } absolute nav-overlay h-screen w-screen bg-primary transition-transform overflow-hidden	`}
+        } absolute nav-overlay h-screen w-screen bg-primary transition-transform overflow-hidden max-h-screen	`}
       >
         <div className={"w-full h-full flex flex-col pop-up-content"}>
-          <div className={"relative m-w-3/4 w-3/4 m-auto mt-20"}>
-            <Image
-              src={logo}
-              alt={t("nav.logo")}
-              layout="responsive"
-              width={19}
-              height={7}
-            />
-          </div>
-          <div className="absolute transform rotate-90 -left-1/3 right-1/4 top-32 -z-20">
+          <div className="absolute transform rotate-90 -left-1/4 right-1/4 top-48  -z-20">
             <Image
               src={gyozaImage}
-              width={6000}
-              height={4000}
+              width={600}
+              height={400}
               layout="responsive"
+              alt="Appetizer - Gyoza"
             />
           </div>
           <div
             className={
-              "absolute transform  rotate-90  translate-y-20 -left-10 right-10 top-1/2 -z-10"
+              "absolute transform  rotate-90  translate-y-20 -left-10 right-20 top-1/2 -z-10"
             }
           >
             <Image
               src={GalleryImage7}
-              width={6000}
-              height={4000}
+              width={600}
+              height={400}
               layout="responsive"
+              alt={"close-up of two different Bowls"}
             />
           </div>
 
-          <div className={"w-full flex-1 flex flex-col"}>
+          <div className={"w-full flex-1 flex flex-col justify-between my-20"}>
+            <div className={"relative m-w-3/4 w-3/4 mx-auto"}>
+              <Image
+                src={logo}
+                alt={t("nav.logo")}
+                layout="responsive"
+                width={19}
+                height={7}
+              />
+            </div>
             <nav
               className={
-                "text-white flex flex-col w-full justify-end gap-6 text-xl font-bold	 py-16"
+                "text-white flex flex-col w-full justify-end gap-6 text-xl font-bold my-4"
               }
             >
               <NavLink
@@ -114,14 +116,12 @@ const NavOverlay: FC<NavOverlayProps> = ({
               </NavLink>
             </nav>
             <p
-              className="w-max py-2 px-24 mt-10 mx-auto text-white text-xl rig-shaded border-t border-b"
+              className="w-max py-2 px-24 mx-auto text-white rig-shaded border-t border-b my-4"
               onClick={() => onClose()}
             >
               {t("general.back")}
             </p>
-            <div
-              className={"flex flex-row gap-2 text-white mt-20 text-xl mx-5 "}
-            >
+            <div className={"flex flex-row gap-2 text-white  my-4 "}>
               <p
                 className="rig-shaded"
                 onClick={() => {

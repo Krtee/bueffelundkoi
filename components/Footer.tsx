@@ -39,6 +39,7 @@ const Footer: FC<{}> = () => {
             onClick={() =>
               router.push("https://www.facebook.com/bueffelundkoi")
             }
+            alt={"facebook"}
           />
         </div>
         <div className={"w-12 h-12"}>
@@ -47,6 +48,7 @@ const Footer: FC<{}> = () => {
             onClick={() =>
               router.push("https://www.instagram.com/bueffelundkoi/")
             }
+            alt="instagram"
           />
         </div>
       </div>
