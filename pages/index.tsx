@@ -4,7 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import NavigationBar from "../components/NavigationBar";
 import StartImage1 from "./../public/assets/images/start_1.jpg";
 import StartImage2 from "./../public/assets/images/start_2.jpg";
@@ -16,6 +16,21 @@ const Footer = dynamic(() => import("../components/Footer"));
 
 const Home: NextPage = () => {
   const { t } = useTranslation("common");
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  const appHeight = () => {
+    if (mainRef.current) {
+      mainRef.current.style.height = `${window.innerHeight}px`;
+    }
+  };
+
+  useEffect(() => {
+    appHeight();
+    window.addEventListener("resize", appHeight);
+    return () => {
+      window.removeEventListener("resize", appHeight);
+    };
+  }, []);
 
   return (
     <div>
@@ -25,7 +40,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={" main w-full text-white"}>
+      <main className={" main w-full text-white"} ref={mainRef}>
         <NavigationBar />
 
         <div
