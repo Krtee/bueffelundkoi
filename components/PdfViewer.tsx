@@ -50,7 +50,7 @@ const PdfViewer: FC<PdfViewerProps> = ({ url, width, height }) => {
       {visible && (
         <Portal>
           <div
-            className={` fixed	w-screen h-screen z-50 inset-0 transform -translate-y-full`}
+            className={`fixed	w-screen h-screen z-50 inset-0 transform -translate-y-full`}
           >
             <div className={"bg-black w-full h-full	flex flex-col"}>
               <div className="flex flex-row justify-end p-2">
