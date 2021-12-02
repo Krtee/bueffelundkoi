@@ -1,7 +1,8 @@
 import Image, { ImageProps } from "next/image";
-import { FC, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import { Portal } from "react-portal";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { useWindowDimensions } from "../utils/useWindowDimension";
 import CloseIcon from "./../public/assets/close.svg";
 export interface ImageOverlayItem {
   src: StaticImageData;
@@ -10,15 +11,32 @@ export interface ImageOverlayItem {
 }
 const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
   const [visible, setVisible] = useState(false);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const { height } = useWindowDimensions();
+
+  const setOverlayHeight = () => {
+    if (overlayRef.current) {
+      overlayRef.current.style.height = `${height}px`;
+    }
+  };
+
+  useEffect(() => {
+    setOverlayHeight();
+  }, [height, visible]);
 
   return (
     <>
       {visible && (
         <Portal>
           <div
-            className={` fixed	w-screen h-screen z-50 inset-0 transform -translate-y-full`}
+            className={` fixed	w-screen  z-50 inset-0 transform -translate-y-full`}
+            ref={overlayRef}
           >
-            <div className={"bg-black w-full h-full	"}>
+            <div
+              className={
+                "bg-black w-full h-full	flex items-center justify-center"
+              }
+            >
               <div className="absolute right-1 top-1 p-2 z-10">
                 <Image
                   src={CloseIcon}
@@ -28,11 +46,11 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
               </div>
               <TransformWrapper>
                 <TransformComponent>
-                  <div className={` h-screen flex items-center justify-center`}>
+                  <div className={`h-full flex items-center justify-center`}>
                     <Image
                       {...imageProps}
-                      height={(imageProps!.height! as number) * 2}
-                      width={(imageProps!.width! as number) * 2}
+                      height={(imageProps!.height! as number) * 3}
+                      width={(imageProps!.width! as number) * 3}
                       layout="intrinsic"
                     />
                   </div>
@@ -43,7 +61,7 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
         </Portal>
       )}
 
-      <Image onClick={() => setVisible(true)} {...imageProps} />
+      <Image onClick={() => setVisible(true)} {...imageProps} quality={80} />
     </>
   );
 };

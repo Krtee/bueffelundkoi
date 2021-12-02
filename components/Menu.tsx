@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import React, { FC } from "react";
 import { useWindowDimensions } from "../utils/useWindowDimension";
 import MenuImage1 from "./../public/assets/images/speisen_1.jpg";
@@ -11,7 +12,7 @@ const PdfViewer = dynamic(() => import("./PdfViewer"));
 const Menu: FC<{}> = () => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation("common");
-
+  const { locale } = useRouter();
   return (
     <div className={" pt-5 mt-20 md:flex md:flex-row md:gap-10"} id={"menu"}>
       <div className={"flex-1"}>
@@ -56,11 +57,14 @@ const Menu: FC<{}> = () => {
 
       <div className={"relative pdf-viewer__wrapper md:mr-10"}>
         <PdfViewer
-          url={"./menu.pdf"}
+          url={locale === "en" ? "./menu_EN.pdf" : "./menu_DE.pdf"}
           width={width < 800 ? width - 50 : width / 2 - 50}
         />
         <div className=" border-t border-b pdf-viewer__download my-4">
-          <a href="./menu.pdf" download>
+          <a
+            href={locale === "en" ? "./menu_EN.pdf" : "./menu_DE.pdf"}
+            download
+          >
             <p className="mx-auto text-white text-center rig-shaded py-2 ">
               {t("menu.download")}
             </p>

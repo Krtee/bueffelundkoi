@@ -25,10 +25,8 @@ const Footer: FC<{}> = () => {
         </div>
         <div className={"flex-1"}>
           <h2>{t("openingTime.title")}</h2>
-          <p>{t("openingTime.content.normal.days")}</p>{" "}
+          <p>{t("openingTime.content.normal.days")}</p>
           <p>{t("openingTime.content.normal.times")}</p>
-          <p className="mt-4">{t("openingTime.content.weekend.days")}</p>
-          <p>{t("openingTime.content.weekend.times")}</p>
         </div>
       </div>
 

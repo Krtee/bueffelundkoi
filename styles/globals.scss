@@ -64,6 +64,10 @@ main {
 .rig-shaded {
   font-family: rig-shaded-bold-face;
 }
+
+.josefin {
+  font-family: josefin-sans;
+}
 .banner {
   &__image--first {
     z-index: 5;
@@ -196,6 +200,9 @@ main {
   }
   @media screen and (min-width: 800px) {
     height: 320vh;
+  }
+  @media screen and (min-width: 950px) {
+    height: 350vh;
   }
   @media screen and (min-width: 1200px) {
     height: 390vh;

@@ -6,6 +6,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 import NavigationBar from "../components/NavigationBar";
+import { useWindowDimensions } from "../utils/useWindowDimension";
 import StartImage1 from "./../public/assets/images/start_1.jpg";
 import StartImage2 from "./../public/assets/images/start_2.jpg";
 
@@ -17,20 +18,17 @@ const Footer = dynamic(() => import("../components/Footer"));
 const Home: NextPage = () => {
   const { t } = useTranslation("common");
   const mainRef = useRef<HTMLDivElement>(null);
+  const { height } = useWindowDimensions();
 
   const appHeight = () => {
     if (mainRef.current) {
-      mainRef.current.style.height = `${window.innerHeight}px`;
+      mainRef.current.style.height = `${height}px`;
     }
   };
 
   useEffect(() => {
     appHeight();
-    window.addEventListener("resize", appHeight);
-    return () => {
-      window.removeEventListener("resize", appHeight);
-    };
-  }, []);
+  }, [height]);
 
   return (
     <div>
@@ -57,6 +55,7 @@ const Home: NextPage = () => {
               layout="responsive"
               priority
               alt="header image - Kokos Pocus Bowl"
+              quality={80}
             />
           </div>
           <div className="relative w-2/3 md:w-3/5 banner__image--second">
@@ -68,6 +67,7 @@ const Home: NextPage = () => {
               layout="responsive"
               priority
               alt="header image - Thun &amp; Lachsen"
+              quality={80}
             />
           </div>
           <div className="absolute top-12 right-12 z-10">
@@ -79,6 +79,19 @@ const Home: NextPage = () => {
             </h1>
           </div>
         </div>
+
+        <div className={"mx-10  md:mt-20 mb-20"}>
+          <h1 className="text-2xl md:text-7xl  mb-10">
+            {t("openingTime.title")}
+          </h1>
+          <div className="flex flex-row gap-10 flex-wrap">
+            <p className="rig-shaded">{t("openingTime.content.normal.days")}</p>
+            <p className="rig-shaded ">
+              {t("openingTime.content.normal.times")}
+            </p>
+          </div>
+        </div>
+
         <About />
         <Menu />
         <Gallery />

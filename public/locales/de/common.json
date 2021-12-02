@@ -20,7 +20,8 @@
     },
     "about":{
         "title":"Über uns",
-        "content":"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolo"
+        "content":"Im schönen Vaihingen befindet sich unser kleines und gemütliches Famlienlokal. Unsere Küche verbindet authentisch japanische Küche und traditionell vietnamesische Spezialitäten. Mit mehr als 15 Jahren Erfahrung bieten wir euch ein spektakuläres Erlebnis auf einer ganz individuellen Art und Weise.\n\nNeben traditionellen Gerichten erwartet euch originelle Neukompositionen, die allesamt mit frischen und qualitativen Zutaten zubereitet werden.\n\nKlingt verlockend? Kommt vorbei und verweilt eine Weile mit einem unserer hausgemachten Drinks oder einem kühlen japanischen Bier."
+
     },
     "menu":{
         "title":"Unsere Speisen",
@@ -43,7 +44,7 @@
         "title":"Öffnungszeiten",
         "content":{
             "normal":{
-                "days":"Montags | Mittwoch | Donnerstag | Sonntag:",
+                "days":"Montag | Mittwoch | Donnerstag | Freitag | Samstag | Sonntag:",
                 "times":"11-15 Uhr & 15-23 Uhr"
             },
             "weekend":{
