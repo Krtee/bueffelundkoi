@@ -45,11 +45,11 @@
         "content":{
             "normal":{
                 "days":"Montag | Mittwoch | Donnerstag | Freitag | Samstag | Sonntag:",
-                "times":"11-15 Uhr & 15-23 Uhr"
+                "times":"11-15 Uhr & 75-23 Uhr"
             },
             "weekend":{
                 "days":"Freitag | Samstag:",
-                "times":"11-15 Uhr & 15-24 Uhr"
+                "times":"11-15 Uhr & 17-24 Uhr"
             }
         }
     },

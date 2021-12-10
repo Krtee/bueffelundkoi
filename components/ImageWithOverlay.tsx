@@ -61,7 +61,7 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
         </Portal>
       )}
 
-      <Image onClick={() => setVisible(true)} {...imageProps} quality={80} />
+      <Image onClick={() => setVisible(true)} {...imageProps} quality={50} />
     </>
   );
 };

@@ -55,7 +55,7 @@ const Home: NextPage = () => {
               layout="responsive"
               priority
               alt="header image - Kokos Pocus Bowl"
-              quality={80}
+              quality={70}
             />
           </div>
           <div className="relative w-2/3 md:w-3/5 banner__image--second">
@@ -67,7 +67,7 @@ const Home: NextPage = () => {
               layout="responsive"
               priority
               alt="header image - Thun &amp; Lachsen"
-              quality={80}
+              quality={70}
             />
           </div>
           <div className="absolute top-12 right-12 z-10">
