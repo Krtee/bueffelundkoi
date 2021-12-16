@@ -38,7 +38,10 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={" main w-full text-white"} ref={mainRef}>
+      <main
+        className={" main w-full text-white max-w-screen-2xl	"}
+        ref={mainRef}
+      >
         <NavigationBar />
 
         <div
@@ -84,10 +87,20 @@ const Home: NextPage = () => {
           <h1 className="text-2xl md:text-7xl  mb-10">
             {t("openingTime.title")}
           </h1>
-          <div className="flex flex-row gap-10 flex-wrap">
-            <p className="rig-shaded">{t("openingTime.content.normal.days")}</p>
-            <p className="rig-shaded ">
+          <div className="times-grid my-1">
+            <p className="rig-shaded  flex-1">
+              {t("openingTime.content.normal.days")}
+            </p>
+            <p className="rig-shaded flex-1">
               {t("openingTime.content.normal.times")}
+            </p>
+          </div>
+          <div className="times-grid  my-1">
+            <p className="rig-shaded flex-1">
+              {t("openingTime.content.weekend.days")}
+            </p>
+            <p className="rig-shaded flex-1">
+              {t("openingTime.content.weekend.times")}
             </p>
           </div>
         </div>
