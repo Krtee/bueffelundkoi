@@ -44,11 +44,11 @@
         "title":"Opening Times",
         "content":{
             "normal":{
-              "days":"tuesday | wednesday | thursday | sunday:",
+              "days":"wednesday | thursday | sunday:",
               "times":"11:30 a.m. - 3 p.m.  &  5 p.m. - 11 p.m."
               },
             "weekend":{
-              "days":"monday | friday | saturday:",
+              "days":"monday | tuesday | friday | saturday:",
               "times":"5 p.m. - 11 p.m."
             }
         }

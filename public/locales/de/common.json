@@ -44,11 +44,11 @@
         "title":"Öffnungszeiten",
         "content":{
             "normal":{
-                "days":"Dienstag | Mittwoch | Donnerstag | Sonntag:",
+                "days":"Mittwoch | Donnerstag | Sonntag:",
                 "times":"11:30-15 Uhr & 17-23 Uhr"
             },
             "weekend":{
-                "days":"Montag | Freitag | Samstag:",
+                "days":"Montag | Dienstag | Freitag | Samstag:",
                 "times":"17-23 Uhr"
             }
         }
