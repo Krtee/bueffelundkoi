@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import React, { FC } from "react";
-import AboutUs from "./../public/assets/images/über_uns.jpg";
+import { FC } from "react";
+import AboutUs from "./../public/assets/images/ueber_uns.jpg";
 
 const About: FC<{}> = () => {
   const { t } = useTranslation("common");
@@ -12,7 +12,9 @@ const About: FC<{}> = () => {
         <h1 className="text-2xl whitespace-nowrap md:text-7xl md:transform md:translate-x-36 md:text-right">
           {t("about.title").toUpperCase()}
         </h1>
-        <p className="text-justify whitespace-pre-line">{t("about.content")}</p>
+        <p className="text-justify whitespace-pre-line leading-4	">
+          {t("about.content")}
+        </p>
       </div>
 
       <div className="w-full flex-3 md:-z-10">

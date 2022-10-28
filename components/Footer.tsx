@@ -1,10 +1,9 @@
 import { useTranslation } from "next-i18next";
-import Image from "next/image";
 import Link from "next/link";
 import router from "next/router";
-import React, { FC } from "react";
-import facebook from "./../public/assets/facebook.svg";
-import instagram from "./../public/assets/instagram.svg";
+import { FC } from "react";
+import FacebookIcon from "./../public/assets/facebook.svg";
+import InstagramIcon from "./../public/assets/instagram.svg";
 
 const Footer: FC<{}> = () => {
   const { t } = useTranslation("common");
@@ -32,8 +31,7 @@ const Footer: FC<{}> = () => {
 
       <div className="flex flex-row w-full justify-center mt-9 gap-10">
         <div className={"w-12 h-12"}>
-          <Image
-            src={facebook}
+          <FacebookIcon
             onClick={() =>
               router.push("https://www.facebook.com/bueffelundkoi")
             }
@@ -41,8 +39,7 @@ const Footer: FC<{}> = () => {
           />
         </div>
         <div className={"w-12 h-12"}>
-          <Image
-            src={instagram}
+          <InstagramIcon
             onClick={() =>
               router.push("https://www.instagram.com/bueffelundkoi/")
             }

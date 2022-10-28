@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  bueffelundkoi-next:
+    image: website/bueffelundkoi-next:latest
+    container_name: bueffelundkoi-next
+    networks:
+      - bueffelundkoi-next-network
+    restart: always
+    ports:
+      - 3000:3000
+networks:
+  bueffelundkoi-next-network:
+    name: bueffelundkoi-next-network

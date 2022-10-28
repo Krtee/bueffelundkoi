@@ -1,7 +1,7 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import { useWindowDimensions } from "../utils/useWindowDimension";
 import logo from "./../public/assets/logo.png";
 import MenuIcon from "./../public/assets/menu.svg";
@@ -34,11 +34,14 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
         {width > 800 ? (
           <nav
             className={
-              "border-t border-b border-solid mx-5 my-5 flex-1 flex justify-between pl-32 pr-6 items-center font-bold"
+              "border-y-2 border-solid mx-5 my-5 flex-1 flex justify-between pl-32 pr-6 items-center font-bold"
             }
           >
             <NavLink href="menu" locale={activeLang}>
               {t("nav.menu")}
+            </NavLink>
+            <NavLink href={"/booking/newreservation"} locale={activeLang}>
+              {t("nav.booking")}
             </NavLink>
             <NavLink href="about" locale={activeLang}>
               {t("nav.about")}
@@ -54,7 +57,9 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
                 className={"rig-shaded "}
                 onClick={() => {
                   setActiveLang("en");
-                  router.push("/en", undefined, { locale: false });
+                  router.push("/en" + router.pathname, undefined, {
+                    locale: false,
+                  });
                 }}
               >
                 {t("general.eng")}
@@ -64,7 +69,9 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
                 className={"rig-shaded "}
                 onClick={() => {
                   setActiveLang("de");
-                  router.push("/de", undefined, { locale: false });
+                  router.push("/de" + router.pathname, undefined, {
+                    locale: false,
+                  });
                 }}
               >
                 {t("general.de")}
@@ -73,11 +80,7 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
           </nav>
         ) : (
           <>
-            <Image
-              src={MenuIcon}
-              onClick={() => setShowPopUp(true)}
-              alt="open menu"
-            />
+            <MenuIcon onClick={() => setShowPopUp(true)} alt="open menu" />
             <NavOverlay
               isOpen={showPopUp}
               onClose={() => setShowPopUp(false)}

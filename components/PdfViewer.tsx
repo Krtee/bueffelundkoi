@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { FC, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -54,11 +53,7 @@ const PdfViewer: FC<PdfViewerProps> = ({ url, width, height }) => {
           >
             <div className={"bg-black w-full h-full	flex flex-col"}>
               <div className="flex flex-row justify-end p-2">
-                <Image
-                  src={CloseIcon}
-                  onClick={() => setVisible(false)}
-                  alt="close"
-                />
+                <CloseIcon onClick={() => setVisible(false)} alt="close" />
               </div>
               <object
                 className={"flex-1"}

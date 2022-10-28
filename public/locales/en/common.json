@@ -1,62 +1,121 @@
 {
-  "general":{
-    "brandname":"Büffel & Koi",
-    "back":"Back to website",
-    "eng":"ENG",
-    "de":"DE"
-    },
-    "main": {
-      "firstTitle": "Japanese",
-      "secondTitle": "Vietnamese"
-    },
-    "nav":{
-        "menu":"Menu",
-        "home":"Home",
-        "about":"About us",
-        "gallery":"Gallery",
-        "contact":"Contact",
-        "imprint":"Impressum",
-        "privacy":"Data privacy"
-    },
-    "about": {
-      "title": "About us",
-      "content":"Our small and cozy family restaurant is located in beautiful Vaihingen. Our kitchen combines authentic Japanese cuisine and traditional Vietnamese specialties. With more than 15 years of experience we offer you a spectacular experience in a very individual way. \n\nIn addition to traditional dishes, you can expect original new compositions, all prepared with fresh and quality ingredients.\n\nSounds tempting? Come by and linger a while with one of our homemade drinks or a cold Japanese beer."
-    },
-    "menu":{
-      "title":"Our dishes",
-      "download":"Download menu"
-    },
-    "gallery":{
-        "title":"Image gallery"
-    },
-    "contact":{
-        "title":"Contact",
-        "address":{
-            "name":"Büffel&Koi",
-            "street":"Katzenbachstraße 95",
-            "city":"70563 Stuttgart"
-        },
-        "phone":"0711 96896535",
-        "email":"bueffelundkoi@gmail.com",
-        "businessOwner":"Geschäftsführer Anh Xuan Nguyen"
-    },
-    "openingTime":{
-        "title":"Opening Times",
-        "content":{
-            "normal":{
-              "days":"wednesday | thursday | sunday:",
-              "times":"11:30 a.m. - 3 p.m.  &  5 p.m. - 11 p.m."
-              },
-            "weekend":{
-              "days":"monday | tuesday | friday | saturday:",
-              "times":"5 p.m. - 11 p.m."
-            }
-        }
-    },
-    "imprint":{
-      "register":"Amtsgericht Stuttgart",
-      "taxId":"default tax Id",
-      "businessId":"test busines Id",
-      "fonts":"The icons used on this homepage are Material icons and can be used freely according to the "
+  "general": {
+    "brandname": "Büffel & Koi",
+    "back": "Back to website",
+    "eng": "ENG",
+    "de": "DE",
+    "buttons": {
+      "back": "back",
+      "next": "next",
+      "send": "send",
+      "close": "close"
     }
+  },
+  "main": {
+    "firstTitle": "Japanese",
+    "secondTitle": "Vietnamese"
+  },
+  "nav": {
+    "menu": "Menu",
+    "home": "Home",
+    "about": "About us",
+    "booking": "Book",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "imprint": "Impressum",
+    "privacy": "Data privacy"
+  },
+  "about": {
+    "title": "About us",
+    "content": "Our small and cozy family restaurant is located in beautiful Vaihingen. Our kitchen combines authentic Japanese cuisine and traditional Vietnamese specialties. With more than 15 years of experience we offer you a spectacular experience in a very individual way. \n\nIn addition to traditional dishes, you can expect original new compositions, all prepared with fresh and quality ingredients.\n\nSounds tempting? Come by and linger a while with one of our homemade drinks or a cold Japanese beer."
+  },
+  "menu": {
+    "title": "Our dishes",
+    "download": "Download menu"
+  },
+  "gallery": {
+    "title": "Image gallery"
+  },
+  "contact": {
+    "title": "Contact",
+    "address": {
+      "name": "Büffel&Koi",
+      "street": "Katzenbachstraße 95",
+      "city": "70563 Stuttgart"
+    },
+    "phone": "0711 96896535",
+    "email": "bueffelundkoi@gmail.com",
+    "businessOwner": "Business owner Anh Xuan Nguyen"
+  },
+  "openingTime": {
+    "title": "Opening Times",
+    "content": {
+      "normal": {
+        "days": "wednesday | thursday | sunday:",
+        "times": "11:30 a.m. - 3 p.m.  &  5 p.m. - 11 p.m."
+      },
+      "weekend": {
+        "days": "monday | tuesday | friday | saturday:",
+        "times": "5 p.m. - 11 p.m."
+      }
+    }
+  },
+  "imprint": {
+    "register": "Amtsgericht Stuttgart",
+    "taxId": "default tax Id",
+    "businessId": "test busines Id",
+    "fonts": "The icons used on this homepage are Material icons and can be used freely according to the "
+  },
+  "booking": {
+    "title": "Book a table",
+    "date": "Choose the date you want to visit us:",
+    "time": "Choose the time for which you want to book:",
+    "personCount": {
+      "subtitle": "For how many people do you want to reserve?"
+    },
+    "fillInformation": {
+      "subtitle": "Almost done! Please fill in a few more contact information:",
+      "date": "At {{date}}, {{time}}",
+      "perconCount": "For {{personCount}} persons"
+    },
+    "firstname": {
+      "label": "First name",
+      "placeholder": "Max"
+    },
+    "lastname": {
+      "label": "last name",
+      "placeholder": "Musterma.."
+    },
+    "email": {
+      "label": "Email",
+      "placeholder": "m.mustermann@gm..."
+    },
+    "phone": {
+      "label": "Phone number",
+      "placeholder": "0157 999..."
+    },
+    "reservationSaved": "Thank you for your reservation. We have sent you a confirmation email. Otherwise, the reservation will be automatically canceled within 24 hours.",
+    "reservationError": "Unfortunately something went wrong with the reservation, please try again or call us!",
+    "modal": {
+      "header": "Choose a time",
+      "body": {
+        "suggestionsError": "Unfortunately we are not able to provide you with any suggestions at the moment. Please try again later.",
+        "availableTimes": "Unfortunately, the time you specified is no longer available. We have suggestions for you here:",
+        "noSuggestions": "Unfortunately we are already fully booked for this date, please try another date."
+      }
+    },
+    "accept": {
+      "title": "Booking confirmed",
+      "body": "Your booking is confirmed. We are looking forward to seeing you!"
+    },
+    "failed": {
+      "title": "Booking failed",
+      "body": "Unfortunately, something went wrong with your booking. Call us. We are happy to help you!"
+    },
+    "alreadyConfirmed": {
+      "title": "Booking already confirmed",
+      "body": "Your booking is already confirmed. We are looking forward to seeing you!"
+    },
+    "experimental": "Note: This feature is still experimental.If you have any issues regarding your reservation, please send a message to bueffelundkoi@gmail.com"
   }
+}

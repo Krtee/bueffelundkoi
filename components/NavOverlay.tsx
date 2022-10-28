@@ -79,6 +79,9 @@ const NavOverlay: FC<NavOverlayProps> = ({
               >
                 {t("nav.menu")}
               </NavLink>
+              <NavLink href={"/booking/newreservation"} locale={locale}>
+                {t("nav.booking")}
+              </NavLink>
               <NavLink
                 href="about"
                 locale={locale}
@@ -106,7 +109,7 @@ const NavOverlay: FC<NavOverlayProps> = ({
                 onClick={() => onNavigate("imprint")}
               >
                 {t("nav.imprint")}
-              </NavLink>{" "}
+              </NavLink>
               <NavLink
                 href="privacy"
                 locale={locale}
@@ -126,7 +129,9 @@ const NavOverlay: FC<NavOverlayProps> = ({
                 className="rig-shaded"
                 onClick={() => {
                   setLocale("en");
-                  router.push("/en", undefined, { locale: false });
+                  router.push("/en" + router.pathname, undefined, {
+                    locale: false,
+                  });
                 }}
               >
                 {t("general.eng")}
@@ -136,7 +141,9 @@ const NavOverlay: FC<NavOverlayProps> = ({
                 className="rig-shaded"
                 onClick={() => {
                   setLocale("de");
-                  router.push("/de", undefined, { locale: false });
+                  router.push("/de" + router.pathname, undefined, {
+                    locale: false,
+                  });
                 }}
               >
                 {t("general.de")}

@@ -1,62 +1,121 @@
 {
-    "general":{
-        "brandname":"Büffel&Koi",
-        "back":"Zur Webseite",
-        "eng":"ENG",
-        "de":"DE"
+    "general": {
+        "brandname": "Büffel&Koi",
+        "back": "Zur Webseite",
+        "eng": "ENG",
+        "de": "DE",
+        "buttons": {
+            "back": "zurück",
+            "next": "weiter",
+            "send": "Abschicken",
+            "close": "Schließen"
+        }
     },
-    "nav":{
-        "menu":"Speisekarte",
-        "home":"Home",
-        "about":"Über uns",
-        "gallery":"Galerie",
-        "contact":"Kontakt",
-        "imprint":"Impressum",
-        "privacy":"Datenschutz"
+    "nav": {
+        "menu": "Speisekarte",
+        "home": "Home",
+        "about": "Über uns",
+        "booking": "Reservieren",
+        "gallery": "Galerie",
+        "contact": "Kontakt",
+        "imprint": "Impressum",
+        "privacy": "Datenschutz"
     },
-    "main":{
-        "firstTitle":"Japanisch",
-        "secondTitle":"Vietnamesisch"
+    "main": {
+        "firstTitle": "Japanisch",
+        "secondTitle": "Vietnamesisch"
     },
-    "about":{
-        "title":"Über uns",
-        "content":"Im schönen Vaihingen befindet sich unser kleines und gemütliches Famlienlokal. Unsere Küche verbindet authentisch japanische Küche und traditionell vietnamesische Spezialitäten. Mit mehr als 15 Jahren Erfahrung bieten wir euch ein spektakuläres Erlebnis auf einer ganz individuellen Art und Weise.\n\nNeben traditionellen Gerichten erwartet euch originelle Neukompositionen, die allesamt mit frischen und qualitativen Zutaten zubereitet werden.\n\nKlingt verlockend? Kommt vorbei und verweilt eine Weile mit einem unserer hausgemachten Drinks oder einem kühlen japanischen Bier."
-
+    "about": {
+        "title": "Über uns",
+        "content": "Im schönen Vaihingen befindet sich unser kleines und gemütliches Familienlokal. Unsere Küche verbindet authentisch japanische Küche und traditionell vietnamesische Spezialitäten. Mit mehr als 15 Jahren Erfahrung bieten wir euch ein spektakuläres Erlebnis auf einer ganz individuellen Art und Weise.\n\nNeben traditionellen Gerichten erwartet euch originelle Neukompositionen, die allesamt mit frischen und qualitativen Zutaten zubereitet werden.\n\nKlingt verlockend? Kommt vorbei und verweilt eine Weile mit einem unserer hausgemachten Drinks oder einem kühlen japanischen Bier."
     },
-    "menu":{
-        "title":"Unsere Speisen",
-        "download":"Speisekarte herunterladen"
+    "menu": {
+        "title": "Unsere Speisen",
+        "download": "Speisekarte herunterladen"
     },
-    "gallery":{
-        "title":"Bildergalerie"
+    "gallery": {
+        "title": "Bildergalerie"
     },
-    "contact":{
-        "title":"Kontakt",
-        "address":{
-            "name":"Büffel&Koi",
-            "street":"Katzenbachstraße 95",
-            "city":"70563 Stuttgart"
+    "contact": {
+        "title": "Kontakt",
+        "address": {
+            "name": "Büffel&Koi",
+            "street": "Katzenbachstraße 95",
+            "city": "70563 Stuttgart"
         },
-        "phone":"0711 96896535",
-        "email":"bueffelundkoi@gmail.com"
+        "phone": "0711 96896535",
+        "email": "bueffelundkoi@gmail.com",
+        "businessOwner": "Geschäftsführer Anh Xuan Nguyen"
     },
-    "openingTime":{
-        "title":"Öffnungszeiten",
-        "content":{
-            "normal":{
-                "days":"Mittwoch | Donnerstag | Sonntag:",
-                "times":"11:30-15 Uhr & 17-23 Uhr"
+    "openingTime": {
+        "title": "Öffnungszeiten",
+        "content": {
+            "normal": {
+                "days": "Mittwoch | Donnerstag | Sonntag:",
+                "times": "11:30-15 Uhr & 17-23 Uhr"
             },
-            "weekend":{
-                "days":"Montag | Dienstag | Freitag | Samstag:",
-                "times":"17-23 Uhr"
+            "weekend": {
+                "days": "Montag | Dienstag | Freitag | Samstag:",
+                "times": "17-23 Uhr"
             }
         }
     },
-    "imprint":{
-        "register":"Amtsgericht Stuttgart",
-        "taxId":"default tax Id",
-        "businessId":"test busines Id",
-        "fonts":"Die auf dieser Homepage verwendeten Icons sind Material-Icons und können frei nach den "
-      }
+    "imprint": {
+        "register": "Amtsgericht Stuttgart",
+        "taxId": "default tax Id",
+        "businessId": "test busines Id",
+        "fonts": "Die auf dieser Homepage verwendeten Icons sind Material-Icons und können frei nach den "
+    },
+    "booking": {
+        "title": "Tisch reservieren",
+        "date": "Wähle das Datum an dem du uns besuchen möchtest:",
+        "time": "Wähle die Uhrzeit, für die du reservieren möchtest:",
+        "personCount": {
+            "subtitle": "Für wieviele Personen möchtest du reservieren?"
+        },
+        "fillInformation": {
+            "subtitle": "Fast fertig! Fülle bitte noch deine Kontaktinformationen aus:",
+            "date": "Am {{date}}, {{time}}",
+            "perconCount": "Für {{personCount}} Personen"
+        },
+        "firstname": {
+            "label": "Vorname",
+            "placeholder": "Max"
+        },
+        "lastname": {
+            "label": "Nachname",
+            "placeholder": "Musterma.."
+        },
+        "email": {
+            "label": "Email",
+            "placeholder": "m.mustermann@gm..."
+        },
+        "phone": {
+            "label": "Telefonnummer",
+            "placeholder": "0157 999..."
+        },
+        "reservationSaved": "Vielen Dank für deine Reservierung. Wir haben dir eine Bestätigungsmail geschickt. Andernfalls wird die Reservierung automatisch innerhalb von 24 Stunden storniert.",
+        "reservationError": "Leider ist beim der Reservierung etwas schiefgelaufen, bitte versuche es noch einmal oder rufe uns an!",
+        "modal": {
+            "header": "Wähle eine Uhrzeit",
+            "body": {
+                "suggestionsError": "Leider ist beim Laden der Vorschläge etwas schiefgelaufen, bitte versuche es noch einmal oder rufe uns an!",
+                "availableTimes": "Leider ist die von dir angegebene Uhrzeit nicht mehr verfügbar. Wir haben hier Vorschläge für dich:",
+                "noSuggestions": "Leider sind wir für dieses Datum schon ausgebucht, bitte versuche es an einem anderen Datum."
+            }
+        },
+        "accept": {
+            "title": "Buchung bestätigt",
+            "body": "Deine Buchung ist bestätigt. Wir freuen uns auf dich!"
+        },
+        "failed": {
+            "title": "Bestätigung fehlgeschlagen",
+            "body": "Bei deiner Buchung ist leider etwas schiefgelaufen. Ruf uns an. Wir sind dir gerne behilflich!"
+        },
+        "alreadyConfirmed": {
+            "title": "Buchung bereits bestätigt",
+            "body": "Deine Buchung wurde bereits bestätigt. Wir freuen uns auf dich!"
+        },
+        "experimental": "Hinweis: Diese Funktion ist noch experimentell. Wenn Sie Probleme mit Ihrer Reservierung haben, senden Sie bitte eine Nachricht an bueffelundkoi@gmail.com"
+    }
 }

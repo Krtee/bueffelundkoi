@@ -1,5 +1,5 @@
 @use "sass:math";
-@import url("https://use.typekit.net/pqp0hmz.css");
+//@import url("https://use.typekit.net/pqp0hmz.css");
 
 /* ./styles/globals.css */
 @tailwind base;
@@ -51,6 +51,10 @@ h3 {
   font-family: rig-shaded-bold-face;
   letter-spacing: 0px;
 }
+
+#__next {
+  height: 100vh;
+}
 main {
   overflow-x: hidden;
   overflow-y: scroll;
@@ -67,6 +71,10 @@ main {
 
 .josefin {
   font-family: josefin-sans;
+}
+
+.text-dark {
+  color: #232323;
 }
 .banner {
   &__image--first {
@@ -310,4 +318,27 @@ main {
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #232323;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(61, 61, 61);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(48, 48, 48);
+}
+
+#nextui-modal > div {
+  top: -100vh;
 }

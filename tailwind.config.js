@@ -1,6 +1,5 @@
 module.exports = {
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       zIndex: {
@@ -27,7 +26,10 @@ module.exports = {
         '6/10':'60%',
         '7/10':'70%',
         '8/10':'80%',
-        '9/10':'90%'
+        '9/10':'90%',
+      },
+      minHeight:{        
+        "form":"40rem"
       },
       flex:{
         '2': '2 2 0%',
@@ -37,9 +39,6 @@ module.exports = {
       }
 
     },
-  },
-  variants: {
-    extend: { },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),

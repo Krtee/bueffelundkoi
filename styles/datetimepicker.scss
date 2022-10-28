@@ -1,0 +1,71 @@
+@import url("https://use.typekit.net/pqp0hmz.css");
+
+.react-datepicker {
+  background-color: #1a1a1a;
+  border-color: #414141;
+  color: white;
+  border-radius: 20px !important;
+  border: none;
+  &__header {
+    border-radius: 20px !important;
+    background-color: white;
+    color: black;
+    border: none;
+    font-family: rig-shaded-bold-face;
+
+    & > * {
+      color: black;
+    }
+  }
+  &__portal {
+    transform: translateY(-100%);
+  }
+  &__navigation-icon::before {
+    top: 50%;
+  }
+  &__day {
+    color: white;
+    font-family: rig-shaded-bold-face;
+
+    &--selected {
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+    }
+
+    &--keyboard-selected {
+      background-color: white;
+      color: black;
+      border-radius: 10px;
+    }
+    &--disabled {
+      color: #414141;
+    }
+  }
+  &__triangle {
+    background-color: black;
+    ::after,
+    ::before {
+      border-color: black;
+    }
+  }
+  &__day-name {
+    color: black;
+  }
+  &-wrapper {
+    max-width: fit-content;
+    height: fit-content;
+  }
+
+  &__input-container {
+    max-width: fit-content;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    background-color: #1a1a1a;
+    & > input {
+      font-family: rig-shaded-bold-face;
+
+      background-color: transparent;
+    }
+  }
+}

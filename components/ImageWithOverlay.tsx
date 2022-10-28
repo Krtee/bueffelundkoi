@@ -1,4 +1,4 @@
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps, StaticImageData } from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { Portal } from "react-portal";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
@@ -38,11 +38,7 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
               }
             >
               <div className="absolute right-1 top-1 p-2 z-10">
-                <Image
-                  src={CloseIcon}
-                  onClick={() => setVisible(false)}
-                  alt="close"
-                />
+                <CloseIcon onClick={() => setVisible(false)} alt="close" />
               </div>
               <TransformWrapper>
                 <TransformComponent>
