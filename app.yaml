@@ -1,0 +1,12 @@
+runtime: custom
+env: standard
+service: default
+inbound_services:
+- warmup
+automatic_scaling:
+    min_idle_instances: 1
+    min_instances: 1
+handlers:
+  - url: /.*
+    secure: always
+    script: auto

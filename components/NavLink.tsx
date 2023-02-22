@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-import { FC } from "react";
+import React, { FC } from "react";
 
 export const NavLink: FC<{
   href: string;
   locale: string;
   onClick?: Function;
+  children: React.ReactNode;
 }> = ({ children, href, locale, onClick }) => {
   const router = useRouter();
 

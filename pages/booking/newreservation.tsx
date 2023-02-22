@@ -20,18 +20,23 @@ import Select, { SingleValue } from "react-select";
 import Footer from "../../components/Footer";
 import NavigationBar from "../../components/NavigationBar";
 import {
-  customSelectStyles,
-  customTheme,
+  ExcludedTimeInterval,
   Option,
   Reservation,
+  SuggestionResponse,
+  customSelectStyles,
+  customTheme,
   selectHourOptionsEvening,
   selectOptionMinutes,
   selectOptionPersonCount,
-  SuggestionResponse,
 } from "../../utils/booking/Booking.types";
 import {
   emptyReservation,
+  fetchExcludeDates,
+  fetchExcludeTimeIntervals,
   fetchSuggestions,
+  getMinDate,
+  mapGetDayToDayOfWeek,
   mapNumberToOption,
   postNewReservation,
   validateEmail,
@@ -55,18 +60,20 @@ const NewReservation: NextPage = () => {
   const [reservation, setReservation] = useState<Reservation>(emptyReservation);
   const reservationTimeInSeconds: number = 7200;
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<FormStep>(
-    FormStep.CHOOSE_DATE
-  );
+  const [excludeDates, setExcludeDates] = useState<Date[]>();
+  const [excludeTimeIntervals, setExcludeTimeIntervals] =
+    useState<ExcludedTimeInterval[]>();
+  const [minDate, setMinDate] = useState<Date>(getMinDate(excludeDates));
+  const [currentStep, setCurrentStep] = useState<FormStep>();
   const { setVisible, bindings } = useModal();
   const [suggestionRequest, setsuggestionRequest] = useState<{
     date: Date;
     personCount: number;
   }>({
     date: new Date(
-      new Date().getFullYear(),
-      new Date().getMonth(),
-      new Date().getDate(),
+      minDate.getFullYear(),
+      minDate.getMonth(),
+      minDate.getDate(),
       18,
       0
     ),
@@ -90,6 +97,53 @@ const NewReservation: NextPage = () => {
       }
     });
   };
+
+  /**
+   * fetches the excluded dates from the backend
+   */
+  useEffect(() => {
+    fetchExcludeDates().then((excludeDates) => {
+      const currentMinDate = getMinDate(excludeDates);
+      setMinDate(currentMinDate);
+      setExcludeDates(excludeDates);
+    });
+    fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
+      setExcludeTimeIntervals(excludeTimeIntervals);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (excludeDates && excludeTimeIntervals) {
+      const currentMinDate = getMinDate(excludeDates);
+
+      const minDateExcludeInterval = excludeTimeIntervals.find(
+        (interval) =>
+          interval.dayOfWeek === mapGetDayToDayOfWeek(currentMinDate.getDay())
+      );
+
+      const defaultHour = minDateExcludeInterval
+        ? selectHourOptionsEvening(minDateExcludeInterval).find(
+            (value) => !value.isDisabled
+          )?.value || 18
+        : 18;
+      const defaultMinute = minDateExcludeInterval
+        ? selectOptionMinutes(defaultHour, minDateExcludeInterval).find(
+            (value) => !value.isDisabled
+          )?.value || 0
+        : 0;
+      setsuggestionRequest((prev) => ({
+        ...prev,
+        date: new Date(
+          currentMinDate.getFullYear(),
+          currentMinDate.getMonth(),
+          currentMinDate.getDate(),
+          defaultHour,
+          defaultMinute
+        ),
+      }));
+      setCurrentStep(FormStep.CHOOSE_DATE);
+    }
+  }, [excludeDates, excludeTimeIntervals]);
 
   /**
    * returns the current step of the form
@@ -117,11 +171,12 @@ const NewReservation: NextPage = () => {
                     date,
                   })
                 }
+                excludeDates={excludeDates}
                 withPortal
                 locale={router.locale}
                 portalId="__next"
                 dateFormat={router.locale === "de" ? "dd.MM.yyyy" : undefined}
-                minDate={new Date()}
+                minDate={minDate}
               />
             </div>
             <p className="py-10 text-justify whitespace-pre-line josefin  leading-4	">
@@ -165,7 +220,7 @@ const NewReservation: NextPage = () => {
                       date: currentReservationDate,
                     });
                   }}
-                  defaultValue={selectHourOptionsEvening.find(
+                  defaultValue={selectHourOptionsEvening().find(
                     (option) =>
                       option.value === suggestionRequest.date.getHours()
                   )}
@@ -174,7 +229,13 @@ const NewReservation: NextPage = () => {
                   theme={customTheme}
                   getOptionValue={(option: Option) => option.value.toString()}
                   getOptionLabel={(option: Option) => option.label}
-                  options={selectHourOptionsEvening}
+                  options={selectHourOptionsEvening(
+                    excludeTimeIntervals?.find(
+                      (interval) =>
+                        interval.dayOfWeek ===
+                        mapGetDayToDayOfWeek(suggestionRequest.date.getDay())
+                    )
+                  )}
                 />
                 <p className="rig-shaded h-full align-middle px-5">:</p>
                 <Select
@@ -192,14 +253,21 @@ const NewReservation: NextPage = () => {
                       date: currentReservationDate,
                     });
                   }}
-                  defaultValue={selectHourOptionsEvening.find(
+                  defaultValue={selectOptionMinutes().find(
                     (option) =>
                       option.value === suggestionRequest.date.getMinutes()
                   )}
                   className="rig-shaded"
                   styles={customSelectStyles()}
                   theme={customTheme}
-                  options={selectOptionMinutes}
+                  options={selectOptionMinutes(
+                    suggestionRequest.date.getHours(),
+                    excludeTimeIntervals?.find(
+                      (interval) =>
+                        interval.dayOfWeek ===
+                        mapGetDayToDayOfWeek(suggestionRequest.date.getDay())
+                    )
+                  )}
                   getOptionValue={(option: Option) => option.value.toString()}
                   getOptionLabel={(option: Option) => option.label}
                 />
@@ -540,12 +608,7 @@ const NewReservation: NextPage = () => {
           <div className={"flex-1 p-10 flex flex-row gap-5 justify-center	"}>
             {renderRightFormStep()}
             <div className="hidden md:block md:w-full">
-              <Image
-                src={restaurantImage}
-                alt={"Restaurant"}
-                layout={"fill"}
-                objectFit="cover"
-              />
+              <Image src={restaurantImage} alt={"Restaurant"} />
             </div>
           </div>
           <Footer />

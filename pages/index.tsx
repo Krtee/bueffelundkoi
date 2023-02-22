@@ -28,6 +28,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     appHeight();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [height]);
 
   return (

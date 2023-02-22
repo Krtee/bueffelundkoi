@@ -26,10 +26,11 @@ const Imprint: NextPage = () => {
           <p>{t("contact.email")}</p>
           <p>{t("contact.businessOwner")}</p>
           <br />
-          <p>{t("imprint.register")}</p>
+          {/* {          <p>{t("imprint.register")}</p>
           <p>{t("imprint.taxId")}</p>
-          <p>{t("imprint.businessId")}</p>
+          <p>{t("imprint.businessId")}</p>}
           <br />
+           */}
           <p>
             {t("imprint.fonts")}
             <a href="https://www.apache.org/licenses/LICENSE-2.0">

@@ -1,28 +1,23 @@
-import { GetServerSideProps } from "next";
+import { Loading } from "@nextui-org/react";
+import { GetStaticPaths } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
-import { useEffect } from "react";
-import Footer from "../../components/Footer";
-import NavigationBar from "../../components/NavigationBar";
-import { confirmReservation } from "../../utils/booking/BookingUtils";
-interface ConfirmationPage {
-  confirmationResponse: number;
-  test: string;
-}
-const ConfirmReservation: React.FC<ConfirmationPage> = ({
-  confirmationResponse,
-  test,
-}) => {
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import Footer from "../../../components/Footer";
+import NavigationBar from "../../../components/NavigationBar";
+import { confirmReservation } from "../../../utils/booking/BookingUtils";
+
+const ConfirmReservation: React.FC = ({}) => {
   const { t } = useTranslation();
+  const router = useRouter();
+  const { confirmationId } = router.query;
 
+  const [confirmationResponse, setConfirmationResponse] = useState(-1);
   useEffect(() => {
-    console.log(test);
-
-    confirmReservation(test).then((response) => {
-      console.log(response);
-    });
-  }, []);
+    confirmReservation(confirmationId as string).then(setConfirmationResponse);
+  }, [router.query, confirmationId]);
 
   const renderCorrectContent = () => {
     switch (confirmationResponse) {
@@ -44,6 +39,14 @@ const ConfirmReservation: React.FC<ConfirmationPage> = ({
             <p className="josefin text-xl">
               {t("booking.alreadyConfirmed.body")}
             </p>
+          </div>
+        );
+      case -1:
+        return (
+          <div
+            className={"flex-1 p-10 flex flex-col gap-5  min-h-screen md:px-40	"}
+          >
+            <Loading />
           </div>
         );
       default:
@@ -74,25 +77,16 @@ const ConfirmReservation: React.FC<ConfirmationPage> = ({
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const confirmationId = context.query.confirmationId;
+export const getStaticProps = async ({ locale }: any) => ({
+  props: {
+    ...(await serverSideTranslations(locale, ["common", "footer"])),
+  },
+});
 
-  const confirmationRes: number = await confirmReservation(
-    confirmationId as string
-  );
-
-  if (confirmationRes === null) {
-    const { res } = context;
-
-    res.writeHead(307, { Location: "/404" });
-    res.end();
-  }
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
   return {
-    props: {
-      ...(await serverSideTranslations(context.locale!)),
-      confirmationResponse: confirmationRes,
-      test: confirmationId,
-    },
+    paths: [], //indicates that no page needs be created at build time
+    fallback: "blocking", //indicates the type of fallback
   };
 };
 export default ConfirmReservation;

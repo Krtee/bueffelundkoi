@@ -1,24 +1,25 @@
 
-FROM node:14.17.4 AS dependencies
+FROM node:14.18.0 AS dependencies
 ENV NODE_ENV=development
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install --dev typescript
+RUN npm install --legacy-peer-deps --dev typescript
 
-FROM node:14.17.4 AS builder
+FROM node:14.18.0 AS builder
 WORKDIR /app
 COPY . .
-RUN npm install 
+RUN npm install --legacy-peer-deps
 ENV NODE_ENV=production
 RUN npm run build
 
-FROM node:14.17.4 AS production
+FROM node:14.18.0 AS production
 WORKDIR /app
 ENV NODE_ENV=production
 COPY --chown=node --from=builder /app/next.config.js ./
 COPY --chown=node --from=builder /app/public ./public
 COPY --chown=node --from=builder /app/.next ./.next
 COPY --chown=node --from=builder /app/package-lock.json /app/package.json ./
-COPY --chown=node --from=dependencies /app/node_modules ./node_modules
+COPY --chown=node --from=builder /app/node_modules ./node_modules
+COPY --chown=node --from=builder /app/next-i18next.config.js ./
 USER node
 CMD [ "npm", "start" ]
