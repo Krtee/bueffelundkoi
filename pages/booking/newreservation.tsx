@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Button,
   Input,
@@ -36,6 +38,7 @@ import {
   fetchExcludeTimeIntervals,
   fetchSuggestions,
   getMinDate,
+  getNextValidMinutes,
   mapGetDayToDayOfWeek,
   mapNumberToOption,
   postNewReservation,
@@ -64,7 +67,9 @@ const NewReservation: NextPage = () => {
   const [excludeTimeIntervals, setExcludeTimeIntervals] =
     useState<ExcludedTimeInterval[]>();
   const [minDate, setMinDate] = useState<Date>(getMinDate(excludeDates));
-  const [currentStep, setCurrentStep] = useState<FormStep>();
+  const [currentStep, setCurrentStep] = useState<FormStep>(
+    FormStep.CHOOSE_TIME
+  );
   const { setVisible, bindings } = useModal();
   const [suggestionRequest, setsuggestionRequest] = useState<{
     date: Date;
@@ -98,6 +103,8 @@ const NewReservation: NextPage = () => {
     });
   };
 
+  const [doc, setDoc] = useState<HTMLElement | null>();
+
   /**
    * fetches the excluded dates from the backend
    */
@@ -110,6 +117,7 @@ const NewReservation: NextPage = () => {
     fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
       setExcludeTimeIntervals(excludeTimeIntervals);
     });
+    setDoc(document.getElementById("main"));
   }, []);
 
   useEffect(() => {
@@ -207,7 +215,7 @@ const NewReservation: NextPage = () => {
               <div className="flex flex-row z-10	justify-center items-center w-fit m-auto border-b-2	pb-px	">
                 <Select
                   key={"bookingHours"}
-                  menuPortalTarget={document.getElementById("main")}
+                  menuPortalTarget={doc}
                   onChange={(newValue: SingleValue<Option>) => {
                     if (!newValue) return;
                     let currentReservationDate = new Date(
@@ -215,10 +223,23 @@ const NewReservation: NextPage = () => {
                     );
 
                     currentReservationDate.setHours(newValue.value);
-                    setsuggestionRequest({
-                      ...suggestionRequest,
-                      date: currentReservationDate,
-                    });
+                    currentReservationDate.setMinutes(
+                      getNextValidMinutes(
+                        newValue.value,
+                        suggestionRequest.date.getMinutes(),
+                        excludeTimeIntervals?.find(
+                          (interval) =>
+                            interval.dayOfWeek ===
+                            mapGetDayToDayOfWeek(
+                              suggestionRequest.date.getDay()
+                            )
+                        )
+                      )
+                    ),
+                      setsuggestionRequest({
+                        ...suggestionRequest,
+                        date: currentReservationDate,
+                      });
                   }}
                   defaultValue={selectHourOptionsEvening().find(
                     (option) =>
@@ -240,7 +261,7 @@ const NewReservation: NextPage = () => {
                 <p className="rig-shaded h-full align-middle px-5">:</p>
                 <Select
                   key={"bookingMinutes"}
-                  menuPortalTarget={document.getElementById("main")}
+                  menuPortalTarget={doc}
                   value={mapNumberToOption(suggestionRequest.date.getMinutes())}
                   onChange={(newValue: SingleValue<Option>) => {
                     if (!newValue) return;
@@ -528,7 +549,7 @@ const NewReservation: NextPage = () => {
   return (
     <div className="overflow-y-auto h-screen">
       <Head>
-        <title>Büffel &amp; Koi</title>
+        <title>BÜFFEL &amp; KOI</title>
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

@@ -39,7 +39,6 @@ const NavOverlay: FC<NavOverlayProps> = ({
               src={gyozaImage}
               width={600}
               height={400}
-              layout="responsive"
               alt="Appetizer - Gyoza"
             />
           </div>
@@ -52,25 +51,19 @@ const NavOverlay: FC<NavOverlayProps> = ({
               src={GalleryImage7}
               width={600}
               height={400}
-              layout="responsive"
               alt={"close-up of two different Bowls"}
             />
           </div>
 
           <div className={"w-full flex-1 flex flex-col justify-between my-20"}>
             <div className={"relative m-w-3/4 w-3/4 mx-auto"}>
-              <Image
-                src={logo}
-                alt={t("nav.logo")}
-                layout="responsive"
-                width={19}
-                height={7}
-              />
+              <Image src={logo} alt={t("nav.logo")} width={19} height={7} />
             </div>
             <nav
               className={
                 "text-white flex flex-col w-full justify-end gap-6 text-xl font-bold my-4"
               }
+              suppressHydrationWarning
             >
               <NavLink
                 href="menu"

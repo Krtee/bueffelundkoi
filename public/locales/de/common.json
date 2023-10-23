@@ -1,6 +1,6 @@
 {
     "general": {
-        "brandname": "Büffel&Koi",
+        "brandname": "BÜFFEL & KOI",
         "back": "Zur Webseite",
         "eng": "ENG",
         "de": "DE",
@@ -24,6 +24,10 @@
     "main": {
         "firstTitle": "Japanisch",
         "secondTitle": "Vietnamesisch"
+    },
+    "news": {
+        "title": "Wir machen Urlaub!",
+        "content": "Vom 17.08.2023 bis einschließlich 21.08.2023 haben wir geschlossen. Ab dem 22.08.2023 sind wir wieder für euch da. Wir wünschen euch eine schöne Zeit und freuen uns auf euren Besuch!"
     },
     "about": {
         "title": "Über uns",
@@ -71,7 +75,7 @@
         "date": "Wähle das Datum an dem du uns besuchen möchtest:",
         "time": "Wähle die Uhrzeit, für die du reservieren möchtest:",
         "personCount": {
-            "subtitle": "Für wieviele Personen möchtest du reservieren?"
+            "subtitle": "Für wieviele Personen möchtest du reservieren? Bedenke dass du nur online für maximal 4 Personen reservieren kannst. Für größere Gruppen ruf uns bitte an oder schreibe uns eine Email."
         },
         "fillInformation": {
             "subtitle": "Fast fertig! Fülle bitte noch deine Kontaktinformationen aus:",

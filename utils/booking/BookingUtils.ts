@@ -91,18 +91,25 @@ export const fetchExcludeDates = async (): Promise<Date[]> =>
     });
 
 export const getMinDate = (excludeDates?: Date[]) => {
-  const today = new Date();
+  const currentDate = new Date();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
 
-  if (
-    excludeDates?.find((excludedDate) => isSameDay(excludedDate, today)) ||
-    today.getHours() >= 17
-  ) {
-    return tomorrow;
-  } else {
-    return today;
+  let dateIsOkay = false;
+
+  while (!dateIsOkay) {
+    if (
+      excludeDates?.find((excludedDate) =>
+        isSameDay(excludedDate, currentDate)
+      ) ||
+      currentDate.getHours() >= 17
+    ) {
+      currentDate.setDate(currentDate.getDate() + 1);
+    } else {
+      dateIsOkay = true;
+    }
   }
+  return currentDate;
 };
 
 export const fetchExcludeTimeIntervals = async (): Promise<
@@ -148,4 +155,21 @@ export const mapGetDayToDayOfWeek = (index: number): DayOfWeek => {
     default:
       throw new Error("Invalid index");
   }
+};
+
+export const getNextValidMinutes = (
+  hour: number,
+  minutes: number,
+  excludedTimeInterval?: ExcludedTimeInterval
+) => {
+  if (!excludedTimeInterval) {
+    return minutes;
+  }
+  if (
+    excludedTimeInterval.endTime.hour === hour &&
+    excludedTimeInterval.endTime.minute > minutes
+  ) {
+    return excludedTimeInterval.endTime.minute;
+  }
+  return minutes;
 };

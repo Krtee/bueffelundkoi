@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { FC, useState } from "react";
 import { useWindowDimensions } from "../utils/useWindowDimension";
+import { imageStyles } from "../utils/variables";
 import logo from "./../public/assets/logo.png";
 import MenuIcon from "./../public/assets/menu.svg";
 import { NavLink } from "./NavLink";
@@ -24,14 +25,23 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
             <Image
               src={logo}
               alt={t("nav.logo")}
-              layout="responsive"
-              width={19}
-              height={7}
+              style={imageStyles}
               onClick={() => router.push("/")}
             />
           </div>
         </div>
-        {width > 800 ? (
+        {width && width <= 800 ? (
+          <>
+            <MenuIcon onClick={() => setShowPopUp(true)} alt="open menu" />
+            <NavOverlay
+              isOpen={showPopUp}
+              onClose={() => setShowPopUp(false)}
+              locale={activeLang}
+              setLocale={setActiveLang}
+              onNavigate={() => setShowPopUp(false)}
+            />
+          </>
+        ) : (
           <nav
             className={
               "border-y-2 border-solid mx-5 my-5 flex-1 flex justify-between pl-32 pr-6 items-center font-bold"
@@ -78,17 +88,6 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
               </p>
             </div>
           </nav>
-        ) : (
-          <>
-            <MenuIcon onClick={() => setShowPopUp(true)} alt="open menu" />
-            <NavOverlay
-              isOpen={showPopUp}
-              onClose={() => setShowPopUp(false)}
-              locale={activeLang}
-              setLocale={setActiveLang}
-              onNavigate={() => setShowPopUp(false)}
-            />
-          </>
         )}
       </div>
     </div>

@@ -9,9 +9,9 @@ const Footer: FC<{}> = () => {
   const { t } = useTranslation("common");
 
   return (
-    <footer className={"mx-5 py-8  px-4 border-t border-white "} id="contact">
-      <div className="grid grid-cols-2 contact gap-10 ">
-        <div className={"flex-1 flex flex-col"}>
+    <footer className={"mx-5 py-8   border-t border-white "} id="contact">
+      <div className="md:grid md:grid-cols-2 contact gap-10">
+        <div className={"flex-1 flex flex-col  px-4 pb-8"}>
           <h2>{t("contact.title")}</h2>
           <p>{t("contact.address.name")}</p>
           <p>{t("contact.address.street")}</p>
@@ -22,10 +22,17 @@ const Footer: FC<{}> = () => {
           <Link href="/imprint">{t("nav.imprint")}</Link>
           <Link href="/privacy">{t("nav.privacy")}</Link>
         </div>
-        <div className={"flex-1"}>
+        <div className={"flex-1 px-4 border-t py-8 md:py-0 md:border-none"}>
           <h2>{t("openingTime.title")}</h2>
-          <p>{t("openingTime.content.normal.days")}</p>
-          <p>{t("openingTime.content.normal.times")}</p>
+          <div className="py-3">
+            <p>{t("openingTime.content.normal.days")}</p>
+            <p>{t("openingTime.content.normal.times")}</p>
+          </div>
+
+          <div>
+            <p>{t("openingTime.content.weekend.days")}</p>
+            <p>{t("openingTime.content.weekend.times")}</p>
+          </div>
         </div>
       </div>
 

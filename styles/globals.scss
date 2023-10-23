@@ -44,6 +44,8 @@ a {
 
 p {
   font-family: josefin-sans;
+  font-size: 1.2rem;
+  display: block;
 }
 h1,
 h2,
@@ -79,6 +81,7 @@ main {
 .banner {
   &__image--first {
     z-index: 5;
+
     transform: translateY(100%) translateZ(2px)
       scale(math.div($main-perspective - 2, $main-perspective));
 
@@ -341,4 +344,5 @@ main {
 
 #nextui-modal > div {
   top: -100vh;
+  transform: translateZ(100px);
 }

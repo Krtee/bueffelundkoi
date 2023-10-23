@@ -1,3 +1,5 @@
+"use client";
+
 import { Loading } from "@nextui-org/react";
 import { GetStaticPaths } from "next";
 import { useTranslation } from "next-i18next";
@@ -63,7 +65,7 @@ const ConfirmReservation: React.FC = ({}) => {
   return (
     <div className="overflow-y-auto h-screen">
       <Head>
-        <title>Büffel &amp; Koi</title>
+        <title>BÜFFEL &amp; KOI</title>
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

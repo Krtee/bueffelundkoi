@@ -1,3 +1,5 @@
+"use client";
+
 import { CssBaseline } from "@nextui-org/react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 

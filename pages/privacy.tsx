@@ -11,7 +11,7 @@ const Privacy: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Büffel und Koi</title>
+        <title>BÜFFEL & KOI</title>
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -45,7 +45,7 @@ const Privacy: NextPage = () => {
             &quot;Sie&quot;) ist:
           </p>
           <p>
-            <b>Büffel &amp; Koi</b>
+            <b>BÜFFEL &amp; KOI</b>
             <br />
             Katzenbachstraße. 45 <br />
             70563 Stuttgart

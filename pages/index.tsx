@@ -1,3 +1,4 @@
+import { Button, Modal, useModal } from "@nextui-org/react";
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,6 +8,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import NavigationBar from "../components/NavigationBar";
 import { useWindowDimensions } from "../utils/useWindowDimension";
+import { imageStyles } from "../utils/variables";
 import StartImage1 from "./../public/assets/images/start_1.jpg";
 import StartImage2 from "./../public/assets/images/start_2.jpg";
 
@@ -19,6 +21,7 @@ const Home: NextPage = () => {
   const { t } = useTranslation("common");
   const mainRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
+  const { setVisible, bindings } = useModal(false);
 
   const appHeight = () => {
     if (mainRef.current) {
@@ -34,8 +37,8 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Büffel und Koi</title>
-        <meta name="description" content="Büffel und Koi" />
+        <title>BÜFFEL & KOI</title>
+        <meta name="description" content="BÜFFEL & KOI" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -45,28 +48,24 @@ const Home: NextPage = () => {
 
           <div
             className={
-              "w-full sm:h-6/10 md:h-screen lg:h-screen lg:mb-20 xl:mb-48 relative"
+              "w-full sm:h-6/10 md:h-screen lg:h-screen lg:min-h-700 lg:mb-20 xl:mb-48 relative"
             }
           >
             <div className="relative w-7/12 md:mr-20  ml-auto banner__image--first ">
               <Image
                 placeholder="blur"
                 src={StartImage2}
-                width={428}
-                height={285}
-                layout="responsive"
                 priority
                 alt="header image - Kokos Pocus Bowl"
                 quality={70}
+                style={imageStyles}
               />
             </div>
             <div className="relative w-2/3 md:w-3/5 banner__image--second">
               <Image
                 placeholder="blur"
                 src={StartImage1}
-                width={252}
-                height={168}
-                layout="responsive"
+                style={imageStyles}
                 priority
                 alt="header image - Thun &amp; Lachsen"
                 quality={70}
@@ -109,6 +108,33 @@ const Home: NextPage = () => {
           <Gallery />
           <Footer />
         </div>
+
+        <Modal
+          scroll
+          fullScreen
+          closeButton
+          aria-labelledby="modal-title"
+          aria-describedby="modal-description"
+          {...bindings}
+        >
+          <Modal.Header className="rig-shaded text-2xl mt-20">
+            {t("news.title")}
+          </Modal.Header>
+          <Modal.Body className="md:p-5 max-w-screen-2xl m-auto w-full">
+            <p className="whitespace-pre-line josefin text-xl m-10">
+              {t("news.content")}
+            </p>
+          </Modal.Body>
+          <Modal.Footer className="p-10">
+            <Button
+              auto
+              onClick={() => setVisible(false)}
+              className={"rig-shaded text-black w-full md:w-1/2 m-auto "}
+            >
+              {t("general.buttons.close")}
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </main>
     </div>
   );

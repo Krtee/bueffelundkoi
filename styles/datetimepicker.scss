@@ -18,7 +18,8 @@
     }
   }
   &__portal {
-    transform: translateY(-100%);
+    transform: translateY(-100%) translateZ(100px);
+
   }
   &__navigation-icon::before {
     top: 50%;

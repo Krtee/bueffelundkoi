@@ -3,6 +3,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import { Portal } from "react-portal";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { useWindowDimensions } from "../utils/useWindowDimension";
+import { imageStyles } from "../utils/variables";
 import CloseIcon from "./../public/assets/close.svg";
 export interface ImageOverlayItem {
   src: StaticImageData;
@@ -47,7 +48,6 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
                       {...imageProps}
                       height={(imageProps!.height! as number) * 3}
                       width={(imageProps!.width! as number) * 3}
-                      layout="intrinsic"
                     />
                   </div>
                 </TransformComponent>
@@ -57,7 +57,14 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
         </Portal>
       )}
 
-      <Image onClick={() => setVisible(true)} {...imageProps} quality={50} />
+      <Image
+        onClick={() => setVisible(true)}
+        {...imageProps}
+        quality={50}
+        width={undefined}
+        height={undefined}
+        style={imageStyles}
+      />
     </>
   );
 };

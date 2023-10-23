@@ -11,7 +11,7 @@ const Imprint: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Büffel &amp; Koi</title>
+        <title>BÜFFEL &amp; KOI</title>
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

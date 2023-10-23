@@ -1,3 +1,5 @@
+"use client";
+
 import { createTheme, NextUIProvider } from "@nextui-org/react";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";

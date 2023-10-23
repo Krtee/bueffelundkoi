@@ -1,6 +1,6 @@
 {
   "general": {
-    "brandname": "Büffel & Koi",
+    "brandname": "BÜFFEL & KOI",
     "back": "Back to website",
     "eng": "ENG",
     "de": "DE",
@@ -25,6 +25,10 @@
     "imprint": "Impressum",
     "privacy": "Data privacy"
   },
+  "news": {
+    "title": "We are on vacation!",
+    "content": "From 17.08.2023 to 21.08.2023 we are closed. From 22.08.2023 we are back for you. We wish you a nice time and look forward to your visit!"
+  },
   "about": {
     "title": "About us",
     "content": "Our small and cozy family restaurant is located in beautiful Vaihingen. Our kitchen combines authentic Japanese cuisine and traditional Vietnamese specialties. With more than 15 years of experience we offer you a spectacular experience in a very individual way. \n\nIn addition to traditional dishes, you can expect original new compositions, all prepared with fresh and quality ingredients.\n\nSounds tempting? Come by and linger a while with one of our homemade drinks or a cold Japanese beer."
@@ -39,7 +43,7 @@
   "contact": {
     "title": "Contact",
     "address": {
-      "name": "Büffel&Koi",
+      "name": "BÜFFEL & KOI",
       "street": "Katzenbachstraße 95",
       "city": "70563 Stuttgart"
     },
@@ -71,7 +75,7 @@
     "date": "Choose the date you want to visit us:",
     "time": "Choose the time for which you want to book:",
     "personCount": {
-      "subtitle": "For how many people do you want to reserve?"
+      "subtitle": "For how many people do you want to reserve? Keep in mind that we can only accept reservations for up to 4 people. For larger groups, please call us or send us an email."
     },
     "fillInformation": {
       "subtitle": "Almost done! Please fill in a few more contact information:",

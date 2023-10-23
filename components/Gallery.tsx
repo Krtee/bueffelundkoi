@@ -1,5 +1,5 @@
 import { useTranslation } from "next-i18next";
-import React, { FC } from "react";
+import { FC } from "react";
 import ImageWithOverlay from "../components/ImageWithOverlay";
 import GalleryImage1 from "./../public/assets/images/bildergalerie_1.jpg";
 import GalleryImage2 from "./../public/assets/images/bildergalerie_2.jpg";
@@ -26,7 +26,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage1}
           width={600}
           height={400}
-          layout="responsive"
           alt={"outdoor area"}
         />
       </div>
@@ -36,7 +35,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage2}
           width={587}
           height={391}
-          layout="responsive"
           alt={"indoor area"}
         />
       </div>
@@ -46,7 +44,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage3}
           width={558}
           height={372}
-          layout="responsive"
           alt={"outdoor area - different angle"}
         />
       </div>
@@ -56,7 +53,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage4}
           width={373}
           height={559}
-          layout="responsive"
           alt="sushi plate - Fische für alle"
         />
       </div>
@@ -66,7 +62,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage5}
           width={518}
           height={345}
-          layout="responsive"
           alt="lampignons"
         />
       </div>
@@ -76,7 +71,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage6}
           width={600}
           height={400}
-          layout="responsive"
           alt={"Appetizer - Papaya Salad"}
         />
       </div>
@@ -86,7 +80,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage7}
           width={600}
           height={400}
-          layout="responsive"
           alt={"close-up of two different Bowls"}
         />
       </div>
@@ -96,7 +89,6 @@ const Gallery: FC<GalleryProps> = () => {
           src={GalleryImage8}
           width={559}
           height={373}
-          layout="responsive"
           alt={"Homemade Drink - Wildberry Soda"}
         />
       </div>

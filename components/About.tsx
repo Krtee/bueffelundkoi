@@ -1,6 +1,7 @@
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { FC } from "react";
+import { imageStyles } from "../utils/variables";
 import AboutUs from "./../public/assets/images/ueber_uns.jpg";
 
 const About: FC<{}> = () => {
@@ -12,7 +13,7 @@ const About: FC<{}> = () => {
         <h1 className="text-2xl whitespace-nowrap md:text-7xl md:transform md:translate-x-36 md:text-right">
           {t("about.title").toUpperCase()}
         </h1>
-        <p className="text-justify whitespace-pre-line leading-4	">
+        <p className="text-justify whitespace-pre-line leading-5	">
           {t("about.content")}
         </p>
       </div>
@@ -21,9 +22,7 @@ const About: FC<{}> = () => {
         <Image
           placeholder="blur"
           src={AboutUs}
-          width={428}
-          height={285}
-          layout="responsive"
+          style={imageStyles}
           alt="Anh Xuan Nguyen"
         />
       </div>
