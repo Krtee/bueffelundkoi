@@ -166,6 +166,12 @@ export const getNextValidMinutes = (
     return minutes;
   }
   if (
+    excludedTimeInterval.startTime.hour === hour &&
+    excludedTimeInterval.startTime.minute <= minutes
+  ) {
+    return excludedTimeInterval.endTime.minute;
+  }
+  if (
     excludedTimeInterval.endTime.hour === hour &&
     excludedTimeInterval.endTime.minute > minutes
   ) {
