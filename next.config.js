@@ -19,5 +19,18 @@ module.exports = {
     });
 
     return config;
-  }
+  },
+  async headers() {
+    return [
+      {
+        source: '/booking/:path*',
+        headers: [
+          {
+            key: 'disable-google-cache',
+            value: 'true',
+          }
+        ],
+      },
+    ]
+  },
 }

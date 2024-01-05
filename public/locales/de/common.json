@@ -98,6 +98,10 @@
             "label": "Telefonnummer",
             "placeholder": "0157 999..."
         },
+        "notes": {
+            "label": "Notizen",
+            "placeholder": "z.B. Allergien, Wünsche, etc."
+        },
         "reservationSaved": "Vielen Dank für deine Reservierung. Wir haben dir eine Bestätigungsmail geschickt. Andernfalls wird die Reservierung automatisch innerhalb von 24 Stunden storniert.",
         "reservationError": "Leider ist beim der Reservierung etwas schiefgelaufen, bitte versuche es noch einmal oder rufe uns an!",
         "modal": {
@@ -120,6 +124,6 @@
             "title": "Buchung bereits bestätigt",
             "body": "Deine Buchung wurde bereits bestätigt. Wir freuen uns auf dich!"
         },
-        "experimental": "Hinweis: Diese Funktion ist noch experimentell. Wenn Sie Probleme mit Ihrer Reservierung haben, senden Sie bitte eine Nachricht an bueffelundkoi@gmail.com"
+        "experimental": "Hinweis: Ein Tisch kann nur für maximal 2 Stunden reserviert werden."
     }
 }

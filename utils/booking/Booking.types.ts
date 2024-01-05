@@ -13,6 +13,7 @@ export interface Reservation {
   personCount: number;
   confirmed: boolean;
   tableNumbers: string[];
+  note?: string;
   [propertyKey: string]: any;
 }
 

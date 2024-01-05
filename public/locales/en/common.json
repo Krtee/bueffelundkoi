@@ -98,6 +98,10 @@
       "label": "Phone number",
       "placeholder": "0157 999..."
     },
+    "notes": {
+      "label": "Notes",
+      "placeholder": "I would like to sit outside."
+    },
     "reservationSaved": "Thank you for your reservation. We have sent you a confirmation email. Otherwise, the reservation will be automatically canceled within 24 hours.",
     "reservationError": "Unfortunately something went wrong with the reservation, please try again or call us!",
     "modal": {
@@ -120,6 +124,6 @@
       "title": "Booking already confirmed",
       "body": "Your booking is already confirmed. We are looking forward to seeing you!"
     },
-    "experimental": "Note: This feature is still experimental.If you have any issues regarding your reservation, please send a message to bueffelundkoi@gmail.com"
+    "experimental": "Note: A table can only be reserved for a maximum of 2 hours."
   }
 }

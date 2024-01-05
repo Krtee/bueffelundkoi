@@ -335,6 +335,7 @@ const NewReservation: NextPage = () => {
                       personCount: newValue.value,
                     }));
                   }}
+                  isSearchable={false}
                   defaultValue={selectOptionPersonCount[1]}
                   className="rig-shaded"
                   styles={customSelectStyles(200)}
@@ -474,6 +475,19 @@ const NewReservation: NextPage = () => {
                   setReservation({
                     ...reservation,
                     phoneOfReservator: e.target.value,
+                  })
+                }
+              />
+              <Input
+                clearable
+                underlined
+                label={t("booking.notes.label")}
+                placeholder={t("booking.notes.placeholder")}
+                value={reservation.note || ""}
+                onChange={(e) =>
+                  setReservation({
+                    ...reservation,
+                    note: e.target.value,
                   })
                 }
               />
