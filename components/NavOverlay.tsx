@@ -57,7 +57,7 @@ const NavOverlay: FC<NavOverlayProps> = ({
 
           <div className={"w-full flex-1 flex flex-col justify-between my-20"}>
             <div className={"relative m-w-3/4 w-3/4 mx-auto"}>
-              <Image src={logo} alt={t("nav.logo")} width={19} height={7} />
+              <Image src={logo} alt={t("nav.logo")} />
             </div>
             <nav
               className={
