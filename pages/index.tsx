@@ -1,4 +1,11 @@
-import { Button, Modal, useModal } from "@nextui-org/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@nextui-org/react";
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -21,7 +28,7 @@ const Home: NextPage = () => {
   const { t } = useTranslation("common");
   const mainRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
-  const { setVisible, bindings } = useModal(false);
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const appHeight = () => {
     if (mainRef.current) {
@@ -110,30 +117,28 @@ const Home: NextPage = () => {
         </div>
 
         <Modal
-          scroll
-          fullScreen
           closeButton
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
-          {...bindings}
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
         >
-          <Modal.Header className="rig-shaded text-2xl mt-20">
+          <ModalHeader className="rig-shaded text-2xl mt-20">
             {t("news.title")}
-          </Modal.Header>
-          <Modal.Body className="md:p-5 max-w-screen-2xl m-auto w-full">
+          </ModalHeader>
+          <ModalBody className="md:p-5 max-w-screen-2xl m-auto w-full">
             <p className="whitespace-pre-line josefin text-xl m-10">
               {t("news.content")}
             </p>
-          </Modal.Body>
-          <Modal.Footer className="p-10">
+          </ModalBody>
+          <ModalFooter className="p-10">
             <Button
-              auto
-              onClick={() => setVisible(false)}
+              onPress={onClose}
               className={"rig-shaded text-black w-full md:w-1/2 m-auto "}
             >
               {t("general.buttons.close")}
             </Button>
-          </Modal.Footer>
+          </ModalFooter>
         </Modal>
       </main>
     </div>

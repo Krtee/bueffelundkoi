@@ -102,7 +102,7 @@ main {
   }
 }
 
-.bg-primary {
+.bg {
   background-color: #232323;
 }
 
@@ -342,7 +342,14 @@ main {
   background: rgb(48, 48, 48);
 }
 
-#nextui-modal > div {
+.backdrop {
+  top: -100vh !important;
+  transform: translateZ(90px) !important;
+}
+
+.modal-content{
   top: -100vh;
-  transform: translateZ(100px);
+  opacity: 1;
+  transform: translateZ(100px) !important;
+  color:white;
 }

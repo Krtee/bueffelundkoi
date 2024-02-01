@@ -1,6 +1,6 @@
 "use client";
 
-import { createTheme, NextUIProvider } from "@nextui-org/react";
+import { NextUIProvider } from "@nextui-org/react";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,20 +12,9 @@ import "./../styles/datetimepicker.scss";
 import "./../styles/preflight.css";
 import "./../styles/privacy.scss";
 
-const theme = createTheme({
-  type: "dark",
-  theme: {
-    colors: {
-      primary: "#ffffff",
-      secondary: "#000000",
-      link: "#5E1DAD",
-    },
-  },
-});
-
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextUIProvider theme={theme}>
+    <NextUIProvider>
       <Component {...pageProps} />
     </NextUIProvider>
   );

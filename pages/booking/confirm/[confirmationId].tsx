@@ -1,6 +1,6 @@
 "use client";
 
-import { Loading } from "@nextui-org/react";
+import { Spinner } from "@nextui-org/react";
 import { GetStaticPaths } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -48,7 +48,7 @@ const ConfirmReservation: React.FC = ({}) => {
           <div
             className={"flex-1 p-10 flex flex-col gap-5  min-h-screen md:px-40	"}
           >
-            <Loading />
+            <Spinner />
           </div>
         );
       default:

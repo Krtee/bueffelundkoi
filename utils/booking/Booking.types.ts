@@ -102,7 +102,7 @@ export const customSelectStyles = (width?: number) => ({
       borderBottomLeftRadius: "10px",
       borderBottomRightRadius: "10px",
       overflow: "hidden",
-      width: width ? `${width}px` : "80px",
+      width: width ? `${width}px` : "90px",
     };
   },
 });

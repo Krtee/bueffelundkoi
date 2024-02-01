@@ -31,7 +31,7 @@ const NavOverlay: FC<NavOverlayProps> = ({
       <div
         className={`transform ${
           isOpen ? "translate-x-0" : "translate-x-full"
-        } absolute nav-overlay h-screen w-screen bg-primary transition-transform overflow-hidden max-h-screen	`}
+        } absolute nav-overlay h-screen w-screen bg transition-transform overflow-hidden max-h-screen	`}
       >
         <div className={"w-full h-full flex flex-col pop-up-content"}>
           <div className="absolute transform rotate-90 -left-1/4 right-1/4 top-48  -z-20">

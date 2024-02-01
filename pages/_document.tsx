@@ -1,6 +1,5 @@
 "use client";
 
-import { CssBaseline } from "@nextui-org/react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 
 class MyDocument extends Document {
@@ -16,14 +15,13 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          {CssBaseline.flush()}
           <link
             href="https://use.typekit.net/pqp0hmz.css"
             rel="stylesheet"
             key="font"
           />
         </Head>
-        <body>
+        <body className={"dark"}>
           <Main />
           <NextScript />
         </body>
