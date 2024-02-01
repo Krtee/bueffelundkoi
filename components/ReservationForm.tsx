@@ -427,6 +427,12 @@ const ReservationForm = () => {
                 label={t("booking.firstname.label")}
                 placeholder={t("booking.firstname.placeholder")}
                 value={reservation.firstNameOfReservator}
+                onClear={() =>
+                  setReservation({
+                    ...reservation,
+                    firstNameOfReservator: "",
+                  })
+                }
                 onChange={(e) =>
                   setReservation({
                     ...reservation,
@@ -439,6 +445,12 @@ const ReservationForm = () => {
                 label={t("booking.lastname.label")}
                 placeholder={t("booking.lastname.placeholder")}
                 value={reservation.lastNameOfReservator}
+                onClear={() =>
+                  setReservation({
+                    ...reservation,
+                    lastNameOfReservator: "",
+                  })
+                }
                 onChange={(e) =>
                   setReservation({
                     ...reservation,
@@ -451,6 +463,12 @@ const ReservationForm = () => {
                 label={t("booking.email.label")}
                 placeholder={t("booking.email.placeholder")}
                 value={reservation.emailOfReservator}
+                onClear={() =>
+                  setReservation({
+                    ...reservation,
+                    emailOfReservator: "",
+                  })
+                }
                 onChange={(e) =>
                   setReservation({
                     ...reservation,
@@ -463,6 +481,12 @@ const ReservationForm = () => {
                 label={t("booking.phone.label")}
                 placeholder={t("booking.phone.placeholder")}
                 value={reservation.phoneOfReservator}
+                onClear={() =>
+                  setReservation({
+                    ...reservation,
+                    phoneOfReservator: "",
+                  })
+                }
                 onChange={(e) =>
                   setReservation({
                     ...reservation,
@@ -475,6 +499,12 @@ const ReservationForm = () => {
                 label={t("booking.notes.label")}
                 placeholder={t("booking.notes.placeholder")}
                 value={reservation.note || ""}
+                onClear={() =>
+                  setReservation({
+                    ...reservation,
+                    note: "",
+                  })
+                }
                 onChange={(e) =>
                   setReservation({
                     ...reservation,
