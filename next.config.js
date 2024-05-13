@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  swcMinify: true,
+  swcMinify: false,
   reactStrictMode: true,
   staticPageGenerationTimeout: 1000,
   i18n:{

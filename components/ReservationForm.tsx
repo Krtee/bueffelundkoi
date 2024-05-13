@@ -103,9 +103,12 @@ const ReservationForm = () => {
     });
   };
 
-  console.log("isIoen", isOpen);
   const [doc, setDoc] = useState<HTMLElement | null>();
-
+  const [selectBookingHour, setSelectBookingHour] = useState<Option>();
+  const [selectBookingMinutes, setSelectBookingMinutes] = useState<Option>();
+  const [fetchSuggestionsLoading, setFetchSuggestionsLoading] = useState(false);
+  const [chosenSuggestion, setChosenSuggestion] =
+    useState<SuggestionResponse>();
   /**
    * fetches the excluded dates from the backend
    */
@@ -153,6 +156,86 @@ const ReservationForm = () => {
       setCurrentStep(FormStep.CHOOSE_DATE);
     }
   }, [excludeDates, excludeTimeIntervals]);
+
+  /**
+   * updates the date when the hour changes
+   */
+  useEffect(() => {
+    if (!selectBookingHour) return;
+    let currentReservationDate = new Date(suggestionRequest.date);
+
+    currentReservationDate.setHours(selectBookingHour.value);
+    currentReservationDate.setMinutes(
+      getNextValidMinutes(
+        selectBookingHour.value,
+        suggestionRequest.date.getMinutes(),
+        excludeTimeIntervals?.find(
+          (interval) =>
+            interval.dayOfWeek ===
+            mapGetDayToDayOfWeek(suggestionRequest.date.getDay())
+        )
+      )
+    ),
+      setsuggestionRequest({
+        ...suggestionRequest,
+        date: currentReservationDate,
+      });
+  }, [selectBookingHour]);
+
+  /**
+   * updates the date when the minute changes
+   * */
+  useEffect(() => {
+    if (!selectBookingMinutes) return;
+    let currentReservationDate = new Date(suggestionRequest.date);
+    currentReservationDate.setMinutes(selectBookingMinutes.value);
+    setsuggestionRequest({
+      ...suggestionRequest,
+      date: currentReservationDate,
+    });
+  }, [selectBookingMinutes]);
+
+  useEffect(() => {
+    fetchSuggestions(
+      suggestionRequest.date,
+      reservationTimeInSeconds,
+      suggestionRequest.personCount
+    ).then((suggestions) => {
+      if (
+        suggestions &&
+        suggestions.length === 1 &&
+        suggestions[0].startTime.getHours() ===
+          suggestionRequest.date.getHours() &&
+        suggestions[0].startTime.getMinutes() ===
+          suggestionRequest.date.getMinutes()
+      ) {
+        setReservation((prevReservation) => ({
+          ...prevReservation,
+          reservationStart: new Date(suggestions[0].startTime),
+          reservationEnd: addSeconds(new Date(suggestions[0].startTime), 6300),
+          personCount: suggestionRequest.personCount,
+          tableNumbers: [suggestions[0].tableNumber],
+        }));
+        setCurrentStep(FormStep.FILL_INFORMATION);
+      } else {
+        setSuggestions(suggestions);
+        onOpen();
+        setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
+      }
+      setFetchSuggestionsLoading(false);
+    });
+  }, [fetchSuggestionsLoading]);
+
+  useEffect(() => {
+    if (!chosenSuggestion) return;
+    setReservation((prevReservation) => ({
+      ...prevReservation,
+      reservationStart: new Date(chosenSuggestion.startTime),
+      reservationEnd: addSeconds(new Date(chosenSuggestion.startTime), 6300),
+      personCount: suggestionRequest.personCount,
+      tableNumbers: [chosenSuggestion.tableNumber],
+    }));
+  }, [chosenSuggestion]);
 
   /**
    * returns the current step of the form
@@ -218,28 +301,7 @@ const ReservationForm = () => {
                   menuPortalTarget={doc}
                   onChange={(newValue: SingleValue<Option>) => {
                     if (!newValue) return;
-                    let currentReservationDate = new Date(
-                      suggestionRequest.date
-                    );
-
-                    currentReservationDate.setHours(newValue.value);
-                    currentReservationDate.setMinutes(
-                      getNextValidMinutes(
-                        newValue.value,
-                        suggestionRequest.date.getMinutes(),
-                        excludeTimeIntervals?.find(
-                          (interval) =>
-                            interval.dayOfWeek ===
-                            mapGetDayToDayOfWeek(
-                              suggestionRequest.date.getDay()
-                            )
-                        )
-                      )
-                    ),
-                      setsuggestionRequest({
-                        ...suggestionRequest,
-                        date: currentReservationDate,
-                      });
+                    setSelectBookingHour(newValue);
                   }}
                   defaultValue={selectHourOptionsEvening().find(
                     (option) =>
@@ -265,14 +327,7 @@ const ReservationForm = () => {
                   value={mapNumberToOption(suggestionRequest.date.getMinutes())}
                   onChange={(newValue: SingleValue<Option>) => {
                     if (!newValue) return;
-                    let currentReservationDate = new Date(
-                      suggestionRequest.date
-                    );
-                    currentReservationDate.setMinutes(newValue.value);
-                    setsuggestionRequest({
-                      ...reservation,
-                      date: currentReservationDate,
-                    });
+                    setSelectBookingMinutes(newValue);
                   }}
                   className="rig-shaded"
                   styles={customSelectStyles()}
@@ -356,36 +411,7 @@ const ReservationForm = () => {
                 className=" text-dark rig-shaded"
                 onClick={() => {
                   setCurrentStep(FormStep.LOADING);
-                  fetchSuggestions(
-                    suggestionRequest.date,
-                    reservationTimeInSeconds,
-                    suggestionRequest.personCount
-                  ).then((suggestions) => {
-                    if (
-                      suggestions &&
-                      suggestions.length === 1 &&
-                      suggestions[0].startTime.getHours() ===
-                        suggestionRequest.date.getHours() &&
-                      suggestions[0].startTime.getMinutes() ===
-                        suggestionRequest.date.getMinutes()
-                    ) {
-                      setReservation((prevReservation) => ({
-                        ...prevReservation,
-                        reservationStart: new Date(suggestions[0].startTime),
-                        reservationEnd: addSeconds(
-                          new Date(suggestions[0].startTime),
-                          6300
-                        ),
-                        personCount: suggestionRequest.personCount,
-                        tableNumbers: [suggestions[0].tableNumber],
-                      }));
-                      setCurrentStep(FormStep.FILL_INFORMATION);
-                    } else {
-                      setSuggestions(suggestions);
-                      onOpen();
-                      setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
-                    }
-                  });
+                  setFetchSuggestionsLoading(true);
                 }}
               >
                 {t("general.buttons.next")}
@@ -614,16 +640,7 @@ const ReservationForm = () => {
                       <Button
                         key={index}
                         onClick={() => {
-                          setReservation((prevReservation) => ({
-                            ...prevReservation,
-                            reservationStart: new Date(suggestion.startTime),
-                            reservationEnd: addSeconds(
-                              new Date(suggestions[0].startTime),
-                              6300
-                            ),
-                            personCount: suggestionRequest.personCount,
-                            tableNumbers: [suggestion.tableNumber],
-                          }));
+                          setChosenSuggestion(suggestion);
                           onClose();
                           setCurrentStep(FormStep.FILL_INFORMATION);
                         }}
