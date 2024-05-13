@@ -196,6 +196,7 @@ const ReservationForm = () => {
   }, [selectBookingMinutes]);
 
   useEffect(() => {
+    if (!fetchSuggestionsLoading) return;
     fetchSuggestions(
       suggestionRequest.date,
       reservationTimeInSeconds,
