@@ -1,11 +1,5 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/react";
+"use client";
+
 import type { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -28,7 +22,6 @@ const Home: NextPage = () => {
   const { t } = useTranslation("common");
   const mainRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const appHeight = () => {
     if (mainRef.current) {
@@ -115,31 +108,6 @@ const Home: NextPage = () => {
           <Gallery />
           <Footer />
         </div>
-
-        <Modal
-          closeButton
-          aria-labelledby="modal-title"
-          aria-describedby="modal-description"
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-        >
-          <ModalHeader className="rig-shaded text-2xl mt-20">
-            {t("news.title")}
-          </ModalHeader>
-          <ModalBody className="md:p-5 max-w-screen-2xl m-auto w-full">
-            <p className="whitespace-pre-line josefin text-xl m-10">
-              {t("news.content")}
-            </p>
-          </ModalBody>
-          <ModalFooter className="p-10">
-            <Button
-              onPress={onClose}
-              className={"rig-shaded text-black w-full md:w-1/2 m-auto "}
-            >
-              {t("general.buttons.close")}
-            </Button>
-          </ModalFooter>
-        </Modal>
       </main>
     </div>
   );

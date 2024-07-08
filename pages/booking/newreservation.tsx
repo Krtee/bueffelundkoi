@@ -1,9 +1,9 @@
-"use client";
-
+import { Spinner } from "@nextui-org/spinner";
 import de from "date-fns/locale/de";
 import { NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
+import { Suspense } from "react";
 import { registerLocale } from "react-datepicker";
 import ReservationForm from "../../components/ReservationForm";
 
@@ -27,7 +27,15 @@ const NewReservation: NextPage = () => {
         <meta name="description" content="Büffel und Koi" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ReservationForm />
+      <Suspense
+        fallback={
+          <div className="w-full h-screen flex justify-center items-center">
+            <Spinner />
+          </div>
+        }
+      >
+        <ReservationForm />
+      </Suspense>
     </div>
   );
 };

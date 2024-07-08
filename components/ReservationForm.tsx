@@ -1,17 +1,17 @@
 "use client";
-
+import { Button } from "@nextui-org/button";
+import { Input } from "@nextui-org/input";
 import {
-  Button,
-  Input,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Spacer,
-  Spinner,
   useDisclosure,
-} from "@nextui-org/react";
+} from "@nextui-org/modal";
+
+import { Spacer } from "@nextui-org/spacer";
+import { Spinner } from "@nextui-org/spinner";
 import { addSeconds, format } from "date-fns";
 import de from "date-fns/locale/de";
 import { useTranslation } from "next-i18next";
