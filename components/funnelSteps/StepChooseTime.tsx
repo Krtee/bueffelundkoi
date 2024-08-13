@@ -23,18 +23,30 @@ interface StepChooseTimeProps {
   onPrevious?: () => void;
   onNext: (time: Date) => void;
   date: Date;
+  visited?: boolean;
 }
 
 const StepChooseTime: React.FC<StepChooseTimeProps> = ({
   onNext,
   date,
   onPrevious,
+  visited,
 }) => {
   const [selectedReservationHour, setSelectBookingHour] = useState<Option>(
-    selectHourOptionsEvening()[1]
+    visited
+      ? selectHourOptionsEvening().find(
+          (option) => option.value === date.getHours()
+        )!
+      : selectHourOptionsEvening()[1]
   );
   const [selectedReservationMinutes, setSelectBookingMinutes] =
-    useState<Option>(selectOptionMinutes()[1]);
+    useState<Option>(
+      visited
+        ? selectOptionMinutes().find(
+            (option) => option.value === date.getMinutes()
+          )!
+        : selectOptionMinutes()[0]
+    );
   const [excludeTimeIntervals, setExcludeTimeIntervals] =
     useState<ExcludedTimeInterval[]>();
   const { t } = useTranslation("common");

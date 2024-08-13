@@ -15,14 +15,17 @@ import FunnelStepLayout from "./FunnelStepLayout";
 interface StepChoosePersonCountProps {
   onPrevious?: () => void;
   onNext: (personCount: number) => void;
+  personCount?: number;
 }
 
 const StepChoosePersonCount: React.FC<StepChoosePersonCountProps> = ({
   onNext,
   onPrevious,
+  personCount,
 }) => {
-  const [selectedPersonCount, setSelectedPersonCount] =
-    React.useState<number>(2);
+  const [selectedPersonCount, setSelectedPersonCount] = React.useState<number>(
+    personCount ?? 2
+  );
 
   const { t } = useTranslation("common");
 

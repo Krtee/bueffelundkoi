@@ -13,6 +13,7 @@ interface StepChooseDateProps {
   onNext: (date: Date) => void;
   date: Date;
   locale: string;
+  visited?: boolean;
 }
 
 const StepChooseDate: React.FC<StepChooseDateProps> = ({

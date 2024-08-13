@@ -87,6 +87,7 @@ const ReservationForm = () => {
       }
     });
   };
+  const [visitedSteps, setVisitedSteps] = useState<FormStep[]>([]);
 
   const [chosenSuggestion, setChosenSuggestion] =
     useState<SuggestionResponse>();
@@ -152,6 +153,8 @@ const ReservationForm = () => {
           <StepChooseDate
             onNext={(newDate: Date) => {
               setsuggestionRequest({ ...suggestionRequest, date: newDate });
+              if (!visitedSteps.includes(FormStep.CHOOSE_DATE))
+                setVisitedSteps([...visitedSteps, FormStep.CHOOSE_DATE]);
               setCurrentStep(FormStep.CHOOSE_TIME);
             }}
             date={suggestionRequest.date}
@@ -163,6 +166,8 @@ const ReservationForm = () => {
           <StepChooseTime
             onNext={(newDate: Date) => {
               setsuggestionRequest({ ...suggestionRequest, date: newDate });
+              if (!visitedSteps.includes(FormStep.CHOOSE_TIME))
+                setVisitedSteps([...visitedSteps, FormStep.CHOOSE_TIME]);
               setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
             }}
             onPrevious={() => setCurrentStep(FormStep.CHOOSE_DATE)}
@@ -177,10 +182,17 @@ const ReservationForm = () => {
                 ...suggestionRequest,
                 personCount: perconCount,
               };
+
+              if (!visitedSteps.includes(FormStep.CHOOSE_PERSON_COUNT))
+                setVisitedSteps([
+                  ...visitedSteps,
+                  FormStep.CHOOSE_PERSON_COUNT,
+                ]);
               setsuggestionRequest(newSuggestionRequest);
               onFetchSuggestions(newSuggestionRequest);
             }}
             onPrevious={() => setCurrentStep(FormStep.CHOOSE_TIME)}
+            personCount={suggestionRequest.personCount}
           />
         );
       case FormStep.FILL_INFORMATION:
@@ -190,6 +202,9 @@ const ReservationForm = () => {
             reservation={reservation}
             onNext={(newReservation: Reservation) => {
               const updatedReservation = { ...reservation, ...newReservation };
+
+              if (!visitedSteps.includes(FormStep.FILL_INFORMATION))
+                setVisitedSteps([...visitedSteps, FormStep.FILL_INFORMATION]);
               setReservation(updatedReservation);
               saveReservation(updatedReservation);
             }}
