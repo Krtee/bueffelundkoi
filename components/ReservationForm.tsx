@@ -11,13 +11,11 @@ import {
 
 import { Spinner } from "@nextui-org/spinner";
 import { addSeconds } from "date-fns";
-import de from "date-fns/locale/de";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
-import { registerLocale } from "react-datepicker";
 import {
   Reservation,
   SuggestionRequest,
@@ -48,7 +46,6 @@ const DynamicStepChoosePersonCount = dynamic(() =>
 const DynamicStepFillInformation = dynamic(() =>
   import("./funnelSteps/StepFillInformation").then((mod) => mod.default)
 );
-registerLocale("de", de);
 
 enum FormStep {
   CHOOSE_DATE,
