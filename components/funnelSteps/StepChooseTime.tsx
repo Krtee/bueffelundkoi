@@ -179,7 +179,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
           styles={customSelectStyles()}
           theme={customTheme}
           options={selectOptionMinutes(
-            date.getHours(),
+            selectedReservationHour.value,
             excludeTimeIntervals?.find(
               (interval) =>
                 interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
