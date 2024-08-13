@@ -156,6 +156,10 @@ export const selectOptionMinutes = (
   selectedHour?: number,
   excludedInterval?: ExcludedTimeInterval
 ): Option[] => {
+  console.log(
+    excludedInterval?.startTime.hour,
+    excludedInterval?.startTime.minute
+  );
   const selectOptions = [
     { label: "00", value: 0 },
     { label: "15", value: 15 },

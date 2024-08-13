@@ -156,12 +156,18 @@ export const mapGetDayToDayOfWeek = (index: number): DayOfWeek => {
       throw new Error("Invalid index");
   }
 };
-
+/**
+ *  Get the next valid minute
+ * @param hour
+ * @param minutes
+ * @param excludedTimeInterval
+ * @returns
+ */
 export const getNextValidMinutes = (
   hour: number,
   minutes: number,
   excludedTimeInterval?: ExcludedTimeInterval
-) => {
+): number => {
   if (!excludedTimeInterval) {
     return minutes;
   }
@@ -169,7 +175,7 @@ export const getNextValidMinutes = (
     excludedTimeInterval.startTime.hour === hour &&
     excludedTimeInterval.startTime.minute <= minutes
   ) {
-    return excludedTimeInterval.endTime.minute;
+    return excludedTimeInterval.startTime.minute;
   }
   if (
     excludedTimeInterval.endTime.hour === hour &&
