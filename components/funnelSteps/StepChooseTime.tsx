@@ -51,16 +51,19 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
     useState<ExcludedTimeInterval[]>();
   const { t } = useTranslation("common");
   const [doc, setDoc] = useState<HTMLElement | null>();
+  const [excludedTimeIntervalFetched, setExcludedTimeIntervalFetched] =
+    useState(false);
 
   useEffect(() => {
     fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
       setExcludeTimeIntervals(excludeTimeIntervals);
+      setExcludedTimeIntervalFetched(true);
     });
     setDoc(document.getElementById("main"));
   }, []);
 
   useEffect(() => {
-    if (!excludeTimeIntervals) return;
+    if (!excludeTimeIntervals || visited) return;
     const minDateExcludeInterval: ExcludedTimeInterval | undefined =
       excludeTimeIntervals.find(
         (interval) => interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
@@ -159,6 +162,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
                 interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
             )
           )}
+          isDisabled={!excludedTimeIntervalFetched}
           value={selectedReservationHour}
         />
         <p className="rig-shaded h-full align-middle px-5">:</p>
@@ -182,6 +186,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
           )}
           getOptionValue={(option: Option) => option.value.toString()}
           getOptionLabel={(option: Option) => option.label}
+          isDisabled={!excludedTimeIntervalFetched}
         />
       </div>
     </FunnelStepLayout>
