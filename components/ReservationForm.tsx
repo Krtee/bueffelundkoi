@@ -13,9 +13,10 @@ import { Spinner } from "@nextui-org/spinner";
 import { addSeconds } from "date-fns";
 import de from "date-fns/locale/de";
 import { useTranslation } from "next-i18next";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { registerLocale } from "react-datepicker";
 import {
   Reservation,
@@ -30,12 +31,23 @@ import {
 } from "../utils/booking/BookingUtils";
 import restaurantImage from "./../public/assets/images/bildergalerie_2.jpg";
 import Footer from "./Footer";
-import StepChooseDate from "./funnelSteps/StepChooseDate";
-import StepChoosePersonCount from "./funnelSteps/StepChoosePersonCount";
-import StepChooseTime from "./funnelSteps/StepChooseTime";
-import StepFillReservation from "./funnelSteps/StepFillInformation";
 import NavigationBar from "./NavigationBar";
 
+const DynamicStepChooseDate = dynamic(() =>
+  import("./funnelSteps/StepChooseDate").then((mod) => mod.default)
+);
+
+const DynamicStepChooseTime = dynamic(() =>
+  import("./funnelSteps/StepChooseTime").then((mod) => mod.default)
+);
+
+const DynamicStepChoosePersonCount = dynamic(() =>
+  import("./funnelSteps/StepChoosePersonCount").then((mod) => mod.default)
+);
+
+const DynamicStepFillInformation = dynamic(() =>
+  import("./funnelSteps/StepFillInformation").then((mod) => mod.default)
+);
 registerLocale("de", de);
 
 enum FormStep {
@@ -150,67 +162,104 @@ const ReservationForm = () => {
     switch (currentStep) {
       case FormStep.CHOOSE_DATE:
         return (
-          <StepChooseDate
-            onNext={(newDate: Date) => {
-              setsuggestionRequest({ ...suggestionRequest, date: newDate });
-              if (!visitedSteps.includes(FormStep.CHOOSE_DATE))
-                setVisitedSteps([...visitedSteps, FormStep.CHOOSE_DATE]);
-              setCurrentStep(FormStep.CHOOSE_TIME);
-            }}
-            date={suggestionRequest.date}
-            locale={router.locale || "de"}
-          />
+          <Suspense
+            fallback={
+              <div>
+                <Spinner />
+              </div>
+            }
+          >
+            <DynamicStepChooseDate
+              onNext={(newDate: Date) => {
+                setsuggestionRequest({ ...suggestionRequest, date: newDate });
+                if (!visitedSteps.includes(FormStep.CHOOSE_DATE))
+                  setVisitedSteps([...visitedSteps, FormStep.CHOOSE_DATE]);
+                setCurrentStep(FormStep.CHOOSE_TIME);
+              }}
+              date={suggestionRequest.date}
+              locale={router.locale || "de"}
+              visited={visitedSteps.includes(FormStep.CHOOSE_DATE)}
+            />
+          </Suspense>
         );
       case FormStep.CHOOSE_TIME:
         return (
-          <StepChooseTime
-            onNext={(newDate: Date) => {
-              setsuggestionRequest({ ...suggestionRequest, date: newDate });
-              if (!visitedSteps.includes(FormStep.CHOOSE_TIME))
-                setVisitedSteps([...visitedSteps, FormStep.CHOOSE_TIME]);
-              setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
-            }}
-            onPrevious={() => setCurrentStep(FormStep.CHOOSE_DATE)}
-            date={suggestionRequest.date || new Date()}
-          />
+          <Suspense
+            fallback={
+              <div>
+                <Spinner />
+              </div>
+            }
+          >
+            <DynamicStepChooseTime
+              onNext={(newDate: Date) => {
+                setsuggestionRequest({ ...suggestionRequest, date: newDate });
+                if (!visitedSteps.includes(FormStep.CHOOSE_TIME))
+                  setVisitedSteps([...visitedSteps, FormStep.CHOOSE_TIME]);
+                setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
+              }}
+              onPrevious={() => setCurrentStep(FormStep.CHOOSE_DATE)}
+              date={suggestionRequest.date || new Date()}
+              visited={visitedSteps.includes(FormStep.CHOOSE_TIME)}
+            />
+          </Suspense>
         );
       case FormStep.CHOOSE_PERSON_COUNT:
         return (
-          <StepChoosePersonCount
-            onNext={(perconCount: number) => {
-              const newSuggestionRequest = {
-                ...suggestionRequest,
-                personCount: perconCount,
-              };
+          <Suspense
+            fallback={
+              <div>
+                <Spinner />
+              </div>
+            }
+          >
+            <DynamicStepChoosePersonCount
+              onNext={(perconCount: number) => {
+                const newSuggestionRequest = {
+                  ...suggestionRequest,
+                  personCount: perconCount,
+                };
 
-              if (!visitedSteps.includes(FormStep.CHOOSE_PERSON_COUNT))
-                setVisitedSteps([
-                  ...visitedSteps,
-                  FormStep.CHOOSE_PERSON_COUNT,
-                ]);
-              setsuggestionRequest(newSuggestionRequest);
-              onFetchSuggestions(newSuggestionRequest);
-            }}
-            onPrevious={() => setCurrentStep(FormStep.CHOOSE_TIME)}
-            personCount={suggestionRequest.personCount}
-          />
+                if (!visitedSteps.includes(FormStep.CHOOSE_PERSON_COUNT))
+                  setVisitedSteps([
+                    ...visitedSteps,
+                    FormStep.CHOOSE_PERSON_COUNT,
+                  ]);
+                setsuggestionRequest(newSuggestionRequest);
+                onFetchSuggestions(newSuggestionRequest);
+              }}
+              onPrevious={() => setCurrentStep(FormStep.CHOOSE_TIME)}
+              personCount={suggestionRequest.personCount}
+            />
+          </Suspense>
         );
       case FormStep.FILL_INFORMATION:
         return (
-          <StepFillReservation
-            onPrevious={() => setCurrentStep(FormStep.CHOOSE_PERSON_COUNT)}
-            reservation={reservation}
-            onNext={(newReservation: Reservation) => {
-              const updatedReservation = { ...reservation, ...newReservation };
+          <Suspense
+            fallback={
+              <div>
+                <Spinner />
+              </div>
+            }
+          >
+            <DynamicStepFillInformation
+              onPrevious={() => setCurrentStep(FormStep.CHOOSE_PERSON_COUNT)}
+              reservation={reservation}
+              onNext={(newReservation: Reservation) => {
+                const updatedReservation = {
+                  ...reservation,
+                  ...newReservation,
+                };
 
-              if (!visitedSteps.includes(FormStep.FILL_INFORMATION))
-                setVisitedSteps([...visitedSteps, FormStep.FILL_INFORMATION]);
-              setReservation(updatedReservation);
-              saveReservation(updatedReservation);
-            }}
-            locale={router.locale || "de"}
-            error={error}
-          />
+                if (!visitedSteps.includes(FormStep.FILL_INFORMATION))
+                  setVisitedSteps([...visitedSteps, FormStep.FILL_INFORMATION]);
+                setReservation(updatedReservation);
+                saveReservation(updatedReservation);
+              }}
+              locale={router.locale || "de"}
+              error={error}
+            />
+          </Suspense>
         );
       case FormStep.RESERVATION_SAVED:
         return (
