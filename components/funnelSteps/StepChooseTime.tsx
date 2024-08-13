@@ -88,7 +88,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
    * updates the date when the hour changes
    */
   useEffect(() => {
-    console.log(selectedReservationHour);
+    console.log(selectedReservationHour, date.getHours());
     if (!selectedReservationHour) return;
 
     const foundMinutes = selectOptionMinutes().find(
