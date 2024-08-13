@@ -64,20 +64,23 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
 
   useEffect(() => {
     if (!excludeTimeIntervals || visited) return;
-    const minDateExcludeInterval: ExcludedTimeInterval | undefined =
-      excludeTimeIntervals.find(
-        (interval) => interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
-      );
+    if (
+      checkIfTimeIsValid(
+        selectedReservationHour?.value || 18,
+        selectedReservationMinutes?.value || 0,
+        mapGetDayToDayOfWeek(date.getDay()),
+        excludeTimeIntervals
+      )
+    ) {
+      return;
+    }
 
-    if (!minDateExcludeInterval) return;
-
-    const defaultHour: Option | undefined = selectHourOptionsEvening(
-      minDateExcludeInterval
-    ).find((value) => !value.isDisabled);
+    const defaultHour: Option | undefined = selectHourOptionsEvening().find(
+      (value) => !value.isDisabled
+    );
 
     const defaultMinute: Option | undefined = selectOptionMinutes(
-      defaultHour?.value || 18,
-      minDateExcludeInterval
+      defaultHour?.value || 18
     ).find((value) => !value.isDisabled);
 
     if (defaultHour) setSelectBookingHour(defaultHour);
