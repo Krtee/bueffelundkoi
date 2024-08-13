@@ -32,6 +32,10 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
   onPrevious,
   visited,
 }) => {
+  const [minuteOptions, setMinuteOptions] = useState<Option[]>(
+    selectOptionMinutes()
+  );
+
   const [selectedReservationHour, setSelectBookingHour] = useState<Option>(
     visited
       ? selectHourOptionsEvening().find(
@@ -94,6 +98,14 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
     console.log(selectedReservationHour, date.getHours());
     if (!selectedReservationHour) return;
 
+    const updatedMinuteOptions = selectOptionMinutes(
+      selectedReservationHour.value,
+      excludeTimeIntervals?.find(
+        (interval) => interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
+      )
+    );
+
+    setMinuteOptions(updatedMinuteOptions);
     const foundMinutes = selectOptionMinutes().find(
       (findOption) =>
         findOption.value ===
@@ -178,13 +190,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
           className="rig-shaded"
           styles={customSelectStyles()}
           theme={customTheme}
-          options={selectOptionMinutes(
-            selectedReservationHour.value,
-            excludeTimeIntervals?.find(
-              (interval) =>
-                interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
-            )
-          )}
+          options={minuteOptions}
           getOptionValue={(option: Option) => option.value.toString()}
           getOptionLabel={(option: Option) => option.label}
           isDisabled={!excludedTimeIntervalFetched}

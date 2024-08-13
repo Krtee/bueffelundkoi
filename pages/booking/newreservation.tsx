@@ -1,13 +1,9 @@
 import { Spinner } from "@nextui-org/spinner";
-import de from "date-fns/locale/de";
 import { NextPage } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { Suspense } from "react";
-import { registerLocale } from "react-datepicker";
 import ReservationForm from "../../components/ReservationForm";
-
-registerLocale("de", de);
 
 enum FormStep {
   CHOOSE_DATE,

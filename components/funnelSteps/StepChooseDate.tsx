@@ -1,7 +1,8 @@
 "use client";
 
+import { parseDate } from "@internationalized/date";
+import { DatePicker, DateValue } from "@nextui-org/react";
 import React, { useEffect } from "react";
-import DatePicker from "react-datepicker";
 import { useTranslation } from "react-i18next";
 import {
   fetchExcludeDates,
@@ -16,12 +17,10 @@ interface StepChooseDateProps {
   visited?: boolean;
 }
 
-const StepChooseDate: React.FC<StepChooseDateProps> = ({
-  onNext,
-  date,
-  locale,
-}) => {
-  const [tempDate, setTempDate] = React.useState<Date>(date);
+const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
+  const [tempDate, setTempDate] = React.useState<DateValue>(
+    parseDate(date.toISOString())
+  );
   const [excludeDates, setExcludeDates] = React.useState<Date[]>([]);
 
   const { t } = useTranslation("common");
@@ -32,20 +31,25 @@ const StepChooseDate: React.FC<StepChooseDateProps> = ({
 
   return (
     <FunnelStepLayout
-      onNext={() => onNext(tempDate)}
+      onNext={() => onNext(tempDate.toDate("de"))}
       subTitle={t("booking.date")}
       nextDisabled={!date}
     >
       <div className={"react-datepicker__wrapper flex-1 flex justify-center	"}>
         <DatePicker
-          selected={tempDate}
-          onChange={(date: Date) => setTempDate(date)}
-          excludeDates={excludeDates}
-          withPortal
-          locale={locale}
-          portalId="__next"
-          dateFormat={locale === "de" ? "dd.MM.yyyy" : undefined}
-          minDate={getMinDate(excludeDates)}
+          value={tempDate}
+          onChange={setTempDate}
+          minValue={parseDate(getMinDate(excludeDates).toISOString())}
+          isDateUnavailable={(dateToCheck: DateValue) =>
+            excludeDates.some(
+              (excludedDate) =>
+                excludedDate.getDate() === dateToCheck.toDate("de").getDate() &&
+                excludedDate.getMonth() ===
+                  dateToCheck.toDate("de").getMonth() &&
+                excludedDate.getFullYear() ===
+                  dateToCheck.toDate("de").getFullYear()
+            )
+          }
         />
       </div>
       <p className="py-10 text-justify whitespace-pre-line josefin  leading-4	">

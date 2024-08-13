@@ -23,7 +23,6 @@
     "next-i18next": "^8.10.0",
     "next-sitemap": "^2.5.22",
     "react": "^18.2.0",
-    "react-datepicker": "^4.7.0",
     "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0",
     "react-pdf": "^5.7.2",
@@ -38,7 +37,6 @@
   "devDependencies": {
     "@types/node": "^17.0.32",
     "@types/react": "^18.2.20",
-    "@types/react-datepicker": "^4.4.1",
     "@types/react-datetime-picker": "^3.4.1",
     "@types/react-dom": "^18.2.7",
     "@types/react-modal": "^3.13.1",
