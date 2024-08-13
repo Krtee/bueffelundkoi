@@ -22,6 +22,10 @@ export interface SuggestionResponse {
   tableNumber: string;
 }
 
+export interface SuggestionRequest {
+  date: Date;
+  personCount: number;
+}
 export interface Table {
   tableNumber: string;
   maxSeats: number;

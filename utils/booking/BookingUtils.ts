@@ -179,3 +179,57 @@ export const getNextValidMinutes = (
   }
   return minutes;
 };
+
+/**
+ *  Check if time is valid
+ * @param selectedReservationHour
+ * @param selectedReservationMinute
+ * @param dayOfWeek
+ * @param excludeTimeIntervals
+ * @returns  true if time is valid
+ */
+export const checkIfTimeIsValid = (
+  selectedReservationHour: number,
+  selectedReservationMinute: number,
+  dayOfWeek: DayOfWeek,
+  excludeTimeIntervals?: ExcludedTimeInterval[]
+): boolean => {
+  if (!excludeTimeIntervals) return true;
+
+  const allExcludedTimeIntervalForThisDay: ExcludedTimeInterval[] =
+    excludeTimeIntervals.filter((interval) => interval.dayOfWeek === dayOfWeek);
+
+  if (allExcludedTimeIntervalForThisDay.length === 0) return true;
+
+  allExcludedTimeIntervalForThisDay.forEach(
+    (excludedTimeIntervalForThisDay) => {
+      if (
+        selectedReservationHour >
+          excludedTimeIntervalForThisDay.startTime.hour &&
+        selectedReservationHour < excludedTimeIntervalForThisDay.endTime.hour
+      ) {
+        return false;
+      }
+
+      if (
+        selectedReservationHour ===
+          excludedTimeIntervalForThisDay.startTime.hour &&
+        selectedReservationMinute <=
+          excludedTimeIntervalForThisDay.startTime.minute
+      ) {
+        return false;
+      }
+
+      if (
+        selectedReservationHour ===
+          excludedTimeIntervalForThisDay.endTime.hour &&
+        selectedReservationMinute >
+          excludedTimeIntervalForThisDay.endTime.minute
+      ) {
+        return false;
+      }
+    }
+  );
+
+  return true;
+};
