@@ -83,6 +83,8 @@ const ReservationForm = () => {
   >([]);
   const [error, setError] = useState<"email" | undefined>();
   const saveReservation = (reservationtoSend: Reservation) => {
+    console.log("reservationtoSend", reservationtoSend);
+
     if (!validateEmail(reservationtoSend.emailOfReservator)) {
       setError("email");
     }
