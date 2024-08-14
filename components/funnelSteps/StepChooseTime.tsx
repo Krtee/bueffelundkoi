@@ -20,7 +20,7 @@ import {
 import FunnelStepLayout from "./FunnelStepLayout";
 
 interface StepChooseTimeProps {
-  onPrevious?: () => void;
+  onPrevious?: (time: Date) => void;
   onNext: (time: Date) => void;
   date: Date;
   visited?: boolean;
@@ -57,6 +57,13 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
   const [doc, setDoc] = useState<HTMLElement | null>();
   const [excludedTimeIntervalFetched, setExcludedTimeIntervalFetched] =
     useState(false);
+  const updatedDate: Date = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    selectedReservationHour.value,
+    selectedReservationMinutes.value
+  );
 
   useEffect(() => {
     fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
@@ -68,6 +75,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
 
   useEffect(() => {
     if (!excludeTimeIntervals || visited) return;
+
     if (
       checkIfTimeIsValid(
         selectedReservationHour?.value || 18,
@@ -95,7 +103,6 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
    * updates the date when the hour changes
    */
   useEffect(() => {
-    console.log(selectedReservationHour, date.getHours());
     if (!selectedReservationHour) return;
 
     const updatedMinuteOptions = selectOptionMinutes(
@@ -124,27 +131,20 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
 
   return (
     <FunnelStepLayout
-      onPrevious={onPrevious}
+      onPrevious={() => {
+        onPrevious?.(updatedDate);
+      }}
       onNext={() => {
         if (
           !checkIfTimeIsValid(
-            selectedReservationHour.value,
-            selectedReservationMinutes.value,
+            updatedDate.getHours(),
+            updatedDate.getMinutes(),
             mapGetDayToDayOfWeek(date.getDay()),
             excludeTimeIntervals
           )
         )
           return;
-
-        onNext(
-          new Date(
-            date.getFullYear(),
-            date.getMonth(),
-            date.getDate(),
-            selectedReservationHour.value,
-            selectedReservationMinutes.value
-          )
-        );
+        onNext(updatedDate);
       }}
       subTitle={t("booking.time")}
       nextDisabled={

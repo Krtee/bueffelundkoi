@@ -13,7 +13,7 @@ import { mapNumberToOption } from "../../utils/booking/BookingUtils";
 import FunnelStepLayout from "./FunnelStepLayout";
 
 interface StepChoosePersonCountProps {
-  onPrevious?: () => void;
+  onPrevious?: (personCount: number) => void;
   onNext: (personCount: number) => void;
   personCount?: number;
 }
@@ -24,7 +24,7 @@ const StepChoosePersonCount: React.FC<StepChoosePersonCountProps> = ({
   personCount,
 }) => {
   const [selectedPersonCount, setSelectedPersonCount] = React.useState<number>(
-    personCount ?? 2
+    personCount || 2
   );
 
   const { t } = useTranslation("common");
@@ -36,7 +36,7 @@ const StepChoosePersonCount: React.FC<StepChoosePersonCountProps> = ({
       }}
       subTitle={t("booking.personCount.subtitle")}
       nextDisabled={!selectedPersonCount}
-      onPrevious={onPrevious}
+      onPrevious={() => onPrevious?.(selectedPersonCount)}
     >
       <div className="w-fit border-b-2 m-auto">
         <Select
@@ -49,7 +49,6 @@ const StepChoosePersonCount: React.FC<StepChoosePersonCountProps> = ({
             setSelectedPersonCount(newValue.value);
           }}
           isSearchable={false}
-          defaultValue={selectOptionPersonCount[1]}
           className="rig-shaded"
           styles={customSelectStyles(200)}
           theme={customTheme}

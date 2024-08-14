@@ -140,6 +140,10 @@ const ReservationForm = () => {
       });
   };
 
+  const addVisitedStep = (step: FormStep) => {
+    if (!visitedSteps.includes(step)) setVisitedSteps([...visitedSteps, step]);
+  };
+
   useEffect(() => {
     if (!chosenSuggestion) return;
     setReservation((prevReservation) => ({
@@ -169,8 +173,8 @@ const ReservationForm = () => {
             <DynamicStepChooseDate
               onNext={(newDate: Date) => {
                 setsuggestionRequest({ ...suggestionRequest, date: newDate });
-                if (!visitedSteps.includes(FormStep.CHOOSE_DATE))
-                  setVisitedSteps([...visitedSteps, FormStep.CHOOSE_DATE]);
+
+                addVisitedStep(FormStep.CHOOSE_DATE);
                 setCurrentStep(FormStep.CHOOSE_TIME);
               }}
               date={suggestionRequest.date}
@@ -191,11 +195,14 @@ const ReservationForm = () => {
             <DynamicStepChooseTime
               onNext={(newDate: Date) => {
                 setsuggestionRequest({ ...suggestionRequest, date: newDate });
-                if (!visitedSteps.includes(FormStep.CHOOSE_TIME))
-                  setVisitedSteps([...visitedSteps, FormStep.CHOOSE_TIME]);
+                addVisitedStep(FormStep.CHOOSE_TIME);
                 setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
               }}
-              onPrevious={() => setCurrentStep(FormStep.CHOOSE_DATE)}
+              onPrevious={(newTime: Date) => {
+                setsuggestionRequest({ ...suggestionRequest, date: newTime });
+                addVisitedStep(FormStep.CHOOSE_TIME);
+                setCurrentStep(FormStep.CHOOSE_DATE);
+              }}
               date={suggestionRequest.date || new Date()}
               visited={visitedSteps.includes(FormStep.CHOOSE_TIME)}
             />
@@ -211,21 +218,24 @@ const ReservationForm = () => {
             }
           >
             <DynamicStepChoosePersonCount
-              onNext={(perconCount: number) => {
+              onNext={(personCount: number) => {
                 const newSuggestionRequest = {
                   ...suggestionRequest,
-                  personCount: perconCount,
+                  personCount: personCount,
                 };
-
-                if (!visitedSteps.includes(FormStep.CHOOSE_PERSON_COUNT))
-                  setVisitedSteps([
-                    ...visitedSteps,
-                    FormStep.CHOOSE_PERSON_COUNT,
-                  ]);
+                addVisitedStep(FormStep.CHOOSE_PERSON_COUNT);
                 setsuggestionRequest(newSuggestionRequest);
                 onFetchSuggestions(newSuggestionRequest);
               }}
-              onPrevious={() => setCurrentStep(FormStep.CHOOSE_TIME)}
+              onPrevious={(personCount) => {
+                addVisitedStep(FormStep.CHOOSE_PERSON_COUNT);
+                setsuggestionRequest({
+                  ...suggestionRequest,
+                  personCount: personCount,
+                });
+
+                setCurrentStep(FormStep.CHOOSE_TIME);
+              }}
               personCount={suggestionRequest.personCount}
             />
           </Suspense>
@@ -240,7 +250,10 @@ const ReservationForm = () => {
             }
           >
             <DynamicStepFillInformation
-              onPrevious={() => setCurrentStep(FormStep.CHOOSE_PERSON_COUNT)}
+              onPrevious={() => {
+                addVisitedStep(FormStep.FILL_INFORMATION);
+                setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
+              }}
               reservation={reservation}
               onNext={(newReservation: Reservation) => {
                 const updatedReservation = {
@@ -248,8 +261,7 @@ const ReservationForm = () => {
                   ...newReservation,
                 };
 
-                if (!visitedSteps.includes(FormStep.FILL_INFORMATION))
-                  setVisitedSteps([...visitedSteps, FormStep.FILL_INFORMATION]);
+                addVisitedStep(FormStep.FILL_INFORMATION);
                 setReservation(updatedReservation);
                 saveReservation(updatedReservation);
               }}

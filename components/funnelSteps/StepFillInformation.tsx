@@ -8,7 +8,7 @@ import { Reservation } from "../../utils/booking/Booking.types";
 import FunnelStepLayout from "./FunnelStepLayout";
 
 interface StepChooseReservationProps {
-  onPrevious?: () => void;
+  onPrevious?: (reservation: Reservation) => void;
   onNext: (reservation: Reservation) => void;
   reservation: Reservation;
   locale: string;
@@ -38,7 +38,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
       }}
       subTitle={t("booking.fillInformation.subtitle")}
       nextDisabled={disableNext}
-      onPrevious={onPrevious}
+      onPrevious={() => onPrevious?.(reservation)}
     >
       <div className={"flex-1 flex flex-col gap-5  px-5"}>
         <div>

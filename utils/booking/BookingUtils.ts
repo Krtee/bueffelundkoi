@@ -1,5 +1,5 @@
 import axios from "axios";
-import { isSameDay } from "date-fns";
+import { addDays, isSameDay } from "date-fns";
 import {
   DayOfWeek,
   ExcludedTimeInterval,
@@ -92,17 +92,16 @@ export const fetchExcludeDates = async (): Promise<Date[]> =>
 
 export const getMinDate = (excludeDates?: Date[]) => {
   const currentDate = new Date();
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  if (!excludeDates) {
+    return currentDate.getHours() >= 17 ? addDays(currentDate, 1) : currentDate;
+  }
 
   let dateIsOkay = false;
 
   while (!dateIsOkay) {
     if (
-      excludeDates?.find((excludedDate) =>
-        isSameDay(excludedDate, currentDate)
-      ) ||
-      currentDate.getHours() >= 17
+      excludeDates?.find((excludedDate) => isSameDay(excludedDate, currentDate))
     ) {
       currentDate.setDate(currentDate.getDate() + 1);
     } else {
@@ -238,4 +237,8 @@ export const checkIfTimeIsValid = (
   );
 
   return true;
+};
+
+export const numberToString = (number: number): string => {
+  return number < 10 ? `0${number}` : number.toString();
 };
