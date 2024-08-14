@@ -38,7 +38,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
       }}
       subTitle={t("booking.fillInformation.subtitle")}
       nextDisabled={disableNext}
-      onPrevious={() => onPrevious?.(reservation)}
+      onPrevious={() => onPrevious?.(tempReservation)}
     >
       <div className={"flex-1 flex flex-col gap-5  px-5"}>
         <div>
@@ -70,7 +70,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           isClearable
           label={t("booking.firstname.label")}
           placeholder={t("booking.firstname.placeholder")}
-          value={reservation.firstNameOfReservator}
+          value={tempReservation.firstNameOfReservator}
           onClear={() =>
             setTempReservation({
               ...reservation,
@@ -88,7 +88,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           isClearable
           label={t("booking.lastname.label")}
           placeholder={t("booking.lastname.placeholder")}
-          value={reservation.lastNameOfReservator}
+          value={tempReservation.lastNameOfReservator}
           onClear={() =>
             setTempReservation({
               ...reservation,
@@ -106,7 +106,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           isClearable
           label={t("booking.email.label")}
           placeholder={t("booking.email.placeholder")}
-          value={reservation.emailOfReservator}
+          value={tempReservation.emailOfReservator}
           onClear={() =>
             setTempReservation({
               ...reservation,
@@ -124,7 +124,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           isClearable
           label={t("booking.phone.label")}
           placeholder={t("booking.phone.placeholder")}
-          value={reservation.phoneOfReservator}
+          value={tempReservation.phoneOfReservator}
           onClear={() =>
             setTempReservation({
               ...reservation,
@@ -142,7 +142,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           isClearable
           label={t("booking.notes.label")}
           placeholder={t("booking.notes.placeholder")}
-          value={reservation.note || ""}
+          value={tempReservation.note || ""}
           onClear={() =>
             setTempReservation({
               ...reservation,
