@@ -250,20 +250,16 @@ const ReservationForm = () => {
             }
           >
             <DynamicStepFillInformation
-              onPrevious={() => {
+              onPrevious={(newReservation) => {
                 addVisitedStep(FormStep.FILL_INFORMATION);
                 setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
+                setReservation(newReservation);
               }}
               reservation={reservation}
               onNext={(newReservation: Reservation) => {
-                const updatedReservation = {
-                  ...reservation,
-                  ...newReservation,
-                };
-
                 addVisitedStep(FormStep.FILL_INFORMATION);
-                setReservation(updatedReservation);
-                saveReservation(updatedReservation);
+                setReservation(newReservation);
+                saveReservation(newReservation);
               }}
               locale={router.locale || "de"}
               error={error}
