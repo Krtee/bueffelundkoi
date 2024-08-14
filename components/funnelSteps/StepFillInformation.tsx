@@ -35,6 +35,12 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
     <FunnelStepLayout
       onNext={() => {
         if (disableNext) return;
+        console.log(
+          "tempreservations",
+          tempReservation,
+          "defauolt",
+          reservation
+        );
         onNext(tempReservation);
       }}
       subTitle={t("booking.fillInformation.subtitle")}
