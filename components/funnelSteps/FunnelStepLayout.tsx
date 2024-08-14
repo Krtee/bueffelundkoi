@@ -20,7 +20,7 @@ const FunnelStepLayout: React.FC<FunnelStepLayoutProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-form flex w-full flex-col dark">
+    <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-full flex w-full flex-col dark">
       <p className="py-5 text-2xl leading-5 font-bold rig-shaded">
         {t("booking.title").toUpperCase()}
       </p>

@@ -35,12 +35,7 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
     <FunnelStepLayout
       onNext={() => {
         if (disableNext) return;
-        console.log(
-          "tempreservations",
-          tempReservation,
-          "defauolt",
-          reservation
-        );
+
         onNext(tempReservation);
       }}
       subTitle={t("booking.fillInformation.subtitle")}
@@ -80,13 +75,13 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           value={tempReservation.firstNameOfReservator}
           onClear={() =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               firstNameOfReservator: "",
             })
           }
           onValueChange={(newValue) =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               firstNameOfReservator: newValue,
             })
           }
@@ -98,31 +93,32 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           value={tempReservation.lastNameOfReservator}
           onClear={() =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               lastNameOfReservator: "",
             })
           }
           onValueChange={(newValue) =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               lastNameOfReservator: newValue,
             })
           }
         />
         <Input
           isClearable
+          type="email"
           label={t("booking.email.label")}
           placeholder={t("booking.email.placeholder")}
           value={tempReservation.emailOfReservator}
           onClear={() =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               emailOfReservator: "",
             })
           }
           onValueChange={(newValue) =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               emailOfReservator: newValue,
             })
           }
@@ -134,13 +130,13 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           value={tempReservation.phoneOfReservator}
           onClear={() =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               phoneOfReservator: "",
             })
           }
           onValueChange={(newValue) =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               phoneOfReservator: newValue,
             })
           }
@@ -152,13 +148,13 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           value={tempReservation.note || ""}
           onClear={() =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               note: "",
             })
           }
           onValueChange={(newValue) =>
             setTempReservation({
-              ...reservation,
+              ...tempReservation,
               note: newValue,
             })
           }

@@ -268,7 +268,7 @@ const ReservationForm = () => {
         );
       case FormStep.RESERVATION_SAVED:
         return (
-          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-form flex w-full flex-col">
+          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-full flex w-full flex-col">
             <div className={"flex-1 flex flex-col gap-5 pt-10 px-5"}>
               <div>
                 <p className="py-5 text-2xl leading-5 font-bold rig-shaded">
@@ -283,7 +283,7 @@ const ReservationForm = () => {
         );
       case FormStep.RESERVATION_ERROR:
         return (
-          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-form flex w-full flex-col">
+          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-full flex w-full flex-col">
             <div className={"flex-1 flex flex-col gap-5 pt-10 px-5"}>
               <div>
                 <p className="py-5 text-2xl leading-5 font-bold rig-shaded">
@@ -306,7 +306,7 @@ const ReservationForm = () => {
         );
       default:
         return (
-          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-form flex w-full flex-col justify-center items-center">
+          <div className="md:w-1/2  relative	border-t-2 border-b-2 max-w-lg min-h-full flex w-full flex-col justify-center items-center">
             <Spinner />
           </div>
         );
