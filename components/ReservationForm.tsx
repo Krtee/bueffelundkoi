@@ -381,7 +381,11 @@ const ReservationForm = () => {
       >
         <div className={"  w-full text-white max-w-screen-2xl m-auto	"}>
           <NavigationBar />
-          <div className={"flex-1 p-10 flex flex-row gap-5 justify-center	"}>
+          <div
+            className={
+              "flex-1 p-10 flex flex-row gap-5 justify-center min-h-[70vh]	"
+            }
+          >
             {renderRightFormStep()}
             <div className="hidden md:block md:w-full">
               <Image
