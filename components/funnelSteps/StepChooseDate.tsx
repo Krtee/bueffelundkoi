@@ -68,11 +68,12 @@ const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
           isDateUnavailable={(dateToCheck: DateValue) =>
             excludeDates?.some(
               (excludedDate) =>
-                excludedDate.getDate() === dateToCheck.toDate("de").getDate() &&
+                excludedDate.getDate() ===
+                  dateToCheck.toDate("Europe/Berlin").getDate() &&
                 excludedDate.getMonth() ===
-                  dateToCheck.toDate("de").getMonth() &&
+                  dateToCheck.toDate("Europe/Berlin").getMonth() &&
                 excludedDate.getFullYear() ===
-                  dateToCheck.toDate("de").getFullYear()
+                  dateToCheck.toDate("Europe/Berlin").getFullYear()
             ) ?? false
           }
         />

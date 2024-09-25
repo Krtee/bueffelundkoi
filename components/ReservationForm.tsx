@@ -82,6 +82,15 @@ const ReservationForm = () => {
     SuggestionResponse[] | undefined
   >([]);
   const [error, setError] = useState<"email" | undefined>();
+  const [visitedSteps, setVisitedSteps] = useState<FormStep[]>([]);
+
+  const [chosenSuggestion, setChosenSuggestion] =
+    useState<SuggestionResponse>();
+
+  /**
+   *  Sends a new reservation to backend
+   * @param reservationtoSend the reservation to send
+   */
   const saveReservation = (reservationtoSend: Reservation) => {
     if (!validateEmail(reservationtoSend.emailOfReservator)) {
       setError("email");
@@ -96,11 +105,11 @@ const ReservationForm = () => {
       }
     });
   };
-  const [visitedSteps, setVisitedSteps] = useState<FormStep[]>([]);
 
-  const [chosenSuggestion, setChosenSuggestion] =
-    useState<SuggestionResponse>();
-
+  /**
+   *  looks for available reservationtimes on the backend
+   * @param suggestionRequestToSend  the request to send
+   */
   const onFetchSuggestions = (suggestionRequestToSend: SuggestionRequest) => {
     setCurrentStep(FormStep.LOADING);
 
