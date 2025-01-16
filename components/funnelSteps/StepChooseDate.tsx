@@ -2,7 +2,7 @@
 
 import { parseDate } from "@internationalized/date";
 import { DatePicker, DateValue } from "@nextui-org/react";
-import { isBefore, isSameDay } from "date-fns";
+import { isSameDay } from "date-fns";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import {
@@ -39,23 +39,34 @@ const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
     fetchExcludeDates().then(setExcludeDates);
   }, []);
 
+  const checkIfNextDisabled = () => {
+    // Check if the next button should be disabled
+    // if date is null, then the next button should be disabled
+    if (!date) return true;
+    // if the date is today and the time is after 5pm, then the next button should be disabled
+    if (isSameDay(tempDateAsDate, new Date()) && new Date().getHours() >= 17)
+      return true;
+    // if the choosen date is excluded, then the next button should be disabled
+    if (
+      excludeDates?.some(
+        (excludedDate) =>
+          excludedDate.getDate() === tempDateAsDate.getDate() &&
+          excludedDate.getMonth() === tempDateAsDate.getMonth() &&
+          excludedDate.getFullYear() === tempDateAsDate.getFullYear()
+      )
+    )
+      return true;
+
+    return false;
+  };
+
   return (
     <FunnelStepLayout
       onNext={() => {
         onNext(tempDateAsDate);
       }}
       subTitle={t("booking.date")}
-      nextDisabled={
-        !date ||
-        (!isSameDay(tempDateAsDate, date) &&
-          isBefore(tempDateAsDate, getMinDate(excludeDates))) ||
-        excludeDates?.some(
-          (excludedDate) =>
-            excludedDate.getDate() === tempDateAsDate.getDate() &&
-            excludedDate.getMonth() === tempDateAsDate.getMonth() &&
-            excludedDate.getFullYear() === tempDateAsDate.getFullYear()
-        )
-      }
+      nextDisabled={checkIfNextDisabled()}
     >
       <div className={"react-datepicker__wrapper flex-1 flex justify-center	"}>
         <DatePicker
@@ -78,7 +89,7 @@ const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
           }
         />
       </div>
-      <p className="py-10 text-justify whitespace-pre-line josefin  leading-4	">
+      <p className="py-10 text-justify whitespace-pre-line josefin leading-4">
         {t("booking.experimental")}
       </p>
     </FunnelStepLayout>

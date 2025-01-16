@@ -17,13 +17,17 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
 import {
+  ExcludedTimeInterval,
   Reservation,
   SuggestionRequest,
   SuggestionResponse,
 } from "../utils/booking/Booking.types";
 import {
+  checkIfTimeIsValid,
   emptyReservation,
+  fetchExcludeTimeIntervals,
   fetchSuggestions,
+  mapGetDayToDayOfWeek,
   postNewReservation,
   validateEmail,
 } from "../utils/booking/BookingUtils";
@@ -66,6 +70,12 @@ const ReservationForm = () => {
     FormStep.CHOOSE_DATE
   );
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  const [excludeTimeIntervals, setExcludeTimeIntervals] =
+    useState<ExcludedTimeInterval[]>();
+
+  const [excludedTimeIntervalFetched, setExcludedTimeIntervalFetched] =
+    useState(false);
   const [suggestionRequest, setsuggestionRequest] = useState<SuggestionRequest>(
     {
       date: new Date(
@@ -87,6 +97,12 @@ const ReservationForm = () => {
   const [chosenSuggestion, setChosenSuggestion] =
     useState<SuggestionResponse>();
 
+  useEffect(() => {
+    fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
+      setExcludeTimeIntervals(excludeTimeIntervals);
+      setExcludedTimeIntervalFetched(true);
+    });
+  }, []);
   /**
    *  Sends a new reservation to backend
    * @param reservationtoSend the reservation to send
@@ -110,9 +126,25 @@ const ReservationForm = () => {
    *  looks for available reservationtimes on the backend
    * @param suggestionRequestToSend  the request to send
    */
-  const onFetchSuggestions = (suggestionRequestToSend: SuggestionRequest) => {
+  const onFetchSuggestions = async (
+    suggestionRequestToSend: SuggestionRequest
+  ) => {
     setCurrentStep(FormStep.LOADING);
 
+    let excludeTimeIntervalsCopy = excludeTimeIntervals;
+
+    if (!excludedTimeIntervalFetched) {
+      excludeTimeIntervalsCopy = await fetchExcludeTimeIntervals()
+        .then((excludeTimeIntervals) => {
+          setExcludeTimeIntervals(excludeTimeIntervals);
+          setExcludedTimeIntervalFetched(true);
+          return excludeTimeIntervals;
+        })
+        .catch((error) => {
+          setCurrentStep(FormStep.RESERVATION_ERROR);
+          return [];
+        });
+    }
     fetchSuggestions(
       suggestionRequestToSend.date,
       reservationTimeInSeconds,
@@ -125,7 +157,13 @@ const ReservationForm = () => {
           suggestions[0].startTime.getHours() ===
             suggestionRequestToSend.date.getHours() &&
           suggestions[0].startTime.getMinutes() ===
-            suggestionRequestToSend.date.getMinutes()
+            suggestionRequestToSend.date.getMinutes() &&
+          checkIfTimeIsValid(
+            suggestions[0].startTime.getHours(),
+            suggestions[0].startTime.getMinutes(),
+            mapGetDayToDayOfWeek(suggestionRequestToSend.date.getDay()),
+            excludeTimeIntervalsCopy
+          )
         ) {
           setReservation((prevReservation) => ({
             ...prevReservation,
@@ -139,7 +177,16 @@ const ReservationForm = () => {
           }));
           setCurrentStep(FormStep.FILL_INFORMATION);
         } else {
-          setSuggestions(suggestions);
+          setSuggestions(
+            suggestions?.filter((suggestion) => {
+              return checkIfTimeIsValid(
+                suggestion.startTime.getHours(),
+                suggestion.startTime.getMinutes(),
+                mapGetDayToDayOfWeek(suggestionRequestToSend.date.getDay()),
+                excludeTimeIntervalsCopy
+              );
+            })
+          );
           setCurrentStep(FormStep.CHOOSE_PERSON_COUNT);
           onOpen();
         }

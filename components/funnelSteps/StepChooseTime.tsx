@@ -14,7 +14,6 @@ import {
 import {
   checkIfTimeIsValid,
   fetchExcludeTimeIntervals,
-  getNextValidMinutes,
   mapGetDayToDayOfWeek,
 } from "../../utils/booking/BookingUtils";
 import FunnelStepLayout from "./FunnelStepLayout";
@@ -102,32 +101,32 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
   /**
    * updates the date when the hour changes
    */
-  useEffect(() => {
-    if (!selectedReservationHour) return;
+  // useEffect(() => {
+  //   if (!selectedReservationHour) return;
 
-    const updatedMinuteOptions = selectOptionMinutes(
-      selectedReservationHour.value,
-      excludeTimeIntervals?.find(
-        (interval) => interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
-      )
-    );
+  //   const updatedMinuteOptions = selectOptionMinutes(
+  //     selectedReservationHour.value,
+  //     excludeTimeIntervals?.find(
+  //       (interval) => interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
+  //     )
+  //   );
 
-    setMinuteOptions(updatedMinuteOptions);
-    const foundMinutes = selectOptionMinutes().find(
-      (findOption) =>
-        findOption.value ===
-        getNextValidMinutes(
-          selectedReservationHour.value,
-          date.getMinutes(),
-          excludeTimeIntervals?.find(
-            (interval) =>
-              interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
-          )
-        )
-    );
+  //   setMinuteOptions(updatedMinuteOptions);
+  //   const foundMinutes = selectOptionMinutes().find(
+  //     (findOption) =>
+  //       findOption.value ===
+  //       getNextValidMinutes(
+  //         selectedReservationHour.value,
+  //         date.getMinutes(),
+  //         excludeTimeIntervals?.find(
+  //           (interval) =>
+  //             interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
+  //         )
+  //       )
+  //   );
 
-    if (foundMinutes) setSelectBookingMinutes(foundMinutes);
-  }, [selectedReservationHour]);
+  //   if (foundMinutes) setSelectBookingMinutes(foundMinutes);
+  // }, [selectedReservationHour]);
 
   return (
     <FunnelStepLayout
@@ -169,12 +168,7 @@ const StepChooseTime: React.FC<StepChooseTimeProps> = ({
           theme={customTheme}
           getOptionValue={(option: Option) => option.value.toString()}
           getOptionLabel={(option: Option) => option.label}
-          options={selectHourOptionsEvening(
-            excludeTimeIntervals?.find(
-              (interval) =>
-                interval.dayOfWeek === mapGetDayToDayOfWeek(date.getDay())
-            )
-          )}
+          options={selectHourOptionsEvening()}
           isDisabled={!excludedTimeIntervalFetched}
           value={selectedReservationHour}
         />

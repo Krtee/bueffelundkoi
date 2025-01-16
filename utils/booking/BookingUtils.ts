@@ -90,6 +90,7 @@ export const fetchExcludeDates = async (): Promise<Date[]> =>
       return undefined;
     });
 
+// get next valid date
 export const getMinDate = (excludeDates?: Date[]) => {
   const currentDate = new Date();
 
