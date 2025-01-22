@@ -55,15 +55,15 @@ const StepFillReservation: React.FC<StepChooseReservationProps> = ({
           <p className=" text-justify whitespace-pre-line josefin text-xl">
             {t("booking.fillInformation.date", {
               date: format(
-                reservation.reservationStart,
+                tempReservation.reservationStart,
                 locale === "de" ? "dd.MM.yyyy" : "yyyy-MM-dd"
               ),
-              time: format(reservation.reservationStart, "HH:mm"),
+              time: format(tempReservation.reservationStart, "HH:mm"),
             })}
           </p>
           <p className=" text-justify whitespace-pre-line josefin text-xl">
             {t("booking.fillInformation.perconCount", {
-              personCount: reservation.personCount,
+              personCount: tempReservation.personCount,
             })}
           </p>
         </div>

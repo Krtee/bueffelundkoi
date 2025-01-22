@@ -200,17 +200,18 @@ const ReservationForm = () => {
     if (!visitedSteps.includes(step)) setVisitedSteps([...visitedSteps, step]);
   };
 
-  useEffect(() => {
-    if (!chosenSuggestion) return;
+  const onChooseSuggestion = (suggestion: SuggestionResponse) => {
+    setChosenSuggestion(suggestion);
     setReservation((prevReservation) => ({
       ...prevReservation,
-      reservationStart: new Date(chosenSuggestion.startTime),
-      reservationEnd: addSeconds(new Date(chosenSuggestion.startTime), 6300),
+      reservationStart: new Date(suggestion.startTime),
+      reservationEnd: addSeconds(new Date(suggestion.startTime), 6300),
       personCount: suggestionRequest.personCount,
-      tableNumbers: [chosenSuggestion.tableNumber],
+      tableNumbers: [suggestion.tableNumber],
     }));
-  }, [chosenSuggestion]);
-
+    onClose();
+    setCurrentStep(FormStep.FILL_INFORMATION);
+  };
   /**
    * returns the current step of the form
    *
@@ -400,11 +401,7 @@ const ReservationForm = () => {
                     suggestions.map((suggestion, index) => (
                       <Button
                         key={index}
-                        onClick={() => {
-                          setChosenSuggestion(suggestion);
-                          onClose();
-                          setCurrentStep(FormStep.FILL_INFORMATION);
-                        }}
+                        onClick={() => onChooseSuggestion(suggestion)}
                         color="primary"
                         className=" text-dark  rig-shaded"
                       >
