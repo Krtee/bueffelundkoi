@@ -14,13 +14,7 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>
-          <link
-            href="https://use.typekit.net/pqp0hmz.css"
-            rel="stylesheet"
-            key="font"
-          />
-        </Head>
+        <Head></Head>
         <body className={"dark"}>
           <Main />
           <NextScript />

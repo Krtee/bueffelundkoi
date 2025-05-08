@@ -16,6 +16,9 @@ const PdfViewer: FC<PdfViewerProps> = ({ url, width, height }) => {
   const [numPages, setNumPages] = useState<number>(0);
   const [visible, setVisible] = useState(false);
 
+  /**
+   * Settings for the slider
+   */
   const settings = {
     dots: true,
     infinite: true,

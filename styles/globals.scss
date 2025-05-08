@@ -1,15 +1,11 @@
 @use "sass:math";
-//@import url("https://use.typekit.net/pqp0hmz.css");
+@import url("https://use.typekit.net/pqp0hmz.css");
 
 /* ./styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: openSans;
-  src: url(../public/assets/fonts/OpenSans-SemiBold.ttf);
-}
 $main-perspective: 30;
 
 *,

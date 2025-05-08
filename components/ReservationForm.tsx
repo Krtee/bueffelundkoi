@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@nextui-org/button";
 import {
   Modal,
@@ -97,6 +98,9 @@ const ReservationForm = () => {
   const [chosenSuggestion, setChosenSuggestion] =
     useState<SuggestionResponse>();
 
+  /**
+   * fetches the excluded time intervals from the backend
+   */
   useEffect(() => {
     fetchExcludeTimeIntervals().then((excludeTimeIntervals) => {
       setExcludeTimeIntervals(excludeTimeIntervals);
@@ -107,7 +111,7 @@ const ReservationForm = () => {
    *  Sends a new reservation to backend
    * @param reservationtoSend the reservation to send
    */
-  const saveReservation = (reservationtoSend: Reservation) => {
+  const saveReservation = (reservationtoSend: Reservation): void => {
     if (!validateEmail(reservationtoSend.emailOfReservator)) {
       setError("email");
     }
@@ -128,7 +132,7 @@ const ReservationForm = () => {
    */
   const onFetchSuggestions = async (
     suggestionRequestToSend: SuggestionRequest
-  ) => {
+  ): Promise<void> => {
     setCurrentStep(FormStep.LOADING);
 
     let excludeTimeIntervalsCopy = excludeTimeIntervals;
@@ -196,11 +200,19 @@ const ReservationForm = () => {
       });
   };
 
+  /**
+   *  adds a step to the visited steps
+   * @param step the step to add
+   */
   const addVisitedStep = (step: FormStep) => {
     if (!visitedSteps.includes(step)) setVisitedSteps([...visitedSteps, step]);
   };
 
-  const onChooseSuggestion = (suggestion: SuggestionResponse) => {
+  /**
+   *  sets the chosen suggestion
+   * @param suggestion the suggestion that was chosen
+   */
+  const onChooseSuggestion = (suggestion: SuggestionResponse): void => {
     setChosenSuggestion(suggestion);
     setReservation((prevReservation) => ({
       ...prevReservation,

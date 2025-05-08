@@ -102,7 +102,7 @@
       "label": "Notes",
       "placeholder": "I would like to sit outside."
     },
-    "reservationSaved": "Thank you for your reservation. We have sent you a confirmation email. Otherwise, the reservation will be automatically canceled within 24 hours.",
+    "reservationSaved": "Thank you for your reservation. We have sent you a confirmation email. Otherwise, the reservation will be automatically canceled within 24 hours. All your data will be deleted 7 days after the reservation.",
     "reservationError": "Unfortunately something went wrong with the reservation, please try again or call us!",
     "modal": {
       "header": "Choose a time",

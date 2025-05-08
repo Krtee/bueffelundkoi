@@ -1,3 +1,5 @@
+"use client";
+
 import Image, { ImageProps, StaticImageData } from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import { Portal } from "react-portal";
@@ -15,7 +17,10 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
   const overlayRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
 
-  const setOverlayHeight = () => {
+  /**
+   * Sets the height of the overlay
+   */
+  const setOverlayHeight = (): void => {
     if (overlayRef.current) {
       overlayRef.current.style.height = `${height}px`;
     }

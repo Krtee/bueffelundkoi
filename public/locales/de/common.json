@@ -102,7 +102,7 @@
             "label": "Notizen",
             "placeholder": "z.B. Allergien, Wünsche, etc."
         },
-        "reservationSaved": "Vielen Dank für deine Reservierung. Wir haben dir eine Bestätigungsmail geschickt. Andernfalls wird die Reservierung automatisch innerhalb von 24 Stunden storniert.",
+        "reservationSaved": "Vielen Dank für deine Reservierung. Wir haben dir eine Bestätigungsmail geschickt. Andernfalls wird die Reservierung automatisch innerhalb von 24 Stunden storniert. Alle deine Kontaktinformationen werden innerhalb von 7 Tagen nach deiner Reservierung gelöscht.",
         "reservationError": "Leider ist beim der Reservierung etwas schiefgelaufen, bitte versuche es noch einmal oder rufe uns an!",
         "modal": {
             "header": "Wähle eine Uhrzeit",
