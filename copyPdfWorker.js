@@ -1,7 +1,10 @@
-import fs from 'node:fs';
-import path from 'node:path';
+const fs = require("fs");
+const path = require("path");
 
-const pdfjsDistPath = path.dirname(require.resolve('pdfjs-dist/package.json'));
-const pdfWorkerPath = path.join(pdfjsDistPath, 'build', 'pdf.worker.mjs');
+const pdfjsDistPath = path.dirname(require.resolve("pdfjs-dist/package.json"));
+const pdfWorkerPath = path.join(pdfjsDistPath, "build", "pdf.worker.mjs");
 
-fs.cpSync(pdfWorkerPath, './dist/pdf.worker.mjs', { recursive: true });
+fs.mkdirSync("./public/pdf", { recursive: true });
+fs.copyFileSync(pdfWorkerPath, "./public/pdf/pdf.worker.mjs");
+
+console.log("✅ PDF.js worker copied to /public/pdf/pdf.worker.mjs");

@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node ./copyPdfWorker.js next build && next-sitemap",
+    "build": "node ./copyPdfWorker.js && next build && next-sitemap",
     "start": "next start -p 8080",
     "lint": "next lint",
     "postbuild": "next-sitemap",
