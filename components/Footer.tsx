@@ -1,4 +1,5 @@
 import { useTranslation } from "next-i18next";
+import Image from "next/image";
 import Link from "next/link";
 import router from "next/router";
 import { FC } from "react";
@@ -38,7 +39,8 @@ const Footer: FC<{}> = () => {
 
       <div className="flex flex-row w-full justify-center mt-9 gap-10">
         <div className={"w-12 h-12"}>
-          <FacebookIcon
+          <Image
+            src={FacebookIcon}
             onClick={() =>
               router.push("https://www.facebook.com/bueffelundkoi")
             }
@@ -46,7 +48,8 @@ const Footer: FC<{}> = () => {
           />
         </div>
         <div className={"w-12 h-12"}>
-          <InstagramIcon
+          <Image
+            src={InstagramIcon}
             onClick={() =>
               router.push("https://www.instagram.com/bueffelundkoi/")
             }

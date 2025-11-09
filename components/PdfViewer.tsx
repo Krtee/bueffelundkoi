@@ -1,12 +1,15 @@
 import { FC, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { Document, Page, pdfjs } from "react-pdf";
+import "react-pdf/dist/Page/AnnotationLayer.css";
+import "react-pdf/dist/Page/TextLayer.css";
 import { Portal } from "react-portal";
 import Slider from "react-slick";
 import CloseIcon from "./../public/assets/close.svg";
-
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  "pdfjs-dist/build/pdf.worker.min.mjs",
+  import.meta.url
+).toString();
 export interface PdfViewerProps {
   url: string;
   width?: number;
@@ -33,7 +36,7 @@ const PdfViewer: FC<PdfViewerProps> = ({ url, width, height }) => {
 
   const renderPages = (): JSX.Element[] => {
     let pages: JSX.Element[] = [];
-    for (let i = 1; i < numPages; i++) {
+    for (let i = 1; i <= numPages; i++) {
       pages.push(
         <Page
           pageNumber={i}

@@ -1,4 +1,4 @@
-import { Button, Spacer } from "@nextui-org/react";
+import { Button, Spacer } from "@heroui/react";
 import { useTranslation } from "next-i18next";
 import React from "react";
 

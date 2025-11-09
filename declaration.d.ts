@@ -1,4 +1,25 @@
-// Type definitions for react-datetime-picker 3.4
+declare module "*.scss" {
+  // TypeScript will now recognize the import without type information.
+}
+
+// You may also need to do this for standard CSS files:
+declare module "*.css" {
+  // If you use CSS Modules, you might add:
+  // const content: { [className: string]: string };
+  // export default content;
+}
+declare module "*.png";
+declare module "*.jpg";
+declare module "*.jpeg";
+declare module "*.gif";
+declare module "@fontsource/*" {}
+declare module "@fontsource-variable/*" {}
+declare module "*.svg" {
+  // SVG files often need to be treated as a URL string or sometimes a React component,
+  // depending on your configuration. For a simple URL import, use:
+  const content: string;
+  export default content;
+}
 
 declare module "react-datetime-picker/dist/entry.nostyle" {
   export default function DateTimePicker(

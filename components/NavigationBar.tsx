@@ -32,7 +32,11 @@ const NavigationBar: FC<NavigationBarProps> = ({}) => {
         </div>
         {width && width <= 800 ? (
           <>
-            <MenuIcon onClick={() => setShowPopUp(true)} alt="open menu" />
+            <Image
+              src={MenuIcon}
+              onClick={() => setShowPopUp(true)}
+              alt="open menu"
+            />
             <NavOverlay
               isOpen={showPopUp}
               onClose={() => setShowPopUp(false)}

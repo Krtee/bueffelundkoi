@@ -1,7 +1,7 @@
 "use client";
 
-import { parseDate } from "@internationalized/date";
-import { DatePicker, DateValue } from "@nextui-org/react";
+import { DatePicker, DateValue } from "@heroui/react";
+import { CalendarDate, parseDate } from "@internationalized/date";
 import { isSameDay } from "date-fns";
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
@@ -20,7 +20,7 @@ interface StepChooseDateProps {
 }
 
 const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
-  const [tempDate, setTempDate] = React.useState<DateValue>(
+  const [tempDate, setTempDate] = React.useState<CalendarDate>(
     parseDate(date.toISOString().substring(0, 10))
   );
   const [excludeDates, setExcludeDates] = React.useState<Date[]>();
@@ -72,7 +72,10 @@ const StepChooseDate: React.FC<StepChooseDateProps> = ({ onNext, date }) => {
         <DatePicker
           aria-label="Choose date"
           value={tempDate}
-          onChange={setTempDate}
+          onChange={(newDate) => {
+            if (!newDate) return;
+            setTempDate(newDate);
+          }}
           minValue={parseDate(
             getMinDate(excludeDates).toISOString().substring(0, 10)
           )}

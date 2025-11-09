@@ -1,5 +1,6 @@
 "use client";
 
+import { Spinner } from "@heroui/react";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -9,8 +10,11 @@ import MenuImage1 from "./../public/assets/images/speisen_1.jpg";
 import MenuImage2 from "./../public/assets/images/speisen_2.png";
 import MenuImage3 from "./../public/assets/images/speisen_3.jpg";
 import ImageWithOverlay from "./ImageWithOverlay";
-const PdfViewer = dynamic(() => import("./PdfViewer"));
 
+const PdfViewer = dynamic(() => import("./PdfViewer"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 const Menu: FC<{}> = () => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation("common");
@@ -74,10 +78,9 @@ const Menu: FC<{}> = () => {
           <a
             href={locale === "en" ? "./menu_EN.pdf" : "./menu_DE.pdf"}
             download
+            className="mx-auto text-white text-center rig-shaded py-2 block"
           >
-            <p className="mx-auto text-white text-center rig-shaded py-2 ">
-              {t("menu.download")}
-            </p>
+            {t("menu.download")}
           </a>
         </div>
       </div>

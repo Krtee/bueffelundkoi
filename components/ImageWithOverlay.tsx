@@ -44,15 +44,20 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
               }
             >
               <div className="absolute right-1 top-1 p-2 z-10">
-                <CloseIcon onClick={() => setVisible(false)} alt="close" />
+                <Image
+                  onClick={() => setVisible(false)}
+                  alt="close"
+                  src={CloseIcon}
+                />
               </div>
               <TransformWrapper>
                 <TransformComponent>
                   <div className={`h-full flex items-center justify-center`}>
                     <Image
                       {...imageProps}
-                      height={(imageProps!.height! as number) * 3}
-                      width={(imageProps!.width! as number) * 3}
+                      height={(imageProps.height as number) * 3}
+                      width={(imageProps.width as number) * 3}
+                      style={imageStyles}
                     />
                   </div>
                 </TransformComponent>
@@ -65,9 +70,8 @@ const ImageWithOverlay: FC<ImageProps> = ({ ...imageProps }) => {
       <Image
         onClick={() => setVisible(true)}
         {...imageProps}
-        quality={50}
-        width={undefined}
-        height={undefined}
+        width={imageProps.width}
+        height={imageProps.height}
         style={imageStyles}
       />
     </>

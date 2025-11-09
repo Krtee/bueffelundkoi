@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@nextui-org/button";
+import { Button } from "@heroui/button";
 import {
   Modal,
   ModalBody,
@@ -8,9 +8,9 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
-} from "@nextui-org/modal";
+} from "@heroui/modal";
 
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 import { addSeconds } from "date-fns";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
@@ -399,7 +399,7 @@ const ReservationForm = () => {
               <ModalHeader className="rig-shaded text-2xl">
                 {t("booking.modal.header")}
               </ModalHeader>
-              <ModalBody className="md:p-5 max-w-screen-2xl m-auto w-full">
+              <ModalBody className="md:p-5 max-w-(--breakpoint-2xl) m-auto w-full">
                 <p className="whitespace-pre-line josefin text-xl">
                   {t("booking.modal.body.availableTimes")}
                 </p>
@@ -444,7 +444,7 @@ const ReservationForm = () => {
         className="flex flex-col  w-full text-white m-auto overflow-hidden"
         id="main"
       >
-        <div className={"  w-full text-white max-w-screen-2xl m-auto	"}>
+        <div className={"  w-full text-white max-w-(--breakpoint-2xl) m-auto	"}>
           <NavigationBar />
           <div
             className={

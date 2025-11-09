@@ -43,7 +43,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={"main w-full"} ref={mainRef}>
-        <div className={"  w-full text-white max-w-screen-2xl m-auto	"}>
+        <div className={"  w-full text-white max-w-(--breakpoint-2xl) m-auto	"}>
           <NavigationBar />
 
           <div
@@ -57,7 +57,6 @@ const Home: NextPage = () => {
                 src={StartImage2}
                 priority
                 alt="header image - Kokos Pocus Bowl"
-                quality={70}
                 style={imageStyles}
               />
             </div>
@@ -68,7 +67,6 @@ const Home: NextPage = () => {
                 style={imageStyles}
                 priority
                 alt="header image - Thun &amp; Lachsen"
-                quality={70}
               />
             </div>
             <div className="absolute top-12 right-12 z-10">

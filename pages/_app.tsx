@@ -1,6 +1,7 @@
 "use client";
-import { NextUIProvider } from "@nextui-org/system";
+import { HeroUIProvider } from "@heroui/system";
 
+import "@fontsource-variable/josefin-sans";
 import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import "slick-carousel/slick/slick-theme.css";
@@ -12,9 +13,9 @@ import "./../styles/privacy.scss";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <NextUIProvider>
+    <HeroUIProvider>
       <Component {...pageProps} />
-    </NextUIProvider>
+    </HeroUIProvider>
   );
 }
 export default appWithTranslation(MyApp);

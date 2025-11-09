@@ -1,8 +1,8 @@
-const { nextui } = require("@nextui-org/react");
+const { heroui } = require("@heroui/react");
 
 module.exports = {
   content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}',
-  "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+  "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}"
 ],
   
   theme: {
@@ -47,7 +47,7 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [
-    nextui({
+    heroui({
       prefix: "nextui", // prefix for themes variables
       addCommonColors: false, // override common colors (e.g. "blue", "green", "pink").
       defaultTheme: "light", // default theme from the themes object
@@ -71,7 +71,5 @@ module.exports = {
     }),
     require('@tailwindcss/aspect-ratio'),
   ],
-  corePlugins: {
-    preflight: false,
-  }
+
 }
