@@ -1,6 +1,5 @@
 "use client";
 
-import { Spinner } from "@heroui/spinner";
 import { GetStaticPaths } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -48,7 +47,12 @@ const ConfirmReservation: React.FC = ({}) => {
           <div
             className={"flex-1 p-10 flex flex-col gap-5  min-h-screen md:px-40	"}
           >
-            <Spinner />
+            <div className="max-w-sm animate-pulse">
+              <div className="h-6 bg-gray-600 rounded-full w-64 mb-10"></div>
+              <div className="h-4 bg-gray-600 rounded-full max-w-[360px] mb-2.5"></div>
+              <div className="h-4 bg-gray-600 rounded-full mb-2.5"></div>
+              <div className="h-4 bg-gray-600 rounded-full max-w-[330px] mb-2.5"></div>
+            </div>
           </div>
         );
       default:
