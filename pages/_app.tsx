@@ -1,5 +1,4 @@
-"use client";
-import { HeroUIProvider } from "@heroui/system";
+import { HeroUIProvider } from "@heroui/react";
 
 import "@fontsource-variable/josefin-sans";
 import { appWithTranslation } from "next-i18next";

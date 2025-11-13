@@ -1,7 +1,4 @@
-"use client";
-
 import { GetStaticPaths } from "next";
-import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import ConfirmReservationContent from "../../../components/ConfirmReservationContent";
@@ -9,8 +6,6 @@ import Footer from "../../../components/Footer";
 import NavigationBar from "../../../components/NavigationBar";
 
 const ConfirmReservation: React.FC = () => {
-  const { t } = useTranslation();
-
   return (
     <div className="overflow-y-auto h-screen">
       <Head>
