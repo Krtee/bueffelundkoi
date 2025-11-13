@@ -10,6 +10,7 @@ module.exports = {
     minimumCacheTTL: 3600,
     formats: ["image/webp"],
   },
+  transpilePackages: ['@heroui/system'],
   async headers() {
     return [
       {
