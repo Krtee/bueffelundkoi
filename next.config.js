@@ -1,15 +1,10 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  staticPageGenerationTimeout: 1000,
   i18n:{
     defaultLocale: 'de',
     locales: ['en', 'de'],
     },
-  images: {
-    minimumCacheTTL: 3600,
-    formats: ["image/webp"],
-  },
   transpilePackages: ['@heroui/system'],
   async headers() {
     return [
@@ -23,5 +18,13 @@ module.exports = {
         ],
       },
     ]
+  },
+
+  experimental: {
+    // This glob pattern tells the file tracer to include ALL files ('**/*') 
+    // inside the specified node_modules folder for ALL routes ('/**/').
+    outputFileTracingIncludes: {
+      '/**/node_modules/@heroui/system': ['**/*'],
+    },
   },
 }
