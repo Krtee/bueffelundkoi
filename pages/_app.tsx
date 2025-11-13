@@ -5,6 +5,7 @@ import { appWithTranslation } from "next-i18next";
 import type { AppProps } from "next/app";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import nextI18NextConfig from "../next-i18next.config.js";
 import "../styles/globals.scss";
 import "./../styles/booking.scss";
 import "./../styles/preflight.css";
@@ -17,4 +18,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </HeroUIProvider>
   );
 }
-export default appWithTranslation(MyApp);
+export default appWithTranslation(MyApp, nextI18NextConfig);

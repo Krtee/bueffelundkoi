@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
+import nextI18NextConfig from "../next-i18next.config.js";
 import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
 
@@ -505,7 +506,7 @@ const Privacy: NextPage = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "footer"])),
+    ...(await serverSideTranslations(locale, ["common", "footer"], nextI18NextConfig)),
   },
 });
 

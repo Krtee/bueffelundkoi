@@ -11,6 +11,13 @@
       "close": "close"
     }
   },
+  "errors": {
+    "500": {
+      "title": "Something went wrong",
+      "description": "Please try again later.",
+      "cta": "Back to home"
+    }
+  },
   "main": {
     "firstTitle": "Japanese",
     "secondTitle": "Vietnamese"

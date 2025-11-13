@@ -4,6 +4,7 @@ import Head from "next/head";
 import ConfirmReservationContent from "../../../components/ConfirmReservationContent";
 import Footer from "../../../components/Footer";
 import NavigationBar from "../../../components/NavigationBar";
+import nextI18NextConfig from "../../../next-i18next.config.js";
 
 const ConfirmReservation: React.FC = () => {
   return (
@@ -25,7 +26,11 @@ const ConfirmReservation: React.FC = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "footer"])),
+    ...(await serverSideTranslations(
+      locale,
+      ["common", "footer"],
+      nextI18NextConfig
+    )),
   },
 });
 

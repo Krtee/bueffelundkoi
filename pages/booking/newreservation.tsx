@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import { Suspense } from "react";
 import ReservationForm from "../../components/ReservationForm";
+import nextI18NextConfig from "../../next-i18next.config.js";
 
 enum FormStep {
   CHOOSE_DATE,
@@ -38,7 +39,11 @@ const NewReservation: NextPage = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "footer"])),
+    ...(await serverSideTranslations(
+      locale,
+      ["common", "footer"],
+      nextI18NextConfig
+    )),
   },
 });
 

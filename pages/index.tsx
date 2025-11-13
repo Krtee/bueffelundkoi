@@ -8,6 +8,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import NavigationBar from "../components/NavigationBar";
+import nextI18NextConfig from "../next-i18next.config.js";
 import { useWindowDimensions } from "../utils/useWindowDimension";
 import { imageStyles } from "../utils/variables";
 import StartImage1 from "./../public/assets/images/start_1.jpg";
@@ -113,7 +114,11 @@ const Home: NextPage = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "footer"])),
+    ...(await serverSideTranslations(
+      locale,
+      ["common", "footer"],
+      nextI18NextConfig
+    )),
   },
 });
 

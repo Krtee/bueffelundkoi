@@ -11,6 +11,13 @@
             "close": "Schließen"
         }
     },
+    "errors": {
+        "500": {
+            "title": "Etwas ist schiefgelaufen",
+            "description": "Bitte versuche es später erneut.",
+            "cta": "Zur Startseite"
+        }
+    },
     "nav": {
         "menu": "Speisekarte",
         "home": "Home",

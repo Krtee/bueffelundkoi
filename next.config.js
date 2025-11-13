@@ -1,11 +1,9 @@
+const { i18n } = require("./next-i18next.config");
+
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  transpilePackages: ['@heroui/system','@heroui/react'],
-  i18n:{
-    defaultLocale: 'de',
-    locales: ['en', 'de'],
-    },
+  i18n,
   async headers() {
     return [
       {
