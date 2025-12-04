@@ -15,6 +15,7 @@ const PdfViewer = dynamic(() => import("./PdfViewer"), {
   ssr: false,
   loading: () => <Spinner />,
 });
+
 const Menu: FC<{}> = () => {
   const { width } = useWindowDimensions();
   const { t } = useTranslation("common");
@@ -71,12 +72,12 @@ const Menu: FC<{}> = () => {
 
       <div className={"relative pdf-viewer__wrapper md:mr-10"}>
         <PdfViewer
-          url={locale === "en" ? "./menu_EN.pdf" : "./menu_DE.pdf"}
+          url={locale === "en" ? "/menu_EN.pdf" : "/menu_DE.pdf"}
           width={checkPDFWidth()}
         />
         <div className=" border-t border-b pdf-viewer__download my-4">
           <a
-            href={locale === "en" ? "./menu_EN.pdf" : "./menu_DE.pdf"}
+            href={locale === "en" ? "/menu_EN.pdf" : "/menu_DE.pdf"}
             download
             className="mx-auto text-white text-center rig-shaded py-2 block"
           >

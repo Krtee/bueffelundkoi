@@ -6,10 +6,9 @@ import "react-pdf/dist/Page/TextLayer.css";
 import { Portal } from "react-portal";
 import Slider from "react-slick";
 import CloseIcon from "./../public/assets/close.svg";
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.mjs",
-  import.meta.url
-).toString();
+
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf/pdf.worker.mjs";
+
 export interface PdfViewerProps {
   url: string;
   width?: number;

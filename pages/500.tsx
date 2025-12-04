@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Link from "next/link";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Head from "next/head";
+import Link from "next/link";
 import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
 import nextI18NextConfig from "../next-i18next.config.js";
@@ -38,9 +38,12 @@ const Custom500: NextPage = () => {
 
 export const getStaticProps = async ({ locale }: any) => ({
   props: {
-    ...(await serverSideTranslations(locale, ["common", "footer"], nextI18NextConfig)),
+    ...(await serverSideTranslations(
+      locale,
+      ["common", "footer"],
+      nextI18NextConfig
+    )),
   },
 });
 
 export default Custom500;
-
